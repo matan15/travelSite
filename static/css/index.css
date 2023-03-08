@@ -1,0 +1,169 @@
+/* hero */
+.hero-img {
+    filter: brightness(60%);
+    width: 100%;
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-heading-box {
+    color: white;
+    text-align: center;
+    position: absolute;
+}
+
+.hero-heading, .slogen {
+    padding: 10px 50px;
+    position: relative;
+}
+
+.hero-heading {
+    font-size: 100px;
+    letter-spacing: 5px;
+    font-weight: 800;
+}
+
+.slogen {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+/*******************************************************/
+
+/* about */
+
+.about {
+    background-color: #5F8D4E;
+}
+
+.about .main_text {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 65%;
+    color: white;
+    margin: auto;
+    text-align: center;
+}
+
+.about .main_text .heading {
+    font-size: 35px;
+    padding-bottom: 20px;
+}
+
+.about .main_text .about-text {
+    line-height: 24px;
+    font-weight: 400;
+}
+
+/************************************************************/
+
+/* ad blog */
+
+.ad_blog {
+    background-color: #B6E388;
+}
+
+.ad_blog_main {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.ad_blog_main .heading {
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+
+.ad_blog_button {
+    font-size: 20px;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background: #FCFFB2;
+    font-weight: 600;
+}
+
+.ad_blog_button:hover {
+    text-decoration: none;
+}
+
+/************************************************************/
+
+/* contact section */
+
+.contact {
+    background-color: #76BA99;
+}
+
+.contact_main {
+    text-align: center;
+}
+
+.contact_main h1 {
+    padding-bottom: 20px;
+}
+
+.contact_main form {
+    display: inline-block;
+    text-align: right;
+    padding-bottom: 10px;
+}
+
+.contact_main form label {
+    font-weight: 600;
+}
+
+.contact_main form input:not([type="submit"]) {
+    margin-bottom: 15px;
+    height: 25px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 7px 7px 7px 7px;
+}
+
+.contact_main form textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 7px 7px 7px 7px;
+    margin-bottom: 5px;
+}
+
+.contact_main form input[type="submit"] {
+    padding: 7px 10px 7px 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    font-size: 20px;
+    background: #344D67;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.contact_main .heading {
+    font-size: 30px;
+    padding-top: 25px;
+}
+
+/************************************************************/
+
+@media (max-width: 860px) {
+    .hero-heading {
+        font-size: 70px;
+    }
+
+    .slogen {
+        font-size: 30px;
+    }
+}

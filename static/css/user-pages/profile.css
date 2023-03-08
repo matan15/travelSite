@@ -1,0 +1,61 @@
+/* heading */
+.heading .heading-main .heading-img {
+    filter: brightness(60%);
+    width: 100%;
+}
+
+.heading .heading-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.heading .heading-main .heading-text-box {
+    color: white;
+    text-align: center;
+    position: absolute;
+}
+
+.heading .heading-main .heading-text-box .heading-text {
+    padding: 10px 50px;
+    position: relative;
+    font-size: 60px;
+    letter-spacing: 5px;
+    font-weight: 800;
+}
+
+/**************************************************/
+
+/* profile */
+.profile .profile-main .profile-layout {
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.profile .profile-main .profile-layout .profile-img {
+    padding-bottom: 10px;
+}
+
+.profile .profile-main .profile-layout .user-name {
+    padding-left: 35px;
+}
+
+.profile .profile-main .profile-layout .user-name span {
+    font-weight: 400;
+}
+
+.profile .profile-main .profile-layout .user-mail span {
+    font-weight: 400;
+}
+
+.profile .profile-main .profile-layout .user-info-heading {
+    padding-top: 20px;
+}
+
+.profile .profile-main .profile-layout .user-info {
+    text-align: justify;
+    padding-top: 5px;
+}
+/**************************************************/

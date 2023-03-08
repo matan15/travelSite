@@ -1,0 +1,89 @@
+/* heading */
+.heading .heading-main .heading-img {
+    filter: brightness(60%);
+    width: 100%;
+}
+
+.heading .heading-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.heading .heading-main .heading-text-box {
+    color: white;
+    text-align: center;
+    position: absolute;
+}
+
+.heading .heading-main .heading-text-box .heading-text {
+    padding: 10px 50px;
+    position: relative;
+    font-size: 60px;
+    letter-spacing: 5px;
+    font-weight: 800;
+}
+
+/**************************************************/
+
+/* users list section */
+.users-list-section .main {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.users-list-section .main .users-list {
+    margin: auto;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.users-list-section .main .users-list .user .profile-image img {
+    padding: 20px;
+}
+
+.users-list-section .main .users-list .user .personal-detailes .name, .users-list-section .main .users-list .user .personal-detailes .email {
+    padding-left: 20px;
+    line-height: 25px;
+}
+
+.users-list-section .main .users-list .user .personal-detailes .email {
+    font-size: 15px;
+}
+
+.users-list-section .main .users-list .user .actions .posts-button {
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 20px;
+    top: 50%;
+    background: #3D8361;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    border: none;
+    margin-bottom: 5px;
+}
+
+.users-list-section .main .users-list .user .actions .profile-button {
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 20px;
+    top: 50%;
+    background: #dc9c2e;
+    text-decoration: none;
+    margin-bottom: 5px;
+    padding: 5px 10px 5px 10px;
+    border: none;
+}
+
+.users-list-section .main .users-list .user .actions .report-button {
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 20px;
+    top: 50%;
+    background: #D61355;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    border: none;
+}
+/**************************************************/

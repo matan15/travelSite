@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="icon" href="../../pictures/icon.png">
+        <link rel="stylesheet" href="../../static/css/user-pages/profile.css">
+        <link rel="stylesheet" href="../../static/css/nav.css">
+        <link rel="stylesheet" href="../../static/css/footer.css">
+        <link rel="stylesheet" href="../../static/css/base.css">
+        <script language="javascript" src="../../static/js/base.js"></script>
+        <title>מתן ניידיס | מטיילים</title><!-- change to dynamic -->
+    </head>
+    <body dir="rtl">
+        <!-- navbar -->
+        <nav class="nav sticky-nav">
+            <div class="nav-brand">
+                <button onclick="redirectToFile('../index.html')" class="brand-link">
+                    <img src="../../pictures/icon.png" alt="מטיילים" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">מטיילים</h1>
+                </button>
+            </div>
+            <ul class="menu">
+                <li><a href="../index.html#home">דף הבית</a></li>
+                <li><a href="../index.html#about">אודות</a></li>
+                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../index.html#contact">צור קשר</a></li>
+            </ul>
+
+            <div class="login-and-sign-up">
+                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
+                    הירשם
+                </button>
+                <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
+                    התחבר
+                </button>
+            </div>
+            <div class="user-menu">
+                <img class="profile-img" src="../../pictures/icon.png" alt="profile" width="60" height="60"> <!-- fix source and alt -->
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
+                    <div class="dropdown-content">
+                        <a href="">עדכון פרטים</a>
+                        <a href="">המסלולים שלי</a>
+                        <a href="">התנתק</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="white-space"></div>
+        <!-- end navbar -->
+
+        <!-- heading -->
+        <section class="heading">
+            <div class="heading-main">
+                <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
+                <div class="heading-text-box">
+                    <h2 class="heading-text">מתן ניידיס</h2><!-- change to dynamic -->
+                </div>
+            </div>
+        </section>
+        <!-- end heading -->
+
+        <section class="profile">
+            <div class="profile-main">
+                <table class="profile-layout">
+                    <tr>
+                        <td>
+                            <img class="profile-img" src="../../pictures/user.png" alt="user" width="70">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="user-name">שם מלא: <span>מתן ניידיס</span></h3>
+                        </td>
+                        <td>
+                            <h3 class="user-mail">מייל: <span>matan.naydis@gmail.com</span></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 class="user-info-heading">קצת על עצמי</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="user-info">
+                                אין מידע נכון לעכשיו...
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <div class="footer_main">
+                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="מטיילים" width="70" height="70"></a>
+                <p class="footer-menu">
+                    <a href="../index.html#home">דף הבית</a>
+                    •
+                    <a href="../index.html#about">אודות</a>
+                    •
+                    <a href="#">בלוג</a>
+                    •
+                    <a href="../index.html#contact">צור קשר</a>
+                </p>
+    
+                <table class="social-icons">
+                    <tr>
+                        <td>
+                            <a href="https://www.facebook.com">
+                                <img src="../../pictures/social/facebook.png" alt="facebook" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.instagram.com">
+                                <img src="../../pictures/social/instagram.png" alt="instagram" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.github.com">
+                                <img src="../../pictures/social/github.png" alt="github" width="60" height="60">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    <a href="../admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                    &copy;
+                    <span id="copyrightYear">
+                        <script>
+                        document.write(new Date().getFullYear());
+                        </script>
+                    </span>
+                </p>
+            </div>
+        </footer>
+        <!-- footer -->
+    </body>
+</html>

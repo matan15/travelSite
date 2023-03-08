@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="icon" href="../pictures/icon.png">
+        <link rel="stylesheet" href="../static/css/index.css">
+        <link rel="stylesheet" href="../static/css/nav.css">
+        <link rel="stylesheet" href="../static/css/footer.css">
+        <link rel="stylesheet" href="../static/css/base.css">
+        <link rel="stylesheet" href="../static/scss/nav-user-menu.scss">
+        <title>מטיילים</title>
+        <script language="javascript" src="../static/js/base.js"></script>
+        <script language="javascript" src="../static/js/nav.js"></script>
+        <script language="javascript">
+            function formTest() {
+                var name = document.contact.name.value;
+                var email = document.contact.email.value;
+                var phone = document.contact.phone.value;
+                var msg = document.contact.msg.value;
+                var nameTest = nameCorrect(name, true, "");
+                var emailTest = emailCorrect(email, nameTest[0], nameTest[1]);
+                var phoneTest = phoneNumberCorrect(phone, emailTest[0], emailTest[1]);
+                var totalTests = phoneTest;
+                if (isEmpty(msg)) {
+                    totalTests[0] = false;
+                    totalTests[1] = totalTests[1] + "\n" + "* שדה ההודעה ריק";
+                }
+                
+
+                if (!totalTests[0]) {
+                    window.alert(totalTests[1]);
+                    event.preventDefault();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <body dir="rtl">
+        <!-- navbar -->
+        <nav class="nav sticky-nav">
+            <div class="nav-brand">
+                <button onclick="redirectToFile('./index.html')" class="brand-link">
+                    <img src="../pictures/icon.png" alt="מטיילים" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">מטיילים</h1>
+                </button>
+            </div>
+            <ul class="menu">
+                <li><a href="#home">דף הבית</a></li>
+                <li><a href="#about">אודות</a></li>
+                <li><a href="./blog.html">בלוג</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+            <div class="login-and-sign-up">
+                <button class="sign-up" onclick="redirectToFile('./login-sign-up/sign-up.html');">
+                    הירשם
+                </button>
+                <button class="login" onclick="redirectToFile('./login-sign-up/login.html')">
+                    התחבר
+                </button>
+            </div>
+            <div class="user-menu">
+                <img class="profile-img" src="../pictures/icon.png" alt="profile" width="60" height="60">
+                <div class="dropdown">
+                    <button class="dropbtn" onmouseleave="closeDropMenu();" onmouseover="openDropMenu();"><img src="../pictures/arrow.png" alt="arrow" width="60" height="60" onmouseover="openDropMenu();" onmouseleave="closeDropMenu();"></button>
+                    <div class="dropdown-content" name="dropMenuContent">
+                        <a href="">עדכון פרטים</a>
+                        <a href="">המסלולים שלי</a>
+                        <a href="">התנתק</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="white-space"></div>
+        <!-- end navbar -->
+
+        <!-- hero -->
+        <section class="home" id="home">
+            <div class="hero">
+                <img class="hero-img" src="../pictures/hero.jpg" alt="hiking" width="100%">
+                <div class="hero-heading-box">
+                    <h2 class="hero-heading">מטיילים</h2>
+                    <p class="slogen">טייל בכל הארץ</p>
+                </div>
+            </div>
+        </section>
+        <!-- end hero -->
+
+        <!-- about -->
+        <section class="about" id="about">
+            <div class="main_text">
+                <h1 class="heading">אודות</h1>
+                <p class="about-text">
+                    לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
+
+קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
+
+סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.
+
+לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
+                </p>
+            </div>
+        </section>
+        <!-- end about -->
+
+        <!-- ad blog -->
+        <section class="ad_blog" id="ad_blog">
+            <div class="ad_blog_main">
+                <h1 class="heading">היכנס לבלוג עכשיו</h1>
+                <button onclick="redirectToFile('./blog.html');" class="ad_blog_button">לחץ כאן</button>
+            </div>
+        </section>
+        <!-- end ad blog -->
+
+        <!-- contact -->
+        <section class="contact" id="contact">
+            <div class="contact_main">
+                <h1 class="heading">צור קשר</h1>
+                <form onsubmit="formTest();" name="contact">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="name">שם מלא:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="email">מייל:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="email" dir="ltr">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="phone">מס' פלאפון:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="phone" dir="ltr">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="msg">הודעה:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea name="msg" cols="30" rows="10"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" name="submit" id="">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </section>
+        <!-- end contact -->
+
+        <!-- footer -->
+        <footer>
+            <div class="footer_main">
+                <a href="#home"><img class="icon" src="../pictures/icon.png" alt="מטיילים" width="70" height="70"></a>
+                <p class="footer-menu">
+                    <a href="#home">דף הבית</a>
+                    •
+                    <a href="#about">אודות</a>
+                    •
+                    <a href="./blog.html">בלוג</a>
+                    •
+                    <a href="#contact">צור קשר</a>
+                </p>
+
+                <table class="social-icons">
+                    <tr>
+                        <td>
+                            <a href="https://www.facebook.com">
+                                <img src="../pictures/social/facebook.png" alt="facebook" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.instagram.com">
+                                <img src="../pictures/social/instagram.png" alt="instagram" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.github.com">
+                                <img src="../pictures/social/github.png" alt="github" width="60" height="60">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    <a href="./admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                    &copy;
+                    <span id="copyrightYear">
+                        <script>
+                           document.write(new Date().getFullYear());
+                        </script>
+                    </span>
+                </p>
+            </div>
+        </footer>
+        <!-- footer -->
+    </body>
+</html>

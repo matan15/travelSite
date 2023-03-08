@@ -1,0 +1,70 @@
+/* heading */
+.heading .heading-main .heading-img {
+    filter: brightness(60%);
+    width: 100%;
+}
+
+.heading .heading-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.heading .heading-main .heading-text-box {
+    color: white;
+    text-align: center;
+    position: absolute;
+}
+
+.heading .heading-main .heading-text-box .heading-text {
+    padding: 10px 50px;
+    position: relative;
+    font-size: 70px;
+    letter-spacing: 5px;
+    font-weight: 800;
+}
+
+/**************************************************/
+
+/* my posts */
+
+.my-posts .posts-main {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-right: 20px;
+}
+
+.my-posts .new-post-btn {
+    padding: 10px 15px 10px 15px;
+    background: #A4BE7B;
+    border-radius: 5px;
+    border: none;
+    margin-right: 15px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.my-posts .posts-main .post .post-link {
+    padding: 15px 40px 15px 50px;
+}
+
+.my-posts .posts-main .post .post-link .title {
+    text-decoration: none;
+    color: #3D5656;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.my-posts .posts-main .post .post-actions .edit-post {
+    padding-left: 5px;
+}
+
+.my-posts .posts-main .post .post-image img {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/**************************************************/
