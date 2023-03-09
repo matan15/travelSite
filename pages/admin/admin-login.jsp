@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+    
+<%@ page import = "java.sql.*"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -56,6 +60,12 @@
         
         <!-- login form -->
         <section class="sign-up-section">
+            <%
+                // the first time the page is sent to the user
+                // the SUBMIT button was not pressed yet.
+                if(request.getParameter("submit") == null )	//it means that the form is seen the first time
+                {
+            %>
             <div class="sign-up-main">
                 <h1>התחברות מנהל</h1>
                 <form name="sign-up-form" action="">
@@ -88,6 +98,50 @@
                     </table>
                 </form>
             </div>
+            <% 	 
+	            }
+	            else	// יוצרים תקשורת למסד הנתונים
+	            {
+	                String adName = request.getParameter("email"); //אמור להיות לפי השם שלמעלה
+	                String adPass = request.getParameter("password");	  		
+	            try 
+	            {
+	                // שלב א: טעינת המתפעל - דרייבר
+	                Class.forName("com.mysql.jdbc.Driver").newInstance();	
+	                //שלב ב:חיבור למסד הנתונים
+	                Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+                    
+	                //שלב ב:חיבור למסד הנתונים
+	                Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                	                						   ResultSet.CONCUR_UPDATABLE);
+	                // Statement st = con.createStatement(); // כאשר אין פרמטרים, אז אי אפשר לנוע למעלה - למטה בתוך הרקורדסט
+	                //שלב ד: יצירת שאילתה עבור מסד הנתונים
+	                String mySQL = "SELECT * FROM TBadmin WHERE adName='" + adName + "' AND adPass ='" + adPass + "'";//קולט לתוך המשתנה את פרטי המשתמש שהוקלד שתואמים את מה שיש ב mysql
+	                //שלב ה: יצירת הרזלטסט - טבלה המחזיקה בתוכה חלק מ-(לפעמים את כל) מסד הנתונים	
+	                ResultSet oRS = st.executeQuery(mySQL);				
+	                //=====================סוף ההתחברות למסד הנתונים======================
+	                session.setAttribute("admin", "false");			
+	                oRS.last(); // המצביע מצביע על הרשומה היחידה		
+	                int numRows = oRS.getRow();
+	                if (numRows > 0) // כלומר המשתמש הקליד שם וסיסמה של מנהל רשום. יש רק אחד כזה
+	                {
+	                	//System.out.println("no. = "+ oRS.getRow()+  "   Name = " + oRS.getString("Name")+ "    password= "+ oRS.getString("Pwd"));					
+	                    session.setAttribute("admin","true");	
+	                
+	                    oRS.close();
+	                	st.close();
+	                } 
+	                catch (Exception e) 
+	                {
+	              	    //e.printStackTrace();
+	            	    System.out.println("Error in connection"+e);
+	                } // the connection is closed	  		
+	              	if ( session.getAttribute("MyADMIN").equals("OK") )
+	            		response.sendRedirect ("manage.jsp");
+	            	else
+	            		response.sendRedirect ("noManage.jsp");				
+	            }	
+            %>
         </section>
         <!-- end login form -->
 
