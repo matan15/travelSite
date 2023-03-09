@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,18 +10,18 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/admin/users-list.css">
+        <link rel="stylesheet" href="../../static/css/admin/manage.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>רשימת משתמשים | מטיילים</title>
+        <title>פעולות מנהל | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
-                <button onclick="redirectToFile('../index.html')" class="brand-link">
+                <button onclick="redirectToFile('./index.html')" class="brand-link">
                     <img src="../../pictures/icon.png" alt="מטיילים" width="70" height="70" id="logo">
                     <h1 class="nav-heading">מטיילים</h1>
                 </button>
@@ -54,39 +56,99 @@
         <div class="white-space"></div>
         <!-- end navbar -->
 
+        <%
+            if ((session.getAttribute("admin")== null)|| !session.getAttribute("admin").equals("true")) // בדיקה האם המשתמש רשאי להיכנס לדף ניהול של אתר, צריך לבדוק מה הערך במשתנה סאשן
+			    response.sendRedirect ("noManage.jsp");
+        %>
         <!-- heading -->
         <section class="heading">
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">רשימת משתמשים</h2>
+                    <h2 class="heading-text">פעולות מנהל</h2>
                 </div>
             </div>
         </section>
         <!-- end heading -->
 
-        <!-- users list -->
-        <section class="users-list-section">
-            <div class="main">
-                <table class="users-list">
-                    <tr class="user">
-                        <td class="profile-image">
-                           <img src="../../pictures/user.png" alt="user" width="80"> 
-                        </td>
-                        <td class="personal-detailes">
-                            <h3 class="name">מתן ניידיס</h3>
-                            <h5 class="email">matan.naydis@gmail.com</h5>
-                        </td>
-                        <td class="actions">
-                            <button class="posts-button" onclick="redirectToFile('./admin-actions/user-posts.html');">פוסטים</button><br>
-                            <button class="profile-button" onclick="redirectToFile('../user-pages/profile.html')">פרופיל</button><br>
-                            <button class="report-button" onclick="redirectToFile('./admin-actions/report.html')">דווח</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+        <!-- admin actions section -->
+        <section>
+            <table class="actions-grid">
+                <tr class="row">
+                    <td>
+                        <input type="submit" value="הצגת כל הנרשמים" class="button" name="sendUser">
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="submit" value="מחיקת משתמש לפי אימייל" class="button" name="sendUser">
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="submit" value="עדכון פרטי משתמש לפי אימייל" class="button" name="sendUser">
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="submit" value="הצגת משתמשים לפי גיל" class="button" name="sendUser">
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="submit" value="הצגת משתמשים לפי האם הם אוהבים לטייל" class="button" name="sendUser">
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="submit" value="עדכון שם מנהל" class="button" name="sendUser">
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td>
+                        <input type="submit" value="עדכון סיסמת מנהל" class="button" name="sendUser">
+                    </td>
+                </tr>
+            </table>
+            <%
+            //אחזור בקשת משתמש והפניה לדף מתאים
+            String s=request.getParameter("sendUser");
+            try {
+                if(s.equals("הצגת כל הנרשמים"))
+                {
+                    response.sendRedirect("./amin-actions/list-users.jsp");
+                }
+                else if(s.equals("מחיקת משתמש לפי אימייל"))
+                {
+                    response.sendRedirect("delete.jsp");
+                }
+                else if(s.equals("עדכון פרטי משתמש לפי אימייל"))
+                {
+                    response.sendRedirect("UpdateByEmail.jsp");
+                }
+                else if(s.equals("הצגת משתמשים לפי גיל"))
+                {
+                    response.sendRedirect("UpdateByDetails.jsp");
+                }
+                else if(s.equals("הצגת משתמשים לפי האם הם אוהבים לטייל"))
+                {	
+                    response.sendRedirect("ShowByCityAndMuseum.jsp");
+                }
+                else if(s.equals("עדכון שם מנהל"))
+                {
+                    response.sendRedirect("ShowByCityAndRestaurant.jsp");
+                }else if(s.equals("עדכון סיסמת מנהל"))
+                {
+                    response.sendRedirect("updateAdname.jsp");
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error");
+            }
+            %>
         </section>
-        <!-- end users list -->
+        <!-- end admin actions section -->
 
         <!-- footer -->
         <footer>
@@ -97,11 +159,11 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="../blog.html">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>
-    
+
                 <table class="social-icons">
                     <tr>
                         <td>
@@ -122,7 +184,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="#">מטיילים</a> <!-- manager entry -->
+                    <a href="./admin/admin-login.html">מטיילים</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

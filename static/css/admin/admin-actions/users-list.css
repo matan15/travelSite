@@ -1,0 +1,38 @@
+/* heading */
+.heading .heading-main .heading-img {
+    filter: brightness(60%);
+    width: 100%;
+}
+
+.heading .heading-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.heading .heading-main .heading-text-box {
+    color: white;
+    text-align: center;
+    position: absolute;
+}
+
+.heading .heading-main .heading-text-box .heading-text {
+    padding: 10px 50px;
+    position: relative;
+    font-size: 60px;
+    letter-spacing: 5px;
+    font-weight: 800;
+}
+
+/**************************************************/
+
+/* users list section */
+.users-list-section .users-grid{
+    margin: auto;
+}
+
+.users-list-section .users-grid .users-grid-heading {
+    font-weight: 600;
+}
+/**************************************************/
