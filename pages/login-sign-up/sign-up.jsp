@@ -31,12 +31,12 @@
                 var totalTests = passwordTest;
                 if (password != re_password) {
                     totalTests[0] = false;
-                    totalTests[1] = totalTests[1] + "\n" + "* Χ©Χ“Χ•Χª Χ”Χ΅Χ™Χ΅ΧΧ” ΧΧ ΧªΧ•ΧΧΧ™Χ Χ Χ Χ•Χ•Χ“Χ Χ©Χ”Χ§ΧΧ“Χª Χ Χ›Χ•Χ ΧΧª Χ”Χ΅Χ™Χ΅ΧΧΧ•Χª.";
+                    totalTests[1] = totalTests[1] + "\n" + "* ωγεϊ δριρξδ μΰ ϊεΰξιν πΰ εεγΰ ωδχμγϊ πλεο ΰϊ δριρξΰεϊ.";
                 }
 
                 if (ageSelectedValue == null) {
                     totalTests[0] = false;
-                    totalTests[1] = totalTests[1] + "\n" + "* ΧΧ Χ‘Χ—Χ¨Χª ΧΧª ΧΧ•Χ•Χ— Χ”Χ’Χ™ΧΧΧ™Χ Χ‘Χ• Χ ΧΧ¦Χ Χ’Χ™ΧΧ, Χ Χ Χ‘Χ—Χ¨/Χ™ ΧΧ•Χ•Χ— Χ’Χ™ΧΧΧ™Χ.";
+                    totalTests[1] = totalTests[1] + "\n" + "* μΰ αηψϊ ΰϊ θεεη δβιμΰιν αε πξφΰ βιμκ, πΰ αηψ/ι θεεη βιμΰιν.";
                 }
 
                 if (!totalTests[0]) {
@@ -47,30 +47,30 @@
                 return true;
             }
         </script>
-        <title>Χ”Χ¨Χ©ΧΧ” | ΧΧΧ™Χ™ΧΧ™Χ</title>
+        <title>δψωξδ | ξθιιμιν</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
                 <button onclick="redirectToFile('../index.html')" class="brand-link">
-                    <img src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70" id="logo">
-                    <h1 class="nav-heading">ΧΧΧ™Χ™ΧΧ™Χ</h1>
+                    <img src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">ξθιιμιν</h1>
                 </button>
             </div>
             <ul class="menu">
-                <li><a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a></li>
-                <li><a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a></li>
-                <li><a href="../blog.html">Χ‘ΧΧ•Χ’</a></li>
-                <li><a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a></li>
+                <li><a href="../index.html#home">γσ δαιϊ</a></li>
+                <li><a href="../index.html#about">ΰεγεϊ</a></li>
+                <li><a href="../blog.html">αμεβ</a></li>
+                <li><a href="../index.html#contact">φεψ χωψ</a></li>
             </ul>
 
             <div class="login-and-sign-up">
                 <button class="sign-up" onclick="redirectToFile('./sign-up.html');">
-                    Χ”Χ™Χ¨Χ©Χ
+                    διψων
                 </button>
                 <button class="login" onclick="redirectToFile('./login.html')">
-                    Χ”ΧªΧ—Χ‘Χ¨
+                    δϊηαψ
                 </button>
             </div>
             <div class="user-menu">
@@ -78,9 +78,9 @@
                 <div class="dropdown">
                     <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
                     <div class="dropdown-content">
-                        <a href="">ΧΆΧ“Χ›Χ•Χ Χ¤Χ¨ΧΧ™Χ</a>
-                        <a href="">Χ”ΧΧ΅ΧΧ•ΧΧ™Χ Χ©ΧΧ™</a>
-                        <a href="">Χ”ΧªΧ ΧªΧ§</a>
+                        <a href="">ςγλεο τψθιν</a>
+                        <a href="">δξρμεμιν ωμι</a>
+                        <a href="">δϊπϊχ</a>
                     </div>
                 </div>
             </div>
@@ -92,12 +92,12 @@
         <section class="sign-up-section">
             <% if(!request.getMethod().equals("POST")) { %>
                 <div class="sign-up-main">
-                    <h1>Χ”Χ¨Χ©ΧΧ”</h1>
+                    <h1>δψωξδ</h1>
                     <form name="signUpForm" onsubmit="return signUpFormTest();" method="post" action="sign-up.jsp">
                         <table>
                             <tr class="field-label">
                                 <td>
-                                    <label for="name">Χ©Χ ΧΧΧ:</label>
+                                    <label for="name">ων ξμΰ:</label>
                                 </td>
                             </tr>
                             <tr class="field">
@@ -107,7 +107,7 @@
                             </tr>
                             <tr class="field-label">
                                 <td>
-                                    <label for="email">ΧΧ™Χ™Χ:</label>
+                                    <label for="email">ξιιμ:</label>
                                 </td>
                             </tr>
                             <tr class="field">
@@ -117,7 +117,7 @@
                             </tr>
                             <tr class="field-label">
                                 <td>
-                                    <label for="password">Χ΅Χ™Χ΅ΧΧ”:</label>
+                                    <label for="password">ριρξδ:</label>
                                 </td>
                             </tr>
                             <tr class="field">
@@ -127,7 +127,7 @@
                             </tr>
                             <tr class="label">
                                 <td>
-                                    <label for="re_password">ΧΧ™ΧΧ•Χª Χ΅Χ™Χ΅ΧΧ”:</label>
+                                    <label for="re_password">ΰιξεϊ ριρξδ:</label>
                                 </td>
                             </tr>
                             <tr class="field">
@@ -138,12 +138,12 @@
                             <tr>
                                 <td>
                                     <input type="checkbox" value="yes" id="love_travel" name="love_travel">
-                                    <label for="love_travel">Χ”ΧΧ ΧΧª/Χ” ΧΧ•Χ”Χ‘/Χª ΧΧΧ™Χ™Χ?</label>
+                                    <label for="love_travel">δΰν ΰϊ/δ ΰεδα/ϊ μθιιμ?</label>
                                 </td>
                             </tr>
                             <tr class="label">
                                 <td>
-                                    <label for="age-range">ΧΧ”Χ• Χ”ΧΧ•Χ•Χ— Χ©Χ‘Χ• Χ ΧΧ¦Χ Χ’Χ™ΧΧ?</label>
+                                    <label for="age-range">ξδε δθεεη ωαε πξφΰ βιμκ?</label>
                                 </td>
                             </tr>
                             <tr>
@@ -157,12 +157,12 @@
                                     <input type="radio" id="age4" value="50-70" name="age">
                                     <label for="age4" class="age">50-70</label><br>
                                     <input type="radio" id="age5" value="70 and up" name="age">
-                                    <label for="age5" class="age">70 Χ•ΧΧΆΧΧ”</label>
+                                    <label for="age5" class="age">70 εξςμδ</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="submit" name="submit" value="Χ”Χ™Χ¨Χ©Χ">
+                                    <input type="submit" name="submit" value="διψων">
                                 </td>
                             </tr>
                         </table>
@@ -189,27 +189,27 @@
                     String result [][]= null;
                     try 
                     {
-                        // Χ©ΧΧ‘ Χ: ΧΧΆΧ™Χ Χª Χ”ΧΧªΧ¤ΧΆΧ - Χ“Χ¨Χ™Χ™Χ‘Χ¨
+                        // ωμα ΰ: θςιπϊ δξϊτςμ - γψιιαψ
                         Class.forName("com.mysql.jdbc.Driver").newInstance();	
                             
-                        //Χ©ΧΧ‘ Χ‘:Χ—Χ™Χ‘Χ•Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
+                        //ωμα α:ηιαεψ μξργ δπϊεπιν
                         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
                         
-                        //Χ©ΧΧ‘ Χ’: Χ™Χ¦Χ™Χ¨Χª ΧΆΧ¦Χ Χ”Χ΅ΧΧ™ΧΧΧ Χ "Χ©Χ™Χ“Χ‘Χ¨" ΧΆΧ ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ, Χ›ΧΧ• ΧΧ–Χ›Χ™Χ¨Χ” Χ©Χ Χ‘Χ•Χ΅
+                        //ωμα β: ιφιψϊ ςφν δρθιθξπθ "ωιγαψ" ςν ξργ δπϊεπιν, λξε ξζλιψδ ωμ αερ
                         Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                                                             ResultSet.CONCUR_UPDATABLE);
                             
-                        // Statement st = con.createStatement(); // Χ›ΧΧ©Χ¨ ΧΧ™Χ Χ¤Χ¨ΧΧΧ¨Χ™Χ, ΧΧ– ΧΧ™ ΧΧ¤Χ©Χ¨ ΧΧ Χ•ΧΆ ΧΧΧΆΧΧ” - ΧΧΧΧ” Χ‘ΧªΧ•Χ Χ”Χ¨Χ§Χ•Χ¨Χ“Χ΅Χ
+                        // Statement st = con.createStatement(); // λΰωψ ΰιο τψξθψιν, ΰζ ΰι ΰτωψ μπες μξςμδ - μξθδ αϊεκ δψχεψγρθ
                                 
-                        //Χ©ΧΧ‘ Χ“: Χ™Χ¦Χ™Χ¨Χª Χ©ΧΧ™ΧΧªΧ” ΧΆΧ‘Χ•Χ¨ ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
+                        //ωμα γ: ιφιψϊ ωΰιμϊδ ςαεψ ξργ δπϊεπιν
                     
                         String mySQL = "SELECT * from TBUSERS WHERE email='" + email +"'"; 
                         System.out.println(mySQL);
                         
-                        //Χ©ΧΧ‘ Χ”: Χ™Χ¦Χ™Χ¨Χª Χ”Χ¨Χ–ΧΧΧ΅Χ - ΧΧ‘ΧΧ” Χ”ΧΧ—Χ–Χ™Χ§Χ” Χ‘ΧªΧ•Χ›Χ” Χ—ΧΧ§ Χ-(ΧΧ¤ΧΆΧΧ™Χ ΧΧª Χ›Χ) ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ		  		
+                        //ωμα δ: ιφιψϊ δψζμθρθ - θαμδ δξηζιχδ αϊελδ ημχ ξ-(μτςξιν ΰϊ λμ) ξργ δπϊεπιν		  		
                         ResultSet oRS = st.executeQuery(mySQL);				
                             
-                        //=====================Χ΅Χ•Χ£ Χ”Χ”ΧªΧ—Χ‘Χ¨Χ•Χª ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ======================
+                        //=====================ρεσ δδϊηαψεϊ μξργ δπϊεπιν======================
                                     
                         int numColumns = oRS.getMetaData().getColumnCount();
                         oRS.last();				
@@ -234,29 +234,29 @@
                     } //======================= the connection is closed
 
                     if(result.length>0)
-                        out.print("Χ§Χ™Χ™Χ Χ›Χ‘Χ¨ ΧΧ©ΧªΧΧ© ΧΆΧ Χ”ΧΧ™ΧΧ™Χ™Χ Χ–Χ” ");
+                        out.print("χιιν λαψ ξωϊξω ςν δΰιξιιμ ζδ ");
                     else
                     {
                         try 
                         {
-                            // Χ©ΧΧ‘ Χ: ΧΧΆΧ™Χ Χª Χ”ΧΧªΧ¤ΧΆΧ - Χ“Χ¨Χ™Χ™Χ‘Χ¨
+                            // ωμα ΰ: θςιπϊ δξϊτςμ - γψιιαψ
                             Class.forName("com.mysql.jdbc.Driver").newInstance();	
-                            //Χ©ΧΧ‘ Χ‘:Χ—Χ™Χ‘Χ•Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
+                            //ωμα α:ηιαεψ μξργ δπϊεπιν
                             Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
-                            //Χ©ΧΧ‘ Χ’: Χ™Χ¦Χ™Χ¨Χª ΧΆΧ¦Χ Χ”Χ΅ΧΧ™ΧΧΧ Χ "Χ©Χ™Χ“Χ‘Χ¨" ΧΆΧ ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ, Χ›ΧΧ• ΧΧ–Χ›Χ™Χ¨Χ” Χ©Χ Χ‘Χ•Χ΅
+                            //ωμα β: ιφιψϊ ςφν δρθιθξπθ "ωιγαψ" ςν ξργ δπϊεπιν, λξε ξζλιψδ ωμ αερ
                             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                                                                     ResultSet.CONCUR_UPDATABLE);
-                            // Statement st = con.createStatement(); // Χ›ΧΧ©Χ¨ ΧΧ™Χ Χ¤Χ¨ΧΧΧ¨Χ™Χ, ΧΧ– ΧΧ™ ΧΧ¤Χ©Χ¨ ΧΧ Χ•ΧΆ ΧΧΧΆΧΧ” - ΧΧΧΧ” Χ‘ΧªΧ•Χ Χ”Χ¨Χ§Χ•Χ¨Χ“Χ΅Χ
+                            // Statement st = con.createStatement(); // λΰωψ ΰιο τψξθψιν, ΰζ ΰι ΰτωψ μπες μξςμδ - μξθδ αϊεκ δψχεψγρθ
                                     
-                            //Χ©ΧΧ‘ Χ“: Χ™Χ¦Χ™Χ¨Χª Χ©ΧΧ™ΧΧªΧ” ΧΆΧ‘Χ•Χ¨ ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
+                            //ωμα γ: ιφιψϊ ωΰιμϊδ ςαεψ ξργ δπϊεπιν
                             String mySQL = "insert into TBUSERS (fullName, email, password, loveTravel, ageRange) ";
                             mySQL += "values('" + fullName + ", " + email + ", " + password + ", " + loveTravel + ", "+ ageRange + "')";
                             System.out.println(mySQL);
                         
-                            //Χ©ΧΧ‘ Χ”: ΧΆΧ“Χ›Χ•Χ ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
-                            int n = st.executeUpdate(mySQL);  	// ΧΧ›Χ™Χ ΧΧª ΧΧ΅Χ¤Χ¨ Χ”Χ¨Χ©Χ•ΧΧ•Χª Χ©Χ”Χ•Χ©Χ¤ΧΆΧ• ΧΧ”Χ¤ΧΆΧΧª Χ”Χ©ΧΧ™ΧΧªΧ” n Χ”ΧΧ©ΧªΧ Χ”  			//=====================Χ΅Χ•Χ£ Χ”Χ”ΧªΧ—Χ‘Χ¨Χ•Χª ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ======================
+                            //ωμα δ: ςγλεο ξργ δπϊεπιν
+                            int n = st.executeUpdate(mySQL);  	// ξλιμ ΰϊ ξρτψ δψωεξεϊ ωδεωτςε ξδτςμϊ δωΰιμϊδ n δξωϊπδ  			//=====================ρεσ δδϊηαψεϊ μξργ δπϊεπιν======================
                                                                 
-                            //oRS.close();	- Χ‘ΧΧ§Χ¨Χ” Χ–Χ” ΧΧ Χ™Χ•Χ¦Χ¨Χ™Χ Χ¨Χ–ΧΧΧ΅Χ
+                            //oRS.close();	- αξχψδ ζδ μΰ ιεφψιν ψζμθρθ
                             st.close();
                             con.close();
                         } 
@@ -265,7 +265,7 @@
                             //e.printStackTrace();
                             System.out.println("Register-2- Error in connecting");
                         }//======================= the connection is closed
-                        out.print("Χ”ΧΧ©ΧªΧΧ© Χ Χ•Χ΅Χ£ Χ‘Χ”Χ¦ΧΧ—Χ”<br/><br/>");
+                        out.print("δξωϊξω περσ αδφμηδ<br/><br/>");
                         out.print("<br />");
                     } // end else exist
                 }// end requset post
@@ -275,15 +275,15 @@
         <!-- footer -->
         <footer>
             <div class="footer_main">
-                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70"></a>
+                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70"></a>
                 <p class="footer-menu">
-                    <a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a>
-                    β€Ά
-                    <a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a>
-                    β€Ά
-                    <a href="#">Χ‘ΧΧ•Χ’</a>
-                    β€Ά
-                    <a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a>
+                    <a href="../index.html#home">γσ δαιϊ</a>
+                    •
+                    <a href="../index.html#about">ΰεγεϊ</a>
+                    •
+                    <a href="#">αμεβ</a>
+                    •
+                    <a href="../index.html#contact">φεψ χωψ</a>
                 </p>
     
                 <table class="social-icons">
@@ -306,7 +306,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="../admin/admin-login.html">ΧΧΧ™Χ™ΧΧ™Χ</a> <!-- manager entry -->
+                    <a href="../admin/admin-login.html">ξθιιμιν</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

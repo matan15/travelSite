@@ -1,5 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
 
+<%@page import="java.sql.*" %>
+
+<%--הצהרה על משתנים --%>
+<%!
+
+java.sql.Connection con=null; //משתנים מסוג זה נקראים אובייקטים
+java.sql.Statement st=null;
+java.sql.ResultSet usersResultSet=null;
+%>
+<%--אחזור מחרוזת המכילה את נתוני טבלת המשתמשים המעוצבת כטבלה --%>
+<%!
+
+public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
+{
+String str="<table class="users-grid">";
+str+="<tr>";
+str+="<td class="users-grid-heading">Full Name</td>";
+str+="<td class="users-grid-heading">Email</td>";
+str+="<td class="users-grid-heading">Password</td>";
+str+="<td class="users-grid-heading">Love Traveling</td>";
+str+="<td class="users-grid-heading">Age Range</td>";
+str+="</tr>";
+	      
+	try
+	{
+		while(usersResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
+		{
+		  str+="<tr class="user">";
+		  str+="<td class="user-detail">"+usersResultSet.getString("fullName").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("email").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("password").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("loveTravel").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("ageRange").toString()+"</td>";
+		  str+="</tr>";
+	    }
+		  str+="</table>";
+	} //end of try
+	catch(Exception ex)
+	{
+		System.out.print("שגיאה בהתחברות");
+	}
+	return str;
+}
+%>
+<%--עיצוב הפלט למשתמש --%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +56,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/admin/manage.css">
+        <link rel="stylesheet" href="../../static/css/admin/admin-actions/users-list.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
@@ -21,7 +67,7 @@
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
-                <button onclick="redirectToFile('./index.html')" class="brand-link">
+                <button onclick="redirectToFile('../../index.html')" class="brand-link">
                     <img src="../../pictures/icon.png" alt="מטיילים" width="70" height="70" id="logo">
                     <h1 class="nav-heading">מטיילים</h1>
                 </button>
@@ -55,12 +101,12 @@
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
-
         <%
-            if ((session.getAttribute("admin")== null)|| !session.getAttribute("admin").equals("true")) // בדיקה האם המשתמש רשאי להיכנס לדף ניהול של אתר, צריך לבדוק מה הערך במשתנה סאשן
-			    response.sendRedirect ("noManage.jsp");
+        if ((session.getAttribute("admin")== null) || !session.getAttribute("admin").equals("true"))
+			response.sendRedirect ("noManage.jsp");
         %>
-        <!-- heading -->
+
+        <!-- header -->
         <section class="heading">
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
@@ -69,88 +115,31 @@
                 </div>
             </div>
         </section>
-        <!-- end heading -->
+        <!-- end header -->
 
-        <!-- admin actions section -->
-        <section>
-            <form name="actionsForm" action="manage.jsp" method="post">
-                <table class="actions-grid">
-                    <tr class="row">
-                        <td>
-                            <input type="submit" value="הצגת כל הנרשמים" class="button" name="sendUser">
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>
-                            <input type="submit" value="מחיקת משתמש לפי אימייל" class="button" name="sendUser">
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>
-                            <input type="submit" value="עדכון פרטי משתמש לפי אימייל" class="button" name="sendUser">
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>
-                            <input type="submit" value="הצגת משתמשים לפי גיל" class="button" name="sendUser">
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>
-                            <input type="submit" value="הצגת משתמשים לפי האם הם אוהבים לטייל" class="button" name="sendUser">
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>
-                            <input type="submit" value="עדכון שם מנהל" class="button" name="sendUser">
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>
-                            <input type="submit" value="עדכון סיסמת מנהל" class="button" name="sendUser">
-                        </td>
-                    </tr>
-                </table>
-            </form>
+        <!-- users list -->
+        <button>חזרה לדף ניהול</button>
+        <section class="users-list-section">
             <%
-            //אחזור בקשת משתמש והפניה לדף מתאים
-            String s=request.getParameter("sendUser");
-            try {
-                if(s.equals("הצגת כל הנרשמים"))
-                {
-                    response.sendRedirect("list-users.jsp");
-                }
-                else if(s.equals("מחיקת משתמש לפי אימייל"))
-                {
-                    response.sendRedirect("delete.jsp");
-                }
-                else if(s.equals("עדכון פרטי משתמש לפי אימייל"))
-                {
-                    response.sendRedirect("UpdateByEmail.jsp");
-                }
-                else if(s.equals("הצגת משתמשים לפי גיל"))
-                {
-                    response.sendRedirect("UpdateByDetails.jsp");
-                }
-                else if(s.equals("הצגת משתמשים לפי האם הם אוהבים לטייל"))
-                {	
-                    response.sendRedirect("ShowByCityAndMuseum.jsp");
-                }
-                else if(s.equals("עדכון שם מנהל"))
-                {
-                    response.sendRedirect("ShowByCityAndRestaurant.jsp");
-                }else if(s.equals("עדכון סיסמת מנהל"))
-                {
-                    response.sendRedirect("updateAdname.jsp");
-                }
+            //יצירת קשר למסד הנתונים 
+            try{
+		        Class.forName("com.mysql.jdbc.Driver").newInstance();
+		        con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+		        st=con.createStatement();
+	
+                String sql="SELECT * FROM TBusers"; // שאילתת SQL    
+                usersResultSet=st.executeQuery(sql);
             }
-            catch(Exception e)
-            {
-                System.out.println("Error");
-            }
+	        catch(Exception ex){
+		        System.out.println("Error in connection");
+	        }
+	        //פונקציה מקבלת אובייקט מסוג טבלה ומדפסים את המחרוזת שהפונקציה מחזירה
+            out.print(formatUsersForHtml(usersResultSet));
+            usersResultSet.close();
             %>
+            <%-------------------------------------------------------------- --%>
         </section>
-        <!-- end admin actions section -->
+        <!-- end user list -->
 
         <!-- footer -->
         <footer>
@@ -186,7 +175,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="./admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                    <p>מטיילים</p> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

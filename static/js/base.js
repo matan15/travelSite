@@ -74,37 +74,37 @@ function emailHasEnding(str) {
 
 function emailCorrect(str, correct, errorMsg) {
     if (isEmpty(str)) {
-        errorMsg = errorMsg + "\n" + "* ×©×“×” ×”××™×™×œ ×¨×™×§";
+        errorMsg = errorMsg + "\n" + "* ùãä äîééì øé÷";
         correct = false;
     } else {
         if (noEmailSign(str)) {
-            errorMsg = errorMsg + "\n" + "* ×©×“×” ×”××™×™×œ ×œ× ××›×™×œ @";
+            errorMsg = errorMsg + "\n" + "* ùãä äîééì ìà îëéì @";
             correct = false;
         }
         if (!noEmailSign(str)) {
             if (!containsOneEmailSign(str)) {
-                errorMsg = errorMsg + "\n" + "* ×©×“×” ×”××™×™×œ ××›×™×œ ×™×•×ª×¨ × @ ××—×“";
+                errorMsg = errorMsg + "\n" + "* ùãä äîééì îëéì éåúø î @ àçã";
                 correct = false;
             } else {
                 var [recipient, domain] = str.split('@');
                 if (!emailDomainNotContainsSpecialSigns(domain)) {
-                    errorMsg = errorMsg + "\n" + "* ×“×•××™×™×Ÿ ×©×œ ×”××™×™×œ ××›×™×œ ×¡×™×× ×™× ×”×œ× ××ª××™××™× ×œ×›×ª×•×‘×ª ××™×™×œ ××• ×”×•× ××¨×•×š ××“×™";
+                    errorMsg = errorMsg + "\n" + "* ãåîééï ùì äîééì îëéì ñéîğéí äìà îúàéîéí ìëúåáú îééì àå äåà àøåê îãé";
                     correct = false;
                 }
                 if (!emailRecipientNameNotStartsOrEndsWithSpecialSigns(recipient)) {
-                    errorMsg = errorMsg + "\n" + "* ××¡×•×¨ ×©×™×”×™×• ×¡×™×× ×™× ×‘×ª×—×™×œ×” ××• ×‘×¡×•×£ ×©× ×©×œ ×”××™×™×œ";
+                    errorMsg = errorMsg + "\n" + "* àñåø ùéäéå ñéîğéí áúçéìä àå áñåó ùí ùì äîééì";
                     correct = false;
                 }
                 if (!emailRecipientNameNotContainsSpecialSigns(recipient)) {
-                    errorMsg = errorMsg + "\n" + "* ×©× ×©×œ ×”××™×™×œ ××›×™×œ ×¡×™×× ×™× ×œ× ××ª××™××™× ×œ××™×™×œ ××• ×©×”×•× ××¨×•×š ××“×™";
+                    errorMsg = errorMsg + "\n" + "* ùí ùì äîééì îëéì ñéîğéí ìà îúàéîéí ìîééì àå ùäåà àøåê îãé";
                     correct = false;
                 }
                 if (!specialSignAndEmailSignNotTogether(recipient)) {
-                    errorMsg = errorMsg + "\n" + "* ×‘×©×“×” ×”××™×™×œ, ×”× ×§×•×“×” × ××¦××ª ×œ×¤× ×™ ××• ××—×¨×™ ×”×¡×™××Ÿ @";
+                    errorMsg = errorMsg + "\n" + "* áùãä äîééì, äğ÷åãä ğîöàú ìôğé àå àçøé äñéîï @";
                     correct = false;
                 }
                 if (!emailHasEnding(domain)) {
-                    errorMsg = errorMsg + "\n" + "* ×”××™×™×œ ×œ× ××›×™×œ ×¡×™×•××ª ××• ××›×™×œ ×¡×™×•××ª ×œ× ×—×•×§×™×ª";
+                    errorMsg = errorMsg + "\n" + "* äîééì ìà îëéì ñéåîú àå îëéì ñéåîú ìà çå÷éú";
                     correct = false;
                 }
             }
@@ -119,7 +119,7 @@ function emailCorrect(str, correct, errorMsg) {
 
 function nameCorrect(str, correct, errorMsg) {
     if (isEmpty(str)) {
-        errorMsg = errorMsg + "\n" + "* ×©×“×” ×”×©× ×¨×™×§";
+        errorMsg = errorMsg + "\n" + "* ùãä äùí øé÷";
         correct = false;
     } else {
         var upperLetters = 0;
@@ -131,16 +131,16 @@ function nameCorrect(str, correct, errorMsg) {
                 lowerLetters++;
             else if (str[i] >= 'A' && str[i] <= 'Z')
                 upperLetters++;
-            else if (str[i] >= '×' && str[i] <= '×ª')
+            else if (str[i] >= 'à' && str[i] <= 'ú')
                 hebrewLetters++;
             else if (str[i] == ' ')
                 spaces++;
         }
         if (spaces == 0) {
-            errorMsg = errorMsg + "\n" + "* × × ×œ×”×§×œ×™×“ ×©× ××œ×";
+            errorMsg = errorMsg + "\n" + "* ğà ìä÷ìéã ùí îìà";
             correct = false
         } else if (lowerLetters + upperLetters + hebrewLetters + spaces != str.length) {
-            errorMsg = errorMsg + "\n" + "* ×”×©× ××›×™×œ ×¡×™×× ×™×, ×œ×›×Ÿ ×”×©× ×”×•× ×œ× × ×›×•×Ÿ";
+            errorMsg = errorMsg + "\n" + "* äùí îëéì ñéîğéí, ìëï äùí äåà ìà ğëåï";
             correct = false;
         }
     }
@@ -154,7 +154,7 @@ function nameCorrect(str, correct, errorMsg) {
 function phoneNumberCorrect(str, correct, errorMsg) {
     var signs = false;
     if (isEmpty(str)) {
-        errorMsg = errorMsg + "\n" + "* ×©×“×” ××¡×¤×¨ ×”×¤×œ××¤×•×Ÿ ×¨×™×§";
+        errorMsg = errorMsg + "\n" + "* ùãä îñôø äôìàôåï øé÷";
         correct = false;
     } else {
         for (i = 0; i < str.length; i++) {
@@ -163,11 +163,11 @@ function phoneNumberCorrect(str, correct, errorMsg) {
             }
         }
         if (signs) {
-            errorMsg = errorMsg + "\n" + "* ×©×“×” ×©×œ ××¡×¤×¨ ×”×¤×œ××¤×•×Ÿ ××›×™×œ ×ª×•×•×™× ×©×œ× ××¡×¤×¨×™×™×";
+            errorMsg = errorMsg + "\n" + "* ùãä ùì îñôø äôìàôåï îëéì úååéí ùìà îñôøééí";
             correct = false;
         }
         if ((str.length > 10 || str.length < 9)) {
-            errorMsg = errorMsg + "\n" + "* ××¡×¤×¨ ×”×¤×œ××¤×•×Ÿ ××¨×•×š ××• ×§×¦×¨ ××“×™";
+            errorMsg = errorMsg + "\n" + "* îñôø äôìàôåï àøåê àå ÷öø îãé";
             correct = false;
         }
     }
@@ -184,7 +184,7 @@ function passwordCorrect(str, correct, errorMsg) {
     var smallLetters = 0;
     if (str.length < 12) {
         correct = false;
-        errorMsg = errorMsg + "\n" + "* ×”×¡×™×¡××” ×§×¦×¨×” ××“×™";
+        errorMsg = errorMsg + "\n" + "* äñéñîä ÷öøä îãé";
     }
     for (i = 0; i < str.length; i++) {
         if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
@@ -202,19 +202,19 @@ function passwordCorrect(str, correct, errorMsg) {
     }
     if (symbols == 0) {
         correct == false;
-        errorMsg = errorMsg + "\n" + "* ×”×¡×™×¡××” ×¦×¨×™×›×” ×œ×”×›×™×œ ×œ×¤×—×•×ª ×¡×™××Ÿ ××—×“";
+        errorMsg = errorMsg + "\n" + "* äñéñîä öøéëä ìäëéì ìôçåú ñéîï àçã";
     }
     if (digits == 0) {
         correct = false;
-        errorMsg = errorMsg + "\n" + "* ×”×¡×™×¡××” ×¦×¨×™×›×” ×œ×”×›×™×œ ×œ×¤×—×•×ª ×¡×¤×¨×” ××—×ª";
+        errorMsg = errorMsg + "\n" + "* äñéñîä öøéëä ìäëéì ìôçåú ñôøä àçú";
     }
     if (capitalLetters == 0) {
         correct = false;
-        errorMsg = errorMsg + "\n" + "* ×”×¡×™×¡××” ×¦×¨×™×›×” ×œ×”×›×™×œ ×œ×¤×—×•×ª ××•×ª ×× ×’×œ×™×ª ×’×“×•×œ×” ××—×ª";
+        errorMsg = errorMsg + "\n" + "* äñéñîä öøéëä ìäëéì ìôçåú àåú àğâìéú âãåìä àçú";
     }
     if (smallLetters == 0) {
         correct = false;
-        errorMsg = errorMsg + "\n" + "* ×”×¡×™×¡××” ×¦×¨×™×›×” ×œ×¤×—×•×ª ××•×ª ×× ×’×œ×™×ª ×§×˜× ×” ××—×ª";
+        errorMsg = errorMsg + "\n" + "* äñéñîä öøéëä ìôçåú àåú àğâìéú ÷èğä àçú";
     }
     
     return [correct, errorMsg];

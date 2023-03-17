@@ -28,62 +28,11 @@
 /**************************************************/
 
 /* users list section */
-.users-list-section .main {
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
-
-.users-list-section .main .users-list {
+.users-list-section .users-grid{
     margin: auto;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
 }
 
-.users-list-section .main .users-list .user .profile-image img {
-    padding: 20px;
-}
-
-.users-list-section .main .users-list .user .personal-detailes .name, .users-list-section .main .users-list .user .personal-detailes .email {
-    padding-left: 20px;
-    line-height: 25px;
-}
-
-.users-list-section .main .users-list .user .personal-detailes .email {
-    font-size: 15px;
-}
-
-.users-list-section .main .users-list .user .actions .posts-button {
-    border-radius: 5px;
-    color: #FFFFFF;
-    font-size: 20px;
-    top: 50%;
-    background: #3D8361;
-    text-decoration: none;
-    padding: 5px 10px 5px 10px;
-    border: none;
-    margin-bottom: 5px;
-}
-
-.users-list-section .main .users-list .user .actions .profile-button {
-    border-radius: 5px;
-    color: #FFFFFF;
-    font-size: 20px;
-    top: 50%;
-    background: #dc9c2e;
-    text-decoration: none;
-    margin-bottom: 5px;
-    padding: 5px 10px 5px 10px;
-    border: none;
-}
-
-.users-list-section .main .users-list .user .actions .report-button {
-    border-radius: 5px;
-    color: #FFFFFF;
-    font-size: 20px;
-    top: 50%;
-    background: #D61355;
-    text-decoration: none;
-    padding: 5px 10px 5px 10px;
-    border: none;
+.users-list-section .users-grid .users-grid-heading {
+    font-weight: 600;
 }
 /**************************************************/

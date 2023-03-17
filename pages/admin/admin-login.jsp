@@ -17,30 +17,30 @@
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>Χ”ΧªΧ—Χ‘Χ¨Χ•Χª ΧΧ Χ”Χ | ΧΧΧ™Χ™ΧΧ™Χ</title>
+        <title>δϊηαψεϊ ξπδμ | ξθιιμιν</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
                 <button onclick="redirectToFile('../index.html')" class="brand-link">
-                    <img src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70" id="logo">
-                    <h1 class="nav-heading">ΧΧΧ™Χ™ΧΧ™Χ</h1>
+                    <img src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">ξθιιμιν</h1>
                 </button>
             </div>
             <ul class="menu">
-                <li><a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a></li>
-                <li><a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a></li>
-                <li><a href="../blog.html">Χ‘ΧΧ•Χ’</a></li>
-                <li><a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a></li>
+                <li><a href="../index.html#home">γσ δαιϊ</a></li>
+                <li><a href="../index.html#about">ΰεγεϊ</a></li>
+                <li><a href="../blog.html">αμεβ</a></li>
+                <li><a href="../index.html#contact">φεψ χωψ</a></li>
             </ul>
 
             <div class="login-and-sign-up">
                 <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
-                    Χ”Χ™Χ¨Χ©Χ
+                    διψων
                 </button>
                 <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
-                    Χ”ΧªΧ—Χ‘Χ¨
+                    δϊηαψ
                 </button>
             </div>
             <div class="user-menu">
@@ -48,9 +48,9 @@
                 <div class="dropdown">
                     <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
                     <div class="dropdown-content">
-                        <a href="">ΧΆΧ“Χ›Χ•Χ Χ¤Χ¨ΧΧ™Χ</a>
-                        <a href="">Χ”ΧΧ΅ΧΧ•ΧΧ™Χ Χ©ΧΧ™</a>
-                        <a href="">Χ”ΧªΧ ΧªΧ§</a>
+                        <a href="">ςγλεο τψθιν</a>
+                        <a href="">δξρμεμιν ωμι</a>
+                        <a href="">δϊπϊχ</a>
                     </div>
                 </div>
             </div>
@@ -67,22 +67,22 @@
                 {
             %>
             <div class="sign-up-main">
-                <h1>Χ”ΧªΧ—Χ‘Χ¨Χ•Χª ΧΧ Χ”Χ</h1>
+                <h1>δϊηαψεϊ ξπδμ</h1>
                 <form name="sign-up-form" action="">
                     <table>
                         <tr class="field-label">
                             <td>
-                                <label for="email">ΧΧ™Χ™Χ:</label>
+                                <label for="name">ων ξωϊξω:</label>
                             </td>
                         </tr>
                         <tr class="field">
                             <td>
-                                <input type="email" name="email" required>
+                                <input type="text" name="name" required>
                             </td>
                         </tr>
                         <tr class="field-label">
                             <td>
-                                <label for="password">Χ΅Χ™Χ΅ΧΧ”:</label>
+                                <label for="password">ριρξδ:</label>
                             </td>
                         </tr>
                         <tr class="field">
@@ -92,7 +92,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" name="submit" value="Χ”ΧªΧ—Χ‘Χ¨Χ•Χª">
+                                <input type="submit" name="submit" value="δϊηαψεϊ">
                             </td>
                         </tr>
                     </table>
@@ -100,34 +100,34 @@
             </div>
             <% 	 
 	            }
-	            else	// Χ™Χ•Χ¦Χ¨Χ™Χ ΧªΧ§Χ©Χ•Χ¨Χª ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
+	            else	// ιεφψιν ϊχωεψϊ μξργ δπϊεπιν
 	            {
-	                String adName = request.getParameter("email"); //ΧΧΧ•Χ¨ ΧΧ”Χ™Χ•Χª ΧΧ¤Χ™ Χ”Χ©Χ Χ©ΧΧΧΆΧΧ”
+	                String adName = request.getParameter("name"); //ΰξεψ μδιεϊ μτι δων ωμξςμδ
 	                String adPass = request.getParameter("password");	  		
 	            try 
 	            {
-	                // Χ©ΧΧ‘ Χ: ΧΧΆΧ™Χ Χª Χ”ΧΧªΧ¤ΧΆΧ - Χ“Χ¨Χ™Χ™Χ‘Χ¨
+	                // ωμα ΰ: θςιπϊ δξϊτςμ - γψιιαψ
 	                Class.forName("com.mysql.jdbc.Driver").newInstance();	
-	                //Χ©ΧΧ‘ Χ‘:Χ—Χ™Χ‘Χ•Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
+	                //ωμα α:ηιαεψ μξργ δπϊεπιν
 	                Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
                     
-	                //Χ©ΧΧ‘ Χ‘:Χ—Χ™Χ‘Χ•Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
+	                //ωμα α:ηιαεψ μξργ δπϊεπιν
 	                Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                	                						   ResultSet.CONCUR_UPDATABLE);
-	                // Statement st = con.createStatement(); // Χ›ΧΧ©Χ¨ ΧΧ™Χ Χ¤Χ¨ΧΧΧ¨Χ™Χ, ΧΧ– ΧΧ™ ΧΧ¤Χ©Χ¨ ΧΧ Χ•ΧΆ ΧΧΧΆΧΧ” - ΧΧΧΧ” Χ‘ΧªΧ•Χ Χ”Χ¨Χ§Χ•Χ¨Χ“Χ΅Χ
-	                //Χ©ΧΧ‘ Χ“: Χ™Χ¦Χ™Χ¨Χª Χ©ΧΧ™ΧΧªΧ” ΧΆΧ‘Χ•Χ¨ ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ
-	                String mySQL = "SELECT * FROM TBadmin WHERE adName='" + adName + "' AND adPass ='" + adPass + "'";//Χ§Χ•ΧΧ ΧΧªΧ•Χ Χ”ΧΧ©ΧªΧ Χ” ΧΧª Χ¤Χ¨ΧΧ™ Χ”ΧΧ©ΧªΧΧ© Χ©Χ”Χ•Χ§ΧΧ“ Χ©ΧªΧ•ΧΧΧ™Χ ΧΧª ΧΧ” Χ©Χ™Χ© Χ‘ mysql
-	                //Χ©ΧΧ‘ Χ”: Χ™Χ¦Χ™Χ¨Χª Χ”Χ¨Χ–ΧΧΧ΅Χ - ΧΧ‘ΧΧ” Χ”ΧΧ—Χ–Χ™Χ§Χ” Χ‘ΧªΧ•Χ›Χ” Χ—ΧΧ§ Χ-(ΧΧ¤ΧΆΧΧ™Χ ΧΧª Χ›Χ) ΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ	
+	                // Statement st = con.createStatement(); // λΰωψ ΰιο τψξθψιν, ΰζ ΰι ΰτωψ μπες μξςμδ - μξθδ αϊεκ δψχεψγρθ
+	                //ωμα γ: ιφιψϊ ωΰιμϊδ ςαεψ ξργ δπϊεπιν
+	                String mySQL = "SELECT * FROM TBadmin WHERE adName='" + adName + "' AND adPass ='" + adPass + "'";//χεμθ μϊεκ δξωϊπδ ΰϊ τψθι δξωϊξω ωδεχμγ ωϊεΰξιν ΰϊ ξδ ωιω α mysql
+	                //ωμα δ: ιφιψϊ δψζμθρθ - θαμδ δξηζιχδ αϊελδ ημχ ξ-(μτςξιν ΰϊ λμ) ξργ δπϊεπιν	
 	                ResultSet oRS = st.executeQuery(mySQL);				
-	                //=====================Χ΅Χ•Χ£ Χ”Χ”ΧªΧ—Χ‘Χ¨Χ•Χª ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ======================
+	                //=====================ρεσ δδϊηαψεϊ μξργ δπϊεπιν======================
 	                session.setAttribute("admin", "false");			
-	                oRS.last(); // Χ”ΧΧ¦Χ‘Χ™ΧΆ ΧΧ¦Χ‘Χ™ΧΆ ΧΆΧ Χ”Χ¨Χ©Χ•ΧΧ” Χ”Χ™Χ—Χ™Χ“Χ”		
+	                oRS.last(); // δξφαις ξφαις ςμ δψωεξδ διηιγδ		
 	                int numRows = oRS.getRow();
-	                if (numRows > 0) // Χ›ΧΧ•ΧΧ¨ Χ”ΧΧ©ΧªΧΧ© Χ”Χ§ΧΧ™Χ“ Χ©Χ Χ•Χ΅Χ™Χ΅ΧΧ” Χ©Χ ΧΧ Χ”Χ Χ¨Χ©Χ•Χ. Χ™Χ© Χ¨Χ§ ΧΧ—Χ“ Χ›Χ–Χ”
+	                if (numRows > 0) // λμεξψ δξωϊξω δχμιγ ων εριρξδ ωμ ξπδμ ψωεν. ιω ψχ ΰηγ λζδ
 	                {
 	                	//System.out.println("no. = "+ oRS.getRow()+  "   Name = " + oRS.getString("Name")+ "    password= "+ oRS.getString("Pwd"));					
 	                    session.setAttribute("admin","true");	
-	                
+                        }
 	                    oRS.close();
 	                	st.close();
 	                } 
@@ -136,7 +136,7 @@
 	              	    //e.printStackTrace();
 	            	    System.out.println("Error in connection"+e);
 	                } // the connection is closed	  		
-	              	if ( session.getAttribute("MyADMIN").equals("OK") )
+	              	if ( session.getAttribute("admin").equals("true") )
 	            		response.sendRedirect ("manage.jsp");
 	            	else
 	            		response.sendRedirect ("noManage.jsp");				
@@ -148,15 +148,15 @@
         <!-- footer -->
         <footer>
             <div class="footer_main">
-                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70"></a>
+                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70"></a>
                 <p class="footer-menu">
-                    <a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a>
-                    β€Ά
-                    <a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a>
-                    β€Ά
-                    <a href="#">Χ‘ΧΧ•Χ’</a>
-                    β€Ά
-                    <a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a>
+                    <a href="../index.html#home">γσ δαιϊ</a>
+                    •
+                    <a href="../index.html#about">ΰεγεϊ</a>
+                    •
+                    <a href="#">αμεβ</a>
+                    •
+                    <a href="../index.html#contact">φεψ χωψ</a>
                 </p>
     
                 <table class="social-icons">
@@ -179,7 +179,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="./admin-login.html">ΧΧΧ™Χ™ΧΧ™Χ</a> <!-- manager entry -->
+                    <a href="./admin-login.html">ξθιιμιν</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>
