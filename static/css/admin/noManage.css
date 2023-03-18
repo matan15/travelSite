@@ -1,3 +1,32 @@
+body {
+    background: #DBE4C6;
+}
+
 .main {
     margin: auto;
+    text-align: center;
+}
+
+.main .warning-img {
+    width: 300px;
+    padding-top: 25px;
+    padding-bottom: 17px;
+}
+
+.main .heading {
+    padding-bottom: 10px;
+}
+
+.main .sub-heading {
+    padding-bottom: 10px;
+}
+
+.main .retry-btn {
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    background-color: #609966;
+    color: white;
 }
