@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
 <%@page import="java.sql.*" %>
-<%--Χ”Χ¦Χ”Χ¨Χ” ΧΆΧ ΧΧ©ΧªΧ Χ™Χ --%>
+<%--δφδψδ ςμ ξωϊπιν --%>
 <%!
 
 java.sql.Connection con=null;
@@ -28,12 +28,12 @@ java.sql.ResultSet usersResultSet=null;
                 var totalTests = passwordTest;
                 if (password != re_password) {
                     totalTests[0] = false;
-                    totalTests[1] = totalTests[1] + "\n" + "* Χ©Χ“Χ•Χª Χ”Χ΅Χ™Χ΅ΧΧ” ΧΧ ΧªΧ•ΧΧΧ™Χ Χ Χ Χ•Χ•Χ“Χ Χ©Χ”Χ§ΧΧ“Χª Χ Χ›Χ•Χ ΧΧª Χ”Χ΅Χ™Χ΅ΧΧΧ•Χª.";
+                    totalTests[1] = totalTests[1] + "\n" + "* ωγεϊ δριρξδ μΰ ϊεΰξιν πΰ εεγΰ ωδχμγϊ πλεο ΰϊ δριρξΰεϊ.";
                 }
 
                 if (ageSelectedValue == null) {
                     totalTests[0] = false;
-                    totalTests[1] = totalTests[1] + "\n" + "* ΧΧ Χ‘Χ—Χ¨Χª ΧΧª ΧΧ•Χ•Χ— Χ”Χ’Χ™ΧΧΧ™Χ Χ‘Χ• Χ ΧΧ¦Χ Χ’Χ™ΧΧ, Χ Χ Χ‘Χ—Χ¨/Χ™ ΧΧ•Χ•Χ— Χ’Χ™ΧΧΧ™Χ.";
+                    totalTests[1] = totalTests[1] + "\n" + "* μΰ αηψϊ ΰϊ θεεη δβιμΰιν αε πξφΰ βιμκ, πΰ αηψ/ι θεεη βιμΰιν.";
                 }
 
                 if (!totalTests[0]) {
@@ -44,7 +44,7 @@ java.sql.ResultSet usersResultSet=null;
                 return true;
             }
         </script>
-        <title>ΧΆΧ“Χ›Χ Χ¤Χ¨ΧΧ™ ΧΧ©ΧªΧΧ© Χ‘ΧΧ΅Χ“ Χ ΧªΧ•Χ Χ™Χ | ΧΧΧ™Χ™ΧΧ™Χ</title>
+        <title>ςγλο τψθι ξωϊξω αξργ πϊεπιν | ξθιιμιν</title>
     </head>
     <body>
         <section>
@@ -53,12 +53,12 @@ java.sql.ResultSet usersResultSet=null;
                     response.sendRedirect ("noManage.jsp");
             %>
             <div class="sign-up-main">
-                <h1>Χ”Χ¨Χ©ΧΧ”</h1>
+                <h1>δψωξδ</h1>
                 <form name="updateForm" onsubmit="return updateFormTest();" method="post" action="doUpdateByEmail.jsp">
                     <table>
                         <tr class="field-label">
                             <td>
-                                <label for="fullName">Χ©Χ ΧΧΧ:</label>
+                                <label for="fullName">ων ξμΰ:</label>
                             </td>
                         </tr>
                         <tr class="field">
@@ -68,7 +68,7 @@ java.sql.ResultSet usersResultSet=null;
                         </tr>
                         <tr class="field-label">
                             <td>
-                                <label for="email">ΧΧ™Χ™Χ:</label>
+                                <label for="email">ξιιμ:</label>
                             </td>
                         </tr>
                         <tr class="field">
@@ -78,7 +78,7 @@ java.sql.ResultSet usersResultSet=null;
                         </tr>
                         <tr class="field-label">
                             <td>
-                                <label for="password">Χ΅Χ™Χ΅ΧΧ”:</label>
+                                <label for="password">ριρξδ:</label>
                             </td>
                         </tr>
                         <tr class="field">
@@ -88,7 +88,7 @@ java.sql.ResultSet usersResultSet=null;
                         </tr>
                         <tr class="label">
                             <td>
-                                <label for="re_password">ΧΧ™ΧΧ•Χª Χ΅Χ™Χ΅ΧΧ”:</label>
+                                <label for="re_password">ΰιξεϊ ριρξδ:</label>
                             </td>
                         </tr>
                         <tr class="field">
@@ -99,12 +99,12 @@ java.sql.ResultSet usersResultSet=null;
                         <tr>
                             <td>
                                 <input type="checkbox" value="yes" id="love_travel" name="love_travel">
-                                <label for="love_travel">Χ”ΧΧ ΧΧª/Χ” ΧΧ•Χ”Χ‘/Χª ΧΧΧ™Χ™Χ?</label>
+                                <label for="love_travel">δΰν ΰϊ/δ ΰεδα/ϊ μθιιμ?</label>
                             </td>
                         </tr>
                         <tr class="label">
                             <td>
-                                <label for="age-range">ΧΧ”Χ• Χ”ΧΧ•Χ•Χ— Χ©Χ‘Χ• Χ ΧΧ¦Χ Χ’Χ™ΧΧ?</label>
+                                <label for="age-range">ξδε δθεεη ωαε πξφΰ βιμκ?</label>
                             </td>
                         </tr>
                         <tr>
@@ -118,12 +118,12 @@ java.sql.ResultSet usersResultSet=null;
                                 <input type="radio" id="age4" value="50-70" name="age">
                                 <label for="age4" class="age">50-70</label><br>
                                 <input type="radio" id="age5" value="70 and up" name="age">
-                                <label for="age5" class="age">70 Χ•ΧΧΆΧΧ”</label>
+                                <label for="age5" class="age">70 εξςμδ</label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" name="submit" value="Χ”Χ™Χ¨Χ©Χ">
+                                <input type="submit" name="submit" value="διψων">
                             </td>
                         </tr>
                     </table>
@@ -147,7 +147,7 @@ java.sql.ResultSet usersResultSet=null;
                     
                     String ageRange=request.getParameter("ageRange");
                     
-                    //Χ™Χ¦Χ™Χ¨Χª Χ§Χ©Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ 
+                    //ιφιψϊ χωψ μξργ δπϊεπιν 
                     try
                         {
                             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -161,7 +161,7 @@ java.sql.ResultSet usersResultSet=null;
                         try
                         {
                             st.executeUpdate(sql);
-                            out.print("Χ”ΧΆΧ“Χ›Χ•Χ Χ”ΧªΧ‘Χ¦ΧΆ Χ‘Χ”Χ¦ΧΧ—Χ”!"); 
+                            out.print("δςγλεο δϊαφς αδφμηδ!"); 
                             st.close();
                             con.close();
                         }

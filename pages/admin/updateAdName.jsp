@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=windows-1255"
     pageEncoding="windows-1255"%>
 <%@page import="java.sql.*" %>
-<%--Χ”Χ¦Χ”Χ¨Χ” ΧΆΧ ΧΧ©ΧªΧ Χ™Χ --%>
+<%--δφδψδ ςμ ξωϊπιν --%>
 <%!
 java.sql.Connection con=null;
 java.sql.Statement st=null;
@@ -14,7 +14,7 @@ java.sql.ResultSet usersResultSet=null;
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ΧΆΧ“Χ›Χ•Χ Χ©Χ ΧΧ Χ”Χ</title>
+        <title>ςγλεο ων ξπδμ</title>
     </head>
     <body>
         <%
@@ -23,11 +23,11 @@ java.sql.ResultSet usersResultSet=null;
         %>
         <section>
             <div>
-                <h3>ΧΆΧ“Χ›Χ•Χ Χ¤Χ¨ΧΧ™ ΧΧ Χ”Χ</h3>
+                <h3>ςγλεο τψθι ξπδμ</h3>
                 <form action="post" action="updateAdName.jsp">
-                    <label for="adPass">Χ”Χ›Χ Χ΅ Χ΅Χ™Χ΅ΧΧ”:</label><br>
+                    <label for="adPass">δλπρ ριρξδ:</label><br>
                     <input type="password" name="adPass"><br>
-                    <input type="submit" value="Χ©ΧΧ—" name="send">
+                    <input type="submit" value="ωμη" name="send">
                 </form>
             </div>
         </section>
@@ -35,33 +35,33 @@ java.sql.ResultSet usersResultSet=null;
             boolean userFound=false;
             if(request.getParameter("send")!=null)
             {
-                String adPass=request.getParameter("adPass"); //Χ§Χ¨Χ™ΧΧª Χ©Χ ΧΧ©ΧªΧΧ©
+                String adPass=request.getParameter("adPass"); //χψιΰϊ ων ξωϊξω
                 
                 
-                //Χ™Χ¦Χ™Χ¨Χª Χ§Χ©Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ 
+                //ιφιψϊ χωψ μξργ δπϊεπιν 
                 try
                 {
                         Class.forName("com.mysql.jdbc.Driver").newInstance();
                         con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
                         st=con.createStatement();
                     
-                String sql="SELECT * FROM TBadmin WHERE adPass='"+adPass+"' "; //Χ©ΧΧ™ΧΧªΧª SQL
-                usersResultSet=st.executeQuery(sql);                  //Χ§Χ•ΧΧ ΧΧª Χ”ΧΧ‘ΧΧ” Χ©Χ Χ” sql
+                String sql="SELECT * FROM TBadmin WHERE adPass='"+adPass+"' "; //ωΰιμϊϊ SQL
+                usersResultSet=st.executeQuery(sql);                  //χεμθ ΰϊ δθαμδ ωμ δ sql
                 if (usersResultSet!=null && usersResultSet.next())
                 {
                     userFound=true;  
                 }
-                if(userFound) //Χ©ΧΧ™Χ¨Χª Χ ΧªΧ•Χ Χ™ ΧΧ©ΧªΧΧ© Χ©ΧΧ¦ΧΧ Χ•
+                if(userFound) //ωξιψϊ πϊεπι ξωϊξω ωξφΰπε
                 {
                     session.setAttribute("adName",usersResultSet.getString("adName"));
                     session.setAttribute("adPass",usersResultSet.getString("adPass"));
                     
-                    //Χ”Χ¤Χ Χ™Χ” ΧΧ“Χ£ ΧΧ‘Χ™Χ¦Χ•ΧΆ Χ”ΧΆΧ“Χ›Χ•Χ
+                    //δτπιδ μγσ μαιφες δςγλεο
                     response.sendRedirect("doUpdateAdname.jsp");
                 }
                 else
                 {
-                    out.print("Χ΅Χ™Χ΅ΧΧª Χ”ΧΧ Χ”Χ Χ©Χ’Χ•Χ™Χ”");
+                    out.print("ριρξϊ δξπδμ ωβειδ");
                 }
                 }
                 catch(Exception ex)

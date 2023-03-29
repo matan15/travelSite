@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
 <%@page import="java.sql.*" %>
-<%--Χ”Χ¦Χ”Χ¨Χ” ΧΆΧ ΧΧ©ΧªΧ Χ™Χ --%>
+<%--δφδψδ ςμ ξωϊπιν --%>
 <%!
 
 java.sql.Connection con=null;
@@ -15,7 +15,7 @@ String str;
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>ΧΧ—Χ§ ΧΧ©ΧªΧΧ© ΧΧΧ΅Χ“ Χ ΧªΧ•Χ Χ™Χ | ΧΧΧ™Χ™ΧΧ™Χ</title>
+		<title>ξηχ ξωϊξω ξξργ πϊεπιν | ξθιιμιν</title>
 	</head>
 	<body>
 		<%
@@ -24,7 +24,7 @@ String str;
 			%>
 			
 		<%
-		//Χ™Χ¦Χ™Χ¨Χª Χ§Χ©Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ 
+		//ιφιψϊ χωψ μξργ δπϊεπιν 
 		try
 		{
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -47,7 +47,7 @@ String str;
 				System.out.println("SQLState:" +ex.getSQLState());
 			}
 		%>
-		<button onclick="redirectToFile('manage.jsp')">Χ—Χ–Χ¨Χ” ΧΧªΧ¤Χ¨Χ™Χ</button>
-		<button onclick="redirectToFile('listUsers.jsp')">Χ¨Χ©Χ™ΧΧª Χ”ΧΧ©ΧªΧΧ©Χ™Χ</button>
+		<button onclick="redirectToFile('manage.jsp')">ηζψδ μϊτψιθ</button>
+		<button onclick="redirectToFile('listUsers.jsp')">ψωιξϊ δξωϊξωιν</button>
 	</body>
 </html>

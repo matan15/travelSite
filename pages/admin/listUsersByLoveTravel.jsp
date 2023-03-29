@@ -2,14 +2,14 @@
 
 <%@page import="java.sql.*" %>
 
-<%--Χ”Χ¦Χ”Χ¨Χ” ΧΆΧ ΧΧ©ΧªΧ Χ™Χ --%>
+<%--δφδψδ ςμ ξωϊπιν --%>
 <%!
 
-java.sql.Connection con=null; //ΧΧ©ΧªΧ Χ™Χ ΧΧ΅Χ•Χ’ Χ–Χ” Χ Χ§Χ¨ΧΧ™Χ ΧΧ•Χ‘Χ™Χ™Χ§ΧΧ™Χ
+java.sql.Connection con=null; //ξωϊπιν ξρεβ ζδ πχψΰιν ΰεαιιχθιν
 java.sql.Statement st=null;
 java.sql.ResultSet usersResultSet=null;
 %>
-<%--ΧΧ—Χ–Χ•Χ¨ ΧΧ—Χ¨Χ•Χ–Χª Χ”ΧΧ›Χ™ΧΧ” ΧΧª Χ ΧªΧ•Χ Χ™ ΧΧ‘ΧΧª Χ”ΧΧ©ΧªΧΧ©Χ™Χ Χ”ΧΧΆΧ•Χ¦Χ‘Χª Χ›ΧΧ‘ΧΧ” --%>
+<%--ΰηζεψ ξηψεζϊ δξλιμδ ΰϊ πϊεπι θαμϊ δξωϊξωιν δξςεφαϊ λθαμδ --%>
 <%!
 
 public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
@@ -25,7 +25,7 @@ str+="</tr>";
 	      
 	try
 	{
-		while(usersResultSet.next()) // ΧΧ Χ™Χ© Χ©Χ•Χ¨Χ” Χ”Χ‘ΧΧ” Χ™Χ•Χ—Χ–Χ¨ ΧΧΧª Χ•Χ©Χ§Χ¨ ΧΧ ΧΧ™Χ Χ©Χ•Χ¨Χ”
+		while(usersResultSet.next()) // ΰν ιω ωεψδ δαΰδ ιεηζψ ΰξϊ εωχψ ΰν ΰιο ωεψδ
 		{
 		  str+="<tr class="user">";
 		  str+="<td class="user-detail">"+usersResultSet.getString("fullName").toString()+"</td>";
@@ -39,12 +39,12 @@ str+="</tr>";
 	} //end of try
 	catch(Exception ex)
 	{
-		System.out.print("Χ©Χ’Χ™ΧΧ” Χ‘Χ”ΧªΧ—Χ‘Χ¨Χ•Χª");
+		System.out.print("ωβιΰδ αδϊηαψεϊ");
 	}
 	return str;
 }
 %>
-<%--ΧΆΧ™Χ¦Χ•Χ‘ Χ”Χ¤ΧΧ ΧΧΧ©ΧªΧΧ© --%>
+<%--ςιφεα δτμθ μξωϊξω --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,30 +61,30 @@ str+="</tr>";
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>Χ¨Χ©Χ™ΧΧª ΧΧ©ΧªΧΧ©Χ™Χ | ΧΧΧ™Χ™ΧΧ™Χ</title>
+        <title>ψωιξϊ ξωϊξωιν | ξθιιμιν</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
                 <button onclick="redirectToFile('../index.html')" class="brand-link">
-                    <img src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70" id="logo">
-                    <h1 class="nav-heading">ΧΧΧ™Χ™ΧΧ™Χ</h1>
+                    <img src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">ξθιιμιν</h1>
                 </button>
             </div>
             <ul class="menu">
-                <li><a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a></li>
-                <li><a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a></li>
-                <li><a href="../blog.html">Χ‘ΧΧ•Χ’</a></li>
-                <li><a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a></li>
+                <li><a href="../index.html#home">γσ δαιϊ</a></li>
+                <li><a href="../index.html#about">ΰεγεϊ</a></li>
+                <li><a href="../blog.html">αμεβ</a></li>
+                <li><a href="../index.html#contact">φεψ χωψ</a></li>
             </ul>
 
             <div class="login-and-sign-up">
                 <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
-                    Χ”Χ™Χ¨Χ©Χ
+                    διψων
                 </button>
                 <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
-                    Χ”ΧªΧ—Χ‘Χ¨
+                    δϊηαψ
                 </button>
             </div>
             <div class="user-menu">
@@ -92,9 +92,9 @@ str+="</tr>";
                 <div class="dropdown">
                     <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
                     <div class="dropdown-content">
-                        <a href="">ΧΆΧ“Χ›Χ•Χ Χ¤Χ¨ΧΧ™Χ</a>
-                        <a href="">Χ”ΧΧ΅ΧΧ•ΧΧ™Χ Χ©ΧΧ™</a>
-                        <a href="">Χ”ΧªΧ ΧªΧ§</a>
+                        <a href="">ςγλεο τψθιν</a>
+                        <a href="">δξρμεμιν ωμι</a>
+                        <a href="">δϊπϊχ</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@ str+="</tr>";
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">Χ¤ΧΆΧ•ΧΧ•Χª ΧΧ Χ”Χ</h2>
+                    <h2 class="heading-text">τςεμεϊ ξπδμ</h2>
                 </div>
             </div>
         </section>
@@ -124,12 +124,12 @@ str+="</tr>";
                     <tr>
                         <td>
                             <input type="checkbox" value="yes" id="loveTravel" name="loveTravel">
-                            <label for="loveTravel">Χ”ΧΧ ΧΧ•Χ”Χ‘ ΧΧΧ™Χ™Χ?</label>
+                            <label for="loveTravel">δΰν ΰεδα μθιιμ?</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" value="Χ©ΧΧ—" name="send">
+                            <input type="submit" value="ωμη" name="send">
                         </td>
                     </tr>
                 </table>
@@ -137,7 +137,7 @@ str+="</tr>";
         </section>
 
         <!-- users list -->
-        <button>Χ—Χ–Χ¨Χ” ΧΧ“Χ£ Χ Χ™Χ”Χ•Χ</button>
+        <button>ηζψδ μγσ πιδεμ</button>
         <section class="users-list-section">
             <%
                 boolean userFound=false;
@@ -151,15 +151,15 @@ str+="</tr>";
                     else {
                         loveTravel = "no";
                     }
-                    //Χ™Χ¦Χ™Χ¨Χª Χ§Χ©Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ 
+                    //ιφιψϊ χωψ μξργ δπϊεπιν 
                     try
                     {
                             Class.forName("com.mysql.jdbc.Driver").newInstance();
                             con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
                             st=con.createStatement();
                         
-                    String sql="SELECT * FROM TBusers WHERE loveTravel='" + loveTravel + "'"; //Χ©ΧΧ™ΧΧªΧª SQL
-                    rs=st.executeQuery(sql);//ΧΧ§Χ‘Χ Χ¨Χ©Χ•ΧΧ”
+                    String sql="SELECT * FROM TBusers WHERE loveTravel='" + loveTravel + "'"; //ωΰιμϊϊ SQL
+                    rs=st.executeQuery(sql);//ξχαμ ψωεξδ
                     rs.last();
                     int numRow=rs.getRow();
                     if (numRow>0)
@@ -170,7 +170,7 @@ str+="</tr>";
                     }
                     else
                     {
-                        out.print("Χ”ΧΧ©ΧªΧΧ© ΧΧ Χ ΧΧ¦Χ");
+                        out.print("δξωϊξω μΰ πξφΰ");
                     }
                     st.close();
                     con.close();
@@ -187,15 +187,15 @@ str+="</tr>";
         <!-- footer -->
         <footer>
             <div class="footer_main">
-                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70"></a>
+                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70"></a>
                 <p class="footer-menu">
-                    <a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a>
-                    β€Ά
-                    <a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a>
-                    β€Ά
-                    <a href="../blog.html">Χ‘ΧΧ•Χ’</a>
-                    β€Ά
-                    <a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a>
+                    <a href="../index.html#home">γσ δαιϊ</a>
+                    •
+                    <a href="../index.html#about">ΰεγεϊ</a>
+                    •
+                    <a href="../blog.html">αμεβ</a>
+                    •
+                    <a href="../index.html#contact">φεψ χωψ</a>
                 </p>
 
                 <table class="social-icons">
@@ -218,7 +218,7 @@ str+="</tr>";
                     </tr>
                 </table>
                 <p>
-                    <p>ΧΧΧ™Χ™ΧΧ™Χ</p> <!-- manager entry -->
+                    <p>ξθιιμιν</p> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

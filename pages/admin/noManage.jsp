@@ -25,17 +25,17 @@
             </tr>
             <tr>
                 <td>
-                    <h1 class="heading">!ЧђЧЄЧ” ЧњЧђ ЧћЧ Ч”Чњ Ч”ЧђЧЄЧЁ</h1>
+                    <h1 class="heading">!аъд ма ордм даъш</h1>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4 class="sub-heading">ЧђЧќ ЧђЧЄЧ” Ч‘Ч›Чњ Ч–ЧђЧЄ ЧћЧ Ч”Чњ Ч”ЧђЧЄЧЁ, Ч ЧЎЧ” ЧњЧ”Ч™Ч›Ч ЧЎ Ч©Ч•Ч‘ Ч›ЧћЧ Ч”Чњ</h4>
+                    <h4 class="sub-heading">ан аъд блм жаъ ордм даъш, рсд мдйлрс щеб лордм</h4>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button class="retry-btn" onclick="redirectToFile('admin-login.jsp')">ЧњЧ Ч™ЧЎЧ™Ч•Чџ Ч Ч•ЧЎЧЈ</button>
+                    <button class="retry-btn" onclick="redirectToFile('admin-login.jsp')">мрйсйеп ресу</button>
                 </td>
             </tr>
         </table>

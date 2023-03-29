@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
 <%@page import="java.sql.*" %>
-<%--Χ”Χ¦Χ”Χ¨Χ” ΧΆΧ ΧΧ©ΧªΧ Χ™Χ --%>
+<%--δφδψδ ςμ ξωϊπιν --%>
 <%!
 
 java.sql.Connection con=null;
@@ -15,7 +15,7 @@ java.sql.ResultSet usersResultSet=null;
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ΧΆΧ“Χ›Χ•Χ Χ΅Χ™Χ΅ΧΧª ΧΧ Χ”Χ Χ‘ΧΧ΅Χ“ Χ ΧªΧ•Χ Χ™Χ</title>
+        <title>ςγλεο ριρξϊ ξπδμ αξργ πϊεπιν</title>
     </head>
     <body>
         <%
@@ -23,12 +23,12 @@ java.sql.ResultSet usersResultSet=null;
                 response.sendRedirect ("noManage.jsp");
         %>
         <div>
-            <h3>ΧΆΧ“Χ›Χ•Χ Χ©Χ Χ”ΧΧ Χ”Χ</h3>
+            <h3>ςγλεο ων δξπδμ</h3>
             <form action="doUpdateAdpass.jsp">
                 <table>
                     <tr>
                         <td>
-                            <label for="adPass">Χ΅Χ™Χ΅ΧΧª ΧΧ Χ”Χ</label>
+                            <label for="adPass">ριρξϊ ξπδμ</label>
                         </td>
                     </tr>
                     <tr>
@@ -38,7 +38,7 @@ java.sql.ResultSet usersResultSet=null;
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" value="Χ©ΧΧ—" name="send">
+                            <input type="submit" value="ωμη" name="send">
                         </td>
                     </tr>
                 </table>
@@ -51,7 +51,7 @@ java.sql.ResultSet usersResultSet=null;
                 String adName=(String)session.getAttribute("adName");
                 
                 
-                //Χ™Χ¦Χ™Χ¨Χª Χ§Χ©Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ 
+                //ιφιψϊ χωψ μξργ δπϊεπιν 
                 try
                     {
                         Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -65,7 +65,7 @@ java.sql.ResultSet usersResultSet=null;
                     try
                     {
                         st.executeUpdate(sql);
-                        out.print("Χ”ΧΆΧ“Χ›Χ•Χ Χ‘Χ•Χ¦ΧΆ Χ‘Χ”Χ¦ΧΧ—Χ”!"); 
+                        out.print("δςγλεο αεφς αδφμηδ!"); 
                         st.close();
                         con.close();
                     }
