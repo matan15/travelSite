@@ -1,3 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+
+<%@page import="java.sql.*" %>
+
+<%--הצהרה על משתנים --%>
+<%!
+
+java.sql.Connection con=null; //משתנים מסוג זה נקראים אובייקטים
+java.sql.Statement st=null;
+java.sql.ResultSet usersResultSet=null;
+%>
+<%--אחזור מחרוזת המכילה את נתוני טבלת המשתמשים המעוצבת כטבלה --%>
+<%!
+
+public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
+{
+String str="<table class="users-grid">";
+str+="<tr>";
+str+="<td class="users-grid-heading">Full Name</td>";
+str+="<td class="users-grid-heading">Email</td>";
+str+="<td class="users-grid-heading">Password</td>";
+str+="<td class="users-grid-heading">Love Traveling</td>";
+str+="<td class="users-grid-heading">Age Range</td>";
+str+="</tr>";
+	      
+	try
+	{
+		while(usersResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
+		{
+		  str+="<tr class="user">";
+		  str+="<td class="user-detail">"+usersResultSet.getString("fullName").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("email").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("password").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("loveTravel").toString()+"</td>";
+		  str+="<td class="user-detail">"+usersResultSet.getString("ageRange").toString()+"</td>";
+		  str+="</tr>";
+	    }
+		  str+="</table>";
+	} //end of try
+	catch(Exception ex)
+	{
+		System.out.print("שגיאה בהתחברות");
+	}
+	return str;
+}
+%>
+<%--עיצוב הפלט למשתמש --%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,12 +56,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/user-pages/profile.css">
+        <link rel="stylesheet" href="../../static/css/admin/users-list.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>מתן ניידיס | מטיילים</title><!-- change to dynamic -->
+        <title>רשימת משתמשים | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -53,49 +101,88 @@
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
+        <%
+        if ((session.getAttribute("admin")== null) || !session.getAttribute("admin").equals("true"))
+			response.sendRedirect ("noManage.jsp");
+        %>
 
-        <!-- heading -->
+        <!-- header -->
         <section class="heading">
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">מתן ניידיס</h2><!-- change to dynamic -->
+                    <h2 class="heading-text">פעולות מנהל</h2>
                 </div>
             </div>
         </section>
-        <!-- end heading -->
+        <!-- end header -->
 
-        <section class="profile">
-            <div class="profile-main">
-                <table class="profile-layout">
+        <!-- age range selector -->
+        <section>
+            <form action="">
+                <table>
                     <tr>
                         <td>
-                            <img class="profile-img" src="../../pictures/user.png" alt="user" width="70">
+                            <input type="checkbox" value="yes" id="loveTravel" name="loveTravel">
+                            <label for="loveTravel">האם אוהב לטייל?</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h3 class="user-name">שם מלא: <span>מתן ניידיס</span></h3>
-                        </td>
-                        <td>
-                            <h3 class="user-mail">מייל: <span>matan.naydis@gmail.com</span></h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2 class="user-info-heading">קצת על עצמי</h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="user-info">
-                                אין מידע נכון לעכשיו...
-                            </p>
+                            <input type="submit" value="שלח" name="send">
                         </td>
                     </tr>
                 </table>
-            </div>
+            </form>
         </section>
+
+        <!-- users list -->
+        <button>חזרה לדף ניהול</button>
+        <section class="users-list-section">
+            <%
+                boolean userFound=false;
+                if(request.getParameter("send")!=null)
+                {
+                    String loveTravelAnswer[] = request.getParameterValues("love_travel");
+                    String loveTravel;
+                    if (loveTravelAnswer != null && loveTravelAnswer.length != 0) {
+                        loveTravel = "yes";
+                    }
+                    else {
+                        loveTravel = "no";
+                    }
+                    //יצירת קשר למסד הנתונים 
+                    try
+                    {
+                            Class.forName("com.mysql.jdbc.Driver").newInstance();
+                            con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+                            st=con.createStatement();
+                        
+                    String sql="SELECT * FROM TBusers WHERE loveTravel='" + loveTravel + "'"; //שאילתת SQL
+                    rs=st.executeQuery(sql);//מקבל רשומה
+                    rs.last();
+                    int numRow=rs.getRow();
+                    if (numRow>0)
+                    {
+                        rs.beforeFirst();
+                        out.print(formatUsersForHtml(rs));
+                        rs.close();
+                    }
+                    else
+                    {
+                        out.print("המשתמש לא נמצא");
+                    }
+                    st.close();
+                    con.close();
+                    }
+                    catch(Exception ex)
+                    {
+                        System.out.println("Error in connection");
+                    }
+                }
+            %>
+        </section>
+        <!-- end user list -->
 
         <!-- footer -->
         <footer>
@@ -106,11 +193,11 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="../blog.html">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>
-    
+
                 <table class="social-icons">
                     <tr>
                         <td>
@@ -131,7 +218,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="../admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                    <p>מטיילים</p> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

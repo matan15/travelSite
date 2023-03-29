@@ -2,14 +2,14 @@
 
 <%@page import="java.sql.*" %>
 
-<%--δφδψδ ςμ ξωϊπιν --%>
+<%--Χ”Χ¦Χ”Χ¨Χ” ΧΆΧ ΧΧ©ΧªΧ Χ™Χ --%>
 <%!
 
-java.sql.Connection con=null; //ξωϊπιν ξρεβ ζδ πχψΰιν ΰεαιιχθιν
+java.sql.Connection con=null; //ΧΧ©ΧªΧ Χ™Χ ΧΧ΅Χ•Χ’ Χ–Χ” Χ Χ§Χ¨ΧΧ™Χ ΧΧ•Χ‘Χ™Χ™Χ§ΧΧ™Χ
 java.sql.Statement st=null;
 java.sql.ResultSet usersResultSet=null;
 %>
-<%--ΰηζεψ ξηψεζϊ δξλιμδ ΰϊ πϊεπι θαμϊ δξωϊξωιν δξςεφαϊ λθαμδ --%>
+<%--ΧΧ—Χ–Χ•Χ¨ ΧΧ—Χ¨Χ•Χ–Χª Χ”ΧΧ›Χ™ΧΧ” ΧΧª Χ ΧªΧ•Χ Χ™ ΧΧ‘ΧΧª Χ”ΧΧ©ΧªΧΧ©Χ™Χ Χ”ΧΧΆΧ•Χ¦Χ‘Χª Χ›ΧΧ‘ΧΧ” --%>
 <%!
 
 public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
@@ -25,7 +25,7 @@ str+="</tr>";
 	      
 	try
 	{
-		while(usersResultSet.next()) // ΰν ιω ωεψδ δαΰδ ιεηζψ ΰξϊ εωχψ ΰν ΰιο ωεψδ
+		while(usersResultSet.next()) // ΧΧ Χ™Χ© Χ©Χ•Χ¨Χ” Χ”Χ‘ΧΧ” Χ™Χ•Χ—Χ–Χ¨ ΧΧΧª Χ•Χ©Χ§Χ¨ ΧΧ ΧΧ™Χ Χ©Χ•Χ¨Χ”
 		{
 		  str+="<tr class="user">";
 		  str+="<td class="user-detail">"+usersResultSet.getString("fullName").toString()+"</td>";
@@ -39,12 +39,12 @@ str+="</tr>";
 	} //end of try
 	catch(Exception ex)
 	{
-		System.out.print("ωβιΰδ αδϊηαψεϊ");
+		System.out.print("Χ©Χ’Χ™ΧΧ” Χ‘Χ”ΧªΧ—Χ‘Χ¨Χ•Χª");
 	}
 	return str;
 }
 %>
-<%--ςιφεα δτμθ μξωϊξω --%>
+<%--ΧΆΧ™Χ¦Χ•Χ‘ Χ”Χ¤ΧΧ ΧΧΧ©ΧªΧΧ© --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,35 +56,35 @@ str+="</tr>";
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/admin/admin-actions/users-list.css">
+        <link rel="stylesheet" href="../../static/css/admin/users-list.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>τςεμεϊ ξπδμ | ξθιιμιν</title>
+        <title>Χ¨Χ©Χ™ΧΧª ΧΧ©ΧªΧΧ©Χ™Χ | ΧΧΧ™Χ™ΧΧ™Χ</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
-                <button onclick="redirectToFile('../../index.html')" class="brand-link">
-                    <img src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70" id="logo">
-                    <h1 class="nav-heading">ξθιιμιν</h1>
+                <button onclick="redirectToFile('../index.html')" class="brand-link">
+                    <img src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">ΧΧΧ™Χ™ΧΧ™Χ</h1>
                 </button>
             </div>
             <ul class="menu">
-                <li><a href="../index.html#home">γσ δαιϊ</a></li>
-                <li><a href="../index.html#about">ΰεγεϊ</a></li>
-                <li><a href="../blog.html">αμεβ</a></li>
-                <li><a href="../index.html#contact">φεψ χωψ</a></li>
+                <li><a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a></li>
+                <li><a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a></li>
+                <li><a href="../blog.html">Χ‘ΧΧ•Χ’</a></li>
+                <li><a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a></li>
             </ul>
 
             <div class="login-and-sign-up">
                 <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
-                    διψων
+                    Χ”Χ™Χ¨Χ©Χ
                 </button>
                 <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
-                    δϊηαψ
+                    Χ”ΧªΧ—Χ‘Χ¨
                 </button>
             </div>
             <div class="user-menu">
@@ -92,9 +92,9 @@ str+="</tr>";
                 <div class="dropdown">
                     <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
                     <div class="dropdown-content">
-                        <a href="">ςγλεο τψθιν</a>
-                        <a href="">δξρμεμιν ωμι</a>
-                        <a href="">δϊπϊχ</a>
+                        <a href="">ΧΆΧ“Χ›Χ•Χ Χ¤Χ¨ΧΧ™Χ</a>
+                        <a href="">Χ”ΧΧ΅ΧΧ•ΧΧ™Χ Χ©ΧΧ™</a>
+                        <a href="">Χ”ΧªΧ ΧªΧ§</a>
                     </div>
                 </div>
             </div>
@@ -111,48 +111,79 @@ str+="</tr>";
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">τςεμεϊ ξπδμ</h2>
+                    <h2 class="heading-text">Χ¤ΧΆΧ•ΧΧ•Χª ΧΧ Χ”Χ</h2>
                 </div>
             </div>
         </section>
         <!-- end header -->
 
+        <!-- age range selector -->
+        <section>
+            <form action="">
+                <select name="ageRange" id="ageRange" method="post">
+                    <option value="8-18">8-18</option>
+                    <option value="18-30">18-30</option>
+                    <option value="30-50">30-50</option>
+                    <option value="50-70">50-70</option>
+                    <option value="70 Χ•ΧΧΆΧΧ”">70+</option>
+                </select>
+                <input type="submit" value="Χ©ΧΧ—" name="send">
+            </form>
+        </section>
+
         <!-- users list -->
-        <button>ηζψδ μγσ πιδεμ</button>
+        <button>Χ—Χ–Χ¨Χ” ΧΧ“Χ£ Χ Χ™Χ”Χ•Χ</button>
         <section class="users-list-section">
             <%
-            //ιφιψϊ χωψ μξργ δπϊεπιν 
-            try{
-		        Class.forName("com.mysql.jdbc.Driver").newInstance();
-		        con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
-		        st=con.createStatement();
-	
-                String sql="SELECT * FROM TBusers"; // ωΰιμϊϊ SQL    
-                usersResultSet=st.executeQuery(sql);
-            }
-	        catch(Exception ex){
-		        System.out.println("Error in connection");
-	        }
-	        //τεπχφιδ ξχαμϊ ΰεαιιχθ ξρεβ θαμδ εξγτριν ΰϊ δξηψεζϊ ωδτεπχφιδ ξηζιψδ
-            out.print(formatUsersForHtml(usersResultSet));
-            usersResultSet.close();
+                boolean userFound=false;
+                if(request.getParameter("send")!=null)
+                {
+                    String ageRange=request.getParameter("ageRange"); //Χ§Χ¨Χ™ΧΧª Χ©Χ ΧΧ©ΧªΧΧ©
+                    //Χ™Χ¦Χ™Χ¨Χª Χ§Χ©Χ¨ ΧΧΧ΅Χ“ Χ”Χ ΧªΧ•Χ Χ™Χ 
+                    try
+                    {
+                            Class.forName("com.mysql.jdbc.Driver").newInstance();
+                            con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+                            st=con.createStatement();
+                        
+                    String sql="SELECT * FROM TBusers WHERE ageRange='"+ageRange+"'"; //Χ©ΧΧ™ΧΧªΧª SQL
+                    rs=st.executeQuery(sql);//ΧΧ§Χ‘Χ Χ¨Χ©Χ•ΧΧ”
+                    rs.last();
+                    int numRow=rs.getRow();
+                    if (numRow>0)
+                    {
+                        rs.beforeFirst();
+                        out.print(formatUsersForHtml(rs));
+                        rs.close();
+                    }
+                    else
+                    {
+                        out.print("Χ”ΧΧ©ΧªΧΧ© ΧΧ Χ ΧΧ¦Χ");
+                    }
+                    st.close();
+                    con.close();
+                    }
+                    catch(Exception ex)
+                    {
+                        System.out.println("Error in connection");
+                    }
+                }
             %>
-            <%-------------------------------------------------------------- --%>
         </section>
         <!-- end user list -->
 
         <!-- footer -->
         <footer>
             <div class="footer_main">
-                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ξθιιμιν" width="70" height="70"></a>
+                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="ΧΧΧ™Χ™ΧΧ™Χ" width="70" height="70"></a>
                 <p class="footer-menu">
-                    <a href="../index.html#home">γσ δαιϊ</a>
-                    •
-                    <a href="../index.html#about">ΰεγεϊ</a>
-                    •
-                    <a href="../blog.html">αμεβ</a>
-                    •
-                    <a href="../index.html#contact">φεψ χωψ</a>
+                    <a href="../index.html#home">Χ“Χ£ Χ”Χ‘Χ™Χª</a>
+                    β€Ά
+                    <a href="../index.html#about">ΧΧ•Χ“Χ•Χª</a>
+                    β€Ά
+                    <a href="../blog.html">Χ‘ΧΧ•Χ’</a>
+                    β€Ά
+                    <a href="../index.html#contact">Χ¦Χ•Χ¨ Χ§Χ©Χ¨</a>
                 </p>
 
                 <table class="social-icons">
@@ -175,7 +206,7 @@ str+="</tr>";
                     </tr>
                 </table>
                 <p>
-                    <p>ξθιιμιν</p> <!-- manager entry -->
+                    <p>ΧΧΧ™Χ™ΧΧ™Χ</p> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

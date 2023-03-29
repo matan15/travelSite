@@ -95,6 +95,55 @@
 
 /************************************************************/
 
+/* sign up and login section */
+.sign-up-login-section {
+    background-color: #BBD6B8;
+}
+
+.sign-up-login-section .main {
+    text-align: center;
+}
+
+.sign-up-login-section .main .heading {
+    padding-top: 30px;
+    padding-bottom: 15px;
+    font-size: 30px;
+}
+
+.sign-up-login-section .main .sign-up-expl {
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+
+.sign-up-login-section .main .sign-up-btn {
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    background-color: #40513B;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.sign-up-login-section .main .sub-heading {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.sign-up-login-section .main .login-btn {
+    margin-bottom: 20px;
+    padding: 10px 15px 10px 15px;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    background-color: #B99B6B;
+    color: white;
+}
+/************************************************************/
+
 /* contact section */
 
 .contact {

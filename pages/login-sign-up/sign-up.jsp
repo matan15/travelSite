@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
         <script language="javascript">
-            function signUpForm() {
+            function signUpFormTest() {
                 var email = document.signUpForm.full_name.value;
                 var email = document.signUpForm.email.value;
                 var password = document.signUpForm.password.value;

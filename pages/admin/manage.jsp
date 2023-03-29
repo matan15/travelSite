@@ -116,13 +116,13 @@
             //אחזור בקשת משתמש והפניה לדף מתאים
             String s=request.getParameter("sendUser");
             try {
-                if(s.equals("הצגת כל הנרשמים"))
+                if(s.equals("הצגת כל הנרשמים")) // html ready
                 {
-                    response.sendRedirect("list-users.jsp");
+                    response.sendRedirect("listUsers.jsp");
                 }
                 else if(s.equals("מחיקת משתמש לפי אימייל"))
                 {
-                    response.sendRedirect("delete.jsp");
+                    response.sendRedirect("deleteByEmail.jsp");
                 }
                 else if(s.equals("עדכון פרטי משתמש לפי אימייל"))
                 {
@@ -130,18 +130,18 @@
                 }
                 else if(s.equals("הצגת משתמשים לפי גיל"))
                 {
-                    response.sendRedirect("UpdateByDetails.jsp");
+                    response.sendRedirect("listUsersByAge.jsp");
                 }
                 else if(s.equals("הצגת משתמשים לפי האם הם אוהבים לטייל"))
                 {	
-                    response.sendRedirect("ShowByCityAndMuseum.jsp");
+                    response.sendRedirect("listUsersByLoveTravel.jsp");
                 }
                 else if(s.equals("עדכון שם מנהל"))
                 {
-                    response.sendRedirect("ShowByCityAndRestaurant.jsp");
+                    response.sendRedirect("updateAdname.jsp");
                 }else if(s.equals("עדכון סיסמת מנהל"))
                 {
-                    response.sendRedirect("updateAdname.jsp");
+                    response.sendRedirect("updateAdPass.jsp");
                 }
             }
             catch(Exception e)
