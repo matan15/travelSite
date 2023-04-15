@@ -14,8 +14,34 @@
         <link rel="stylesheet" href="../static/css/base.css">
         <link rel="stylesheet" href="../static/scss/nav-user-menu.scss">
         <title>מטיילים</title>
+        <script language="javasctipt">
+            	var i=1,n=3;
+                function next() {
+                        
+                        if(i==n) {
+                            i=1;
+                        }
+                        else {
+                            i++;
+                        }
+                        pic1.src="../pictures/index/hero_"+i+".jpg";
+                        pic1.width="500";
+                        pic1.height="300";
+                        
+                }
+                function prev() {
+                        if(i==1) {
+                            i=n;
+                        }
+                        else {
+                            i--;
+                        }
+                        pic1.src="../pictures/index/hero_"+i+".jpg";
+                        pic1.width="500";
+                        pic1.height="300";
+                }
+		</script>
         <script language="javascript" src="../static/js/base.js"></script>
-        <script language="javascript" src="../static/js/nav.js"></script>
         <script language="javascript">
             function formTest() {
                 var name = document.contact.name.value;
@@ -61,17 +87,19 @@
         <div class="white-space"></div>
         <!-- end navbar -->
 
-        <!-- hero -->
-        <section class="home" id="home">
-            <div class="hero">
-                <img class="hero-img" src="../pictures/hero.jpg" alt="hiking" width="100%">
-                <div class="hero-heading-box">
-                    <h2 class="hero-heading">מטיילים</h2>
-                    <p class="slogen">טייל בכל הארץ</p>
-                </div>
-            </div>
-        </section>
-        <!-- end hero -->
+		<!-- hero -->
+		<section class="home" id="home">
+			<div class="hero">
+				<img class="hero-img" src="../pictures/index/hero_1.jpg" alt="traveling" width="100%">
+				<div class="hero-heading-box">
+					<h2 class="hero-heading">מטיילים</h2>
+					<p class="slogen">טייל בכל הארץ</p>
+				</div>
+                <a class="prev" onclick="prev();">&#10095;</a>
+                <a class="next" onclick="next();">&#10094;</a>
+			</div>
+		</section>
+		<!-- end hero -->
 
         <!-- about -->
         <section class="about" id="about">
@@ -202,7 +230,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="./admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                    <a href="./admin/admin-login.jsp">מטיילים</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

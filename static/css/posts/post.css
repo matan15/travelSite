@@ -21,16 +21,6 @@
 
 }
 
-.post .article-image {
-    width: 80%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 13px;
-}
-
 .post .article-title {
     font-size: 50px;
     padding-bottom: 7px;
@@ -40,19 +30,17 @@
     text-align: center;
 }
 
-.image-slideshow input[type="button"] {
-    background: none;
+hr {
+    position: relative;
+    top: 20px;
     border: none;
-    font-size: 42px;
-    font-weight: bold;
-    color: #000000;
-    cursor: pointer;
-    transition: all 0.2s ease-in;
-}
-
-.image-slideshow input[type="button"]:hover {
-    color: #285430;
-    font-size: 80px;
+    height: 3px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background: black;
+    margin-top: 10px;
+    margin-bottom: 50px;
 }
 
 .post .article-text {

@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+	<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+
+	<%@page import="java.sql.*" %>
+		
+	<%--הצהרה על משתנים --%>
+	<%!
+
+		java.sql.Connection con=null; //משתנים מסוג זה נקראים אובייקטים
+		java.sql.Statement st=null;
+		java.sql.ResultSet postsResultSet=null;
+	%>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,25 +41,14 @@
                 <li><a href="../blog.html">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
-
+    
             <div class="login-and-sign-up">
-                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html')">
+                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
                     הירשם
                 </button>
                 <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
                     התחבר
                 </button>
-            </div>
-            <div class="user-menu">
-                <img class="profile-img" src="../../pictures/icon.png" alt="profile" width="60" height="60"> <!-- fix source and alt -->
-                <div class="dropdown">
-                    <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
-                    <div class="dropdown-content">
-                        <a href="">עדכון פרטים</a>
-                        <a href="">המסלולים שלי</a>
-                        <a href="">התנתק</a>
-                    </div>
-                </div>
             </div>
         </nav>
         <div class="white-space"></div>
@@ -58,22 +58,28 @@
         <section>
             <button onclick="redirectToFile('../blog.html')" class="back-to-blog-btn">?? חזרה לבלוג</button>
             <article class="post">
-                <h2 class="article-title" class="article-title">כותרת</h2>
-                <p class="article-credits"><i>פורסם על-ידי מתן ניידיס בתאריך 08/12/2022</i></p>
-                <table class="image-slideshow">
-                    <tr>
-                        <td>
-                            <input type="button" name="prev" onclick="prev();" value="<">
-                        </td>
-                        <td colspan="2">
-                            <img class="article-image" name="pic" src="../../pictures/hero.jpg" alt="">
-                        </td>
-                        <td>
-                            <input type="button" name="next" onclick="next();" value=">">
-                        </td>
-                    </tr>
-                </table>
-                <p class="article-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quas ipsum molestias culpa nostrum nihil libero accusamus, laborum tempora cum maiores expedita totam exercitationem sequi quis debitis fugiat dolorum corrupti? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid fuga voluptate velit consectetur minus, eveniet distinctio voluptatibus iste aperiam itaque facilis quia, magni nihil odit labore. Eum nemo nobis quibusdam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit laudantium est libero temporibus nam ipsa harum in. Dolor quas, repellendus adipisci quo, tempora amet est voluptatum quam officia, illum dicta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum aperiam, necessitatibus nostrum laboriosam enim consectetur nulla iure? Incidunt dolorem hic fugit, debitis laboriosam commodi quibusdam atque nostrum veniam officia quas.</p>
+           		<%
+        			//יצירת קשר למסד הנתונים 
+           			try{
+		    			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		        		con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+		        		st=con.createStatement();
+	
+                		String sql="SELECT * FROM TBposts WHERE id =" + request.getParameter("id").toString(); // שאילתת SQL    
+                		postsResultSet=st.executeQuery(sql);
+            		}
+	        		catch(Exception ex){
+		        		System.out.println("Error in connection");
+	        		}
+					postsResultSet.last(); // המצביע מצביע על הרשומה היחידה	
+				%>
+                <h2 class="article-title" class="article-title"><%=postsResultSet.getString("postName").toString() %></h2>
+                <p class="article-credits"><i>פורסם על-ידי <%=postsResultSet.getString("authorNameDisplay").toString() %> בתאריך <%=postsResultSet.getString("publishDate") %></i></p>
+				<hr>
+                <p class="article-text"><%=postsResultSet.getString("postBody").toString() %></p>
+                <%
+					postsResultSet.close();
+				%>
             </article>
         </section>
         <!-- end post section -->

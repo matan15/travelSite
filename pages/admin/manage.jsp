@@ -15,13 +15,13 @@
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>פעולות מנהל | מטיילים</title>
+        <title>תפריט מנהל | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
-                <button onclick="redirectToFile('./index.html')" class="brand-link">
+                <button onclick="redirectToFile('../index.html')" class="brand-link">
                     <img src="../../pictures/icon.png" alt="מטיילים" width="70" height="70" id="logo">
                     <h1 class="nav-heading">מטיילים</h1>
                 </button>
@@ -32,7 +32,7 @@
                 <li><a href="../blog.html">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
-
+    
             <div class="login-and-sign-up">
                 <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
                     הירשם
@@ -40,17 +40,6 @@
                 <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
                     התחבר
                 </button>
-            </div>
-            <div class="user-menu">
-                <img class="profile-img" src="../../pictures/icon.png" alt="profile" width="60" height="60"> <!-- fix source and alt -->
-                <div class="dropdown">
-                    <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
-                    <div class="dropdown-content">
-                        <a href="">עדכון פרטים</a>
-                        <a href="">המסלולים שלי</a>
-                        <a href="">התנתק</a>
-                    </div>
-                </div>
             </div>
         </nav>
         <div class="white-space"></div>
@@ -77,37 +66,37 @@
                 <table class="actions-grid">
                     <tr class="row">
                         <td>
-                            <input type="submit" value="הצגת כל הנרשמים" class="button" name="sendUser">
+                            <input type="submit" value="Show all users" class="button" name="sendUser">
                         </td>
                     </tr>
                     <tr class="row">
                         <td>
-                            <input type="submit" value="מחיקת משתמש לפי אימייל" class="button" name="sendUser">
+                            <input type="submit" value="Delete User By Email" class="button" name="sendUser">
                         </td>
                     </tr>
                     <tr class="row">
                         <td>
-                            <input type="submit" value="עדכון פרטי משתמש לפי אימייל" class="button" name="sendUser">
+                            <input type="submit" value="Update user by email" class="button" name="sendUser">
                         </td>
                     </tr>
                     <tr class="row">
                         <td>
-                            <input type="submit" value="הצגת משתמשים לפי גיל" class="button" name="sendUser">
+                            <input type="submit" value="Show users by age" class="button" name="sendUser">
                         </td>
                     </tr>
                     <tr class="row">
                         <td>
-                            <input type="submit" value="הצגת משתמשים לפי האם הם אוהבים לטייל" class="button" name="sendUser">
+                            <input type="submit" value="Show users by loving travel" class="button" name="sendUser">
                         </td>
                     </tr>
                     <tr class="row">
                         <td>
-                            <input type="submit" value="עדכון שם מנהל" class="button" name="sendUser">
+                            <input type="submit" value="Update admin name" class="button" name="sendUser">
                         </td>
                     </tr>
                     <tr class="row">
                         <td>
-                            <input type="submit" value="עדכון סיסמת מנהל" class="button" name="sendUser">
+                            <input type="submit" value="Update admin password" class="button" name="sendUser">
                         </td>
                     </tr>
                 </table>
@@ -115,31 +104,32 @@
             <%
             //אחזור בקשת משתמש והפניה לדף מתאים
             String s=request.getParameter("sendUser");
+            System.out.println(s);
             try {
-                if(s.equals("הצגת כל הנרשמים")) // html ready
+                if(s.equals("Show all users"))
                 {
                     response.sendRedirect("listUsers.jsp");
                 }
-                else if(s.equals("מחיקת משתמש לפי אימייל"))
+                else if(s.equals("Delete User By Email"))
                 {
                     response.sendRedirect("deleteByEmail.jsp");
                 }
-                else if(s.equals("עדכון פרטי משתמש לפי אימייל"))
+                else if(s.equals("Update user by email"))
                 {
                     response.sendRedirect("UpdateByEmail.jsp");
                 }
-                else if(s.equals("הצגת משתמשים לפי גיל"))
+                else if(s.equals("Show users by age"))
                 {
                     response.sendRedirect("listUsersByAge.jsp");
                 }
-                else if(s.equals("הצגת משתמשים לפי האם הם אוהבים לטייל"))
+                else if(s.equals("Show users by loving travel"))
                 {	
                     response.sendRedirect("listUsersByLoveTravel.jsp");
                 }
-                else if(s.equals("עדכון שם מנהל"))
+                else if(s.equals("Update admin name"))
                 {
                     response.sendRedirect("updateAdname.jsp");
-                }else if(s.equals("עדכון סיסמת מנהל"))
+                }else if(s.equals("Update admin password"))
                 {
                     response.sendRedirect("updateAdPass.jsp");
                 }

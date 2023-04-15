@@ -1,6 +1,6 @@
 create database DBMatan;
 use DBMatan;
-create table TBusers(fullName varchar(50), email varchar(50), password varchar(50), loveTravel varchar(3), ageRange varchar(10));
+create table TBusers (id INT PRIMARY KEY AUTO_INCREMENT, fullName VARCHAR(255), email VARCHAR(255), password VARCHAR(255), loveTravel VARCHAR(3), ageRange VARCHAR(10));
 insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'matan.naydis@hotmail.com', 'Ma123456789@#', 'yes', '8-18');
 insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'matan.naydi@outlook.com', 'Ma123456789@#', 'yes', '8-18');
 insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Nydis', 'matan.naydis@walla.co.il', 'Ma123456789@#', 'yes', '8-18');
@@ -17,7 +17,18 @@ insert into TBusers(fullName, email, password, loveTravel, ageRange) values('hi 
 insert into TBusers(fullName, email, password, loveTravel, ageRange) values('test Naydis', 'test.naydis@gmail.com', 'Te123456789@#', 'yes', '8-18');
 insert into TBusers(fullName, email, password, loveTravel, ageRange) values('testtest Naydis', 'testtest.naydis@gmail.com', 'TeTe123456789@#', 'yes', '8-18');
 
-create table TBadmin(adName varchar(50), adPass varchar(50));
+create table TBposts (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    postName VARCHAR(255), 
+    authorName VARCHAR(255), 
+    authorNameDisplay VARCHAR(255), 
+    publishDate DATE, 
+    postBody TEXT,
+    userId INT,
+    FOREIGN KEY (userId) REFERENCES TBusers(id)
+);
+
+CREATE TABLE TBadmin (id INT AUTO_INCREMENT PRIMARY KEY, adName VARCHAR(255), adPass VARCHAR(255));
 insert into TBadmin(adName, adPass) values('matan15', 'adminadmin');
 insert into TBadmin(adName, adPass) values('olga', '1111');
 

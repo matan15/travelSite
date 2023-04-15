@@ -28,8 +28,29 @@
 /**************************************************/
 
 /* users list section */
+
+.manage-btn-div {
+    padding-top: 25px;
+}
+
+.manage-btn-div .manage-btn {
+    background-color: #609966;
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
+
 .users-list-section .users-grid{
     margin: auto;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    border: 1px solid;
+}
+
+.users-list-section td, .users-list-section th {
+	border: 1px solid;
+	padding: 5px 5px 5px 5px;
 }
 
 .users-list-section .users-grid .users-grid-heading {

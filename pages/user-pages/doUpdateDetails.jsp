@@ -6,6 +6,7 @@
 java.sql.Connection con=null;
 java.sql.Statement st=null;
 java.sql.ResultSet usersResultSet=null;
+String str;
 %>
 
 <!DOCTYPE html>
@@ -53,7 +54,7 @@ java.sql.ResultSet usersResultSet=null;
                 return true;
             }
         </script>
-        <title>עדכון פרטים | מטיילים</title>
+        <title>עדכון פרטים במסד נתונים | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -100,40 +101,116 @@ java.sql.ResultSet usersResultSet=null;
             if ((session.getAttribute("user")== null)|| !session.getAttribute("user").equals("true"))
                 response.sendRedirect ("noUser.jsp");
             %>
-            <form name="update-form" method="post" action="updateDetails.html">
-                <label for="email">הכנס אימייל:</label><br>
-                <input type="email" name="email"><br>
-                <input type="submit" name="send" value="שלח">
+            <form name="update-form" onsubmit="return updateFormTest();" method="post" action="updateDetails.html">
+                <table>
+                    <tr class="field-label">
+                        <td>
+                            <label for="name">שם מלא:</label>
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>
+                            <input name="full_name" type="text" required>
+                        </td>
+                    </tr>
+                    <tr class="field-label">
+                        <td>
+                            <label for="email">מייל:</label>
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>
+                            <input name="email" type="text" required>
+                        </td>
+                    </tr>
+                    <tr class="field-label">
+                        <td>
+                            <label for="password">סיסמה:</label>
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>
+                            <input type="password" name="password" required>
+                        </td>
+                    </tr>
+                    <tr class="label">
+                        <td>
+                            <label for="re_password">אימות סיסמה:</label>
+                        </td>
+                    </tr>
+                    <tr class="field">
+                        <td>
+                            <input type="password" name="re_password" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="yes" id="love_travel" name="loveTravel">
+                            <label for="loveTravel">האם את/ה אוהב/ת לטייל?</label>
+                        </td>
+                    </tr>
+                    <tr class="label">
+                        <td>
+                            <label for="age-range">מהו הטווח שבו נמצא גילך?</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="age-range">
+                            <input type="radio" id="age1" value="8-18" name="age">
+                            <label for="age1" class="age">8-18</label><br>
+                            <input type="radio" id="age2" value="18-30" name="age">
+                            <label for="age2" class="age">18-30</label><br>
+                            <input type="radio" id="age3" value="30-50" name="age">
+                            <label for="age3" class="age">30-50</label><br>
+                            <input type="radio" id="age4" value="50-70" name="age">
+                            <label for="age4" class="age">50-70</label><br>
+                            <input type="radio" id="age5" value="70 and up" name="age">
+                            <label for="age5" class="age">70 ומעלה</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="send" value="עדכן">
+                        </td>
+                    </tr>
+                </table>
             </form>
             <%
-                boolean userFound=false;
-                if(request.getParameter("send")!=null) {
+                if(request.getParameter("send")!=null){
+                    String fullName=request.getParameter("fullName");
                     String email=request.getParameter("email");
-                    try {
-                        Class.forName("com.mysql.jdbc.Driver").newInstance();
-                        con=java.sql.DriverManager.getConnection("jsbc:mysql://127.0.0.1:3306/DBMatan", "root", "");
-                        st = con.createStatement();
-
-                        String sql="SELECT * FROM TBusers WHERE email='" + email + "'";
-                        usersResultSet=st.executeQuery(sql);
-                        if (usersResultSet!=null && usersResultSet.next()) {
-                            userFound=true;
-                        }
-                        if(userFound) {
-                            session.setAttribute("fullName", usersResultSet.getString("fullName"));
-                            session.setAttribute("email", usersResultSet.getString("email"));
-                            session.setAttribute("password", usersResultSet.getString("password"));
-                            session.setAttribute("loveTravel", usersResultSet.getString("loveTravel"));
-                            session.setAttribute("ageRange", usersResultSet.getString("ageRange"));
-
-                            response.sendRedirect("doUpdateDetails.jsp");
-                        }
-                        else {
-                            out.print("המשתמש לא נמצא");
-                        }
+                    String password=request.getParameter("password");
+                    String loveTravelAnswer[] = request.getParameterValues("love_travel");
+                    String loveTravel;
+                    if (loveTravelAnswer != null && loveTravelAnswer.length != 0) {
+                        loveTravel = "yes";
                     }
-                    catch(Exception ex) {
-                        System.out.println("Error in connection" + ex);
+                    else {
+                        loveTravel = "no";
+                    }
+                    String ageRange=request.getParameter("age");
+                
+                    //יצירת קשר למסד הנתונים 
+                    try
+                    {
+                        Class.forName("com.mysql.jdbc.Driver").newInstance();
+                        con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+                        st=con.createStatement();
+                    }
+                    catch(Exception ex){
+                        System.out.println("Error in connection-1"+ex);
+                    }
+                    String sql="UPDATE TBusers SET fullName='"+fullName+"',email='"+email+"',password='"+password+"',loveTravel='"+loveTravel+"' WHERE email='"+email+"'";		
+                    try
+                    {
+                        st.executeUpdate(sql);
+                        out.print("העדכון התבצע בהצלחה!"); 
+                        st.close();
+                        con.close();
+                    }
+                    catch(Exception ex)
+                    {
+                        System.out.print("Error in connection-2"+ex);
                     }
                 }
             %>

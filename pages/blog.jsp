@@ -1,5 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+
+<%@page import="java.sql.*" %>
+
+<%--הצהרה על משתנים --%>
+<%!
+
+java.sql.Connection con=null; //משתנים מסוג זה נקראים אובייקטים
+java.sql.Statement st=null;
+java.sql.ResultSet postsResultSet=null;
+%>
+<%--אחזור מחרוזת המכילה את נתוני טבלת המשתמשים המעוצבת כטבלה --%>
+<%!
+
+public String formatPostsForHtml(java.sql.ResultSet postsResultSet)
+{
+	String str="<table>";
+	      
+	try
+	{
+		while(postsResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
+		{
+		  str+="<tr>";
+		  str+="<td class=" + '"' + "article" + '"' + ">";
+		  str+="<div class=" + '"' + "article-text" + '"' + ">";
+		  str+="<h3 class=" + '"' + "article-name" + '"' +"><a href=" + '"' + "posts/post.jsp?id=" + <%=postsResultSet.getString("id").toString() %> + '"' + " class=" + '"' + "article-link" + '"' + ">" + postsResultSet.getString("postName").toString() + "</a></h3>";
+		  str+="<p class=" + '"' + "article-details" + '"' + ">הפוסט פורסם על ידי " + postsResultSet.getString("authorNameDisplay").toString() + " בתאריך " + postResultSet.getString("publishDate") + "</p>";
+		  str+="</div>";
+		  str+="</td>";
+		  str+="</tr>";
+		 
+	    }
+		str+="</table>";
+	} //end of try
+	catch(Exception ex)
+	{
+		System.out.print("שגיאה בהתחברות");
+	}
+	return str;
+}
+%>
+<%--עיצוב הפלט למשתמש --%>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,17 +110,24 @@
         <!-- blog -->
         <section class="blog">
             <div class="blog-main">
-                <table>
-                    <tr>
-                        <td class="article">
-                            <img src="../pictures/posts/image.png" alt="post-image" width="100">
-                            <div class="article-text">
-                                <h3 class="article-name"><a href="" class="article-link">כותרת</a></h3>
-                                <p class="article-details">הפוסט פורסם על ידי מתן ניידיס בתאריך 01/12/2022</p>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <%
+            		//יצירת קשר למסד הנתונים 
+           			try{
+		        		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		        		con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+		        		st=con.createStatement();
+	
+                		String sql="SELECT * FROM TBposts"; // שאילתת SQL    
+                		postsResultSet=st.executeQuery(sql);
+            		}
+	        		catch(Exception ex){
+		        		System.out.println("Error in connection");
+	        		}
+	        		//פונקציה מקבלת אובייקט מסוג טבלה ומדפסים את המחרוזת שהפונקציה מחזירה
+            		out.print(formatPostsForHtml(postsResultSet));
+            		postsResultSet.close();
+            	%>
+	            <%-------------------------------------------------------------- --%>
             </div>
         </section>
         <!-- end blog -->

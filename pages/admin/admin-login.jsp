@@ -34,7 +34,7 @@
                 <li><a href="../blog.html">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
-
+    
             <div class="login-and-sign-up">
                 <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
                     הירשם
@@ -42,17 +42,6 @@
                 <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
                     התחבר
                 </button>
-            </div>
-            <div class="user-menu">
-                <img class="profile-img" src="../../pictures/icon.png" alt="profile" width="60" height="60"> <!-- fix source and alt -->
-                <div class="dropdown">
-                    <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
-                    <div class="dropdown-content">
-                        <a href="">עדכון פרטים</a>
-                        <a href="">המסלולים שלי</a>
-                        <a href="">התנתק</a>
-                    </div>
-                </div>
             </div>
         </nav>
         <div class="white-space"></div>
@@ -103,11 +92,11 @@
 	            else	// יוצרים תקשורת למסד הנתונים
 	            {
 	                String adName = request.getParameter("name"); //אמור להיות לפי השם שלמעלה
-	                String adPass = request.getParameter("password");	  		
+	                String adPass = request.getParameter("password");
 	            try 
 	            {
 	                // שלב א: טעינת המתפעל - דרייבר
-	                Class.forName("com.mysql.jdbc.Driver").newInstance();	
+	                Class.forName("com.mysql.jdbc.Driver");	
 	                //שלב ב:חיבור למסד הנתונים
 	                Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
                     
@@ -127,15 +116,14 @@
 	                {
 	                	//System.out.println("no. = "+ oRS.getRow()+  "   Name = " + oRS.getString("Name")+ "    password= "+ oRS.getString("Pwd"));					
 	                    session.setAttribute("admin","true");	
-                        }
-	                    oRS.close();
-	                	st.close();
-	                } 
-	                catch (Exception e) 
-	                {
+                    }
+	                oRS.close();
+	                st.close();
+				} 
+	            catch (Exception e) {
 	              	    //e.printStackTrace();
-	            	    System.out.println("Error in connection"+e);
-	                } // the connection is closed	  		
+	            	    out.println("Error in connection"+e);
+	            } // the connection is closed	
 	              	if ( session.getAttribute("admin").equals("true") )
 	            		response.sendRedirect ("manage.jsp");
 	            	else

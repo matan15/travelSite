@@ -15,9 +15,36 @@ java.sql.ResultSet usersResultSet=null;
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>עדכון סיסמת מנהל במסד נתונים</title>
+        <title>עדכון סיסמת מנהל במסד נתונים | מטיילים</title>
     </head>
     <body>
+        <!-- navbar -->
+        <nav class="nav sticky-nav">
+            <div class="nav-brand">
+                <button onclick="redirectToFile('../index.html')" class="brand-link">
+                    <img src="../../pictures/icon.png" alt="מטיילים" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">מטיילים</h1>
+                </button>
+            </div>
+            <ul class="menu">
+                <li><a href="../index.html#home">דף הבית</a></li>
+                <li><a href="../index.html#about">אודות</a></li>
+                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../index.html#contact">צור קשר</a></li>
+            </ul>
+    
+            <div class="login-and-sign-up">
+                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
+                    הירשם
+                </button>
+                <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
+                    התחבר
+                </button>
+            </div>
+        </nav>
+        <div class="white-space"></div>
+        <!-- end navbar -->
+
         <%
             if ((session.getAttribute("admin")== null)|| !session.getAttribute("admin").equals("true"))
                 response.sendRedirect ("noManage.jsp");

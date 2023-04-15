@@ -14,25 +14,25 @@ java.sql.ResultSet usersResultSet=null;
 
 public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
 {
-String str="<table class="users-grid">";
-str+="<tr>";
-str+="<td class="users-grid-heading">Full Name</td>";
-str+="<td class="users-grid-heading">Email</td>";
-str+="<td class="users-grid-heading">Password</td>";
-str+="<td class="users-grid-heading">Love Traveling</td>";
-str+="<td class="users-grid-heading">Age Range</td>";
-str+="</tr>";
+	String str="<table class=" + '"' + "users-grid" + '"' + ">";
+	str+="<tr>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Full Name</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Email</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Password</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Love Traveling</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Age Range</td>";
+	str+="</tr>";
 	      
 	try
 	{
 		while(usersResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
 		{
-		  str+="<tr class="user">";
-		  str+="<td class="user-detail">"+usersResultSet.getString("fullName").toString()+"</td>";
-		  str+="<td class="user-detail">"+usersResultSet.getString("email").toString()+"</td>";
-		  str+="<td class="user-detail">"+usersResultSet.getString("password").toString()+"</td>";
-		  str+="<td class="user-detail">"+usersResultSet.getString("loveTravel").toString()+"</td>";
-		  str+="<td class="user-detail">"+usersResultSet.getString("ageRange").toString()+"</td>";
+		  str+="<tr class=" + '"' + "user" + '"' + ">";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("fullName").toString() + "</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("email").toString() + "</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("password").toString() + "</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("loveTravel").toString() + "</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("ageRange").toString() + "</td>";
 		  str+="</tr>";
 	    }
 		  str+="</table>";
@@ -61,7 +61,7 @@ str+="</tr>";
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>רשימת משתמשים | מטיילים</title>
+        <title>רשימת משתמשים לפי אוהב לטייל | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -78,7 +78,7 @@ str+="</tr>";
                 <li><a href="../blog.html">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
-
+    
             <div class="login-and-sign-up">
                 <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
                     הירשם
@@ -87,20 +87,10 @@ str+="</tr>";
                     התחבר
                 </button>
             </div>
-            <div class="user-menu">
-                <img class="profile-img" src="../../pictures/icon.png" alt="profile" width="60" height="60"> <!-- fix source and alt -->
-                <div class="dropdown">
-                    <button class="dropbtn"><img src="../../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
-                    <div class="dropdown-content">
-                        <a href="">עדכון פרטים</a>
-                        <a href="">המסלולים שלי</a>
-                        <a href="">התנתק</a>
-                    </div>
-                </div>
-            </div>
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
+
         <%
         if ((session.getAttribute("admin")== null) || !session.getAttribute("admin").equals("true"))
 			response.sendRedirect ("noManage.jsp");
@@ -159,14 +149,14 @@ str+="</tr>";
                             st=con.createStatement();
                         
                     String sql="SELECT * FROM TBusers WHERE loveTravel='" + loveTravel + "'"; //שאילתת SQL
-                    rs=st.executeQuery(sql);//מקבל רשומה
-                    rs.last();
-                    int numRow=rs.getRow();
+                    usersResultSet=st.executeQuery(sql);//מקבל רשומה
+                    usersResultSet.last();
+                    int numRow=usersResultSet.getRow();
                     if (numRow>0)
                     {
-                        rs.beforeFirst();
-                        out.print(formatUsersForHtml(rs));
-                        rs.close();
+                        usersResultSet.beforeFirst();
+                        out.print(formatUsersForHtml(usersResultSet));
+                        usersResultSet.close();
                     }
                     else
                     {
