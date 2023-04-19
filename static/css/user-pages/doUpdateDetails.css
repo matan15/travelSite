@@ -20,42 +20,19 @@
 .heading .heading-main .heading-text-box .heading-text {
     padding: 10px 50px;
     position: relative;
-    font-size: 60px;
+    font-size: 70px;
     letter-spacing: 5px;
     font-weight: 800;
 }
 
 /**************************************************/
 
-.back-btn {
-	margin-top: 10px;
-	margin-bottom: 10px;
+.submit-btn {
+	padding: 10px 15px 10px 15px;
+	background-color: #609966;
 	border: none;
 	border-radius: 5px;
-	background-color: #609966;
+	font-size: 16px;
+	font-weight: 600;
+	color: white;
 }
-
-.submit {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: none;
-	border-radius: 5px;
-	background-color: #609966;
-}
-
-.users-list-section .users-grid{
-    margin: auto;
-    margin-bottom: 25px;
-    margin-top: 25px;
-    border: 1px solid;
-}
-
-.users-list-section td, .users-list-section th {
-	border: 1px solid;
-	padding: 5px 5px 5px 5px;
-}
-
-.users-list-section .users-grid .users-grid-heading {
-    font-weight: 600;
-}
-

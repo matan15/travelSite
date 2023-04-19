@@ -14,7 +14,14 @@ java.sql.ResultSet usersResultSet=null;
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../../static/js/base.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="icon" href="../../pictures/icon.png">
+        <link rel="stylesheet" href="../../static/css/admin/doUpdateByEmail.css">
+        <link rel="stylesheet" href="../../static/css/nav.css">
+        <link rel="stylesheet" href="../../static/css/footer.css">
+        <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript">
             function updateForm() {
                 var email = document.signUpForm.full_name.value;
@@ -46,7 +53,7 @@ java.sql.ResultSet usersResultSet=null;
         </script>
         <title>עדכן פרטי משתמש במסד נתונים | מטיילים</title>
     </head>
-    <body>
+    <body dir="rtl">
         <!-- navbar -->
         <nav class="nav sticky-nav">
             <div class="nav-brand">
@@ -74,91 +81,134 @@ java.sql.ResultSet usersResultSet=null;
         <div class="white-space"></div>
         <!-- end navbar -->
         
+        <!-- heading -->
+        <section class="heading">
+            <div class="heading-main">
+                <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
+                <div class="heading-text-box">
+                    <h2 class="heading-text">עדכון פרטי משתמש</h2>
+                </div>
+            </div>
+        </section>
+        <!-- end heading -->
+        
         <section>
             <%
                 if ((session.getAttribute("admin")== null)|| !session.getAttribute("admin").equals("true"))
                     response.sendRedirect ("noManage.jsp");
+            	if (request.getParameter("send")== null) {
             %>
-            <div class="sign-up-main">
-                <h1>הרשמה</h1>
-                <form name="updateForm" onsubmit="return updateFormTest();" method="post" action="doUpdateByEmail.jsp">
-                    <table>
-                        <tr class="field-label">
-                            <td>
-                                <label for="fullName">שם מלא:</label>
-                            </td>
-                        </tr>
-                        <tr class="field">
-                            <td>
-                                <input name="fullName" type="text" required>
-                            </td>
-                        </tr>
-                        <tr class="field-label">
-                            <td>
-                                <label for="email">מייל:</label>
-                            </td>
-                        </tr>
-                        <tr class="field">
-                            <td>
-                                <input name="email" type="text" required>
-                            </td>
-                        </tr>
-                        <tr class="field-label">
-                            <td>
-                                <label for="password">סיסמה:</label>
-                            </td>
-                        </tr>
-                        <tr class="field">
-                            <td>
-                                <input type="password" name="password" required>
-                            </td>
-                        </tr>
-                        <tr class="label">
-                            <td>
-                                <label for="re_password">אימות סיסמה:</label>
-                            </td>
-                        </tr>
-                        <tr class="field">
-                            <td>
-                                <input type="password" name="re_password" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" value="yes" id="love_travel" name="love_travel">
-                                <label for="love_travel">האם את/ה אוהב/ת לטייל?</label>
-                            </td>
-                        </tr>
-                        <tr class="label">
-                            <td>
-                                <label for="age-range">מהו הטווח שבו נמצא גילך?</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="age-range">
-                                <input type="radio" id="age1" value="8-18" name="age">
-                                <label for="age1" class="age">8-18</label><br>
-                                <input type="radio" id="age2" value="18-30" name="age">
-                                <label for="age2" class="age">18-30</label><br>
-                                <input type="radio" id="age3" value="30-50" name="age">
-                                <label for="age3" class="age">30-50</label><br>
-                                <input type="radio" id="age4" value="50-70" name="age">
-                                <label for="age4" class="age">50-70</label><br>
-                                <input type="radio" id="age5" value="70 and up" name="age">
-                                <label for="age5" class="age">70 ומעלה</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="submit" name="submit" value="הירשם">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+            <form name="updateForm" onsubmit="return updateFormTest();" method="post">
+                <table class="layout">
+                    <tr class="label">
+                        <td>
+                            <label for="name">שם מלא:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <%
+    						String fullName = (String) session.getAttribute("fullName");
+                        	fullName = fullName.replace('-', ' ');
+                        	System.out.println(fullName);
+						%>
+                            <input class="field" name="fullName" type="text" value=<%=fullName.replace('-', ' ') %> required>
+                        </td>
+                    </tr>
+                    <tr class="label">
+                        <td>
+                            <label for="email">מייל:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="field" name="email" type="text" value=<%=session.getAttribute("email") %> required>
+                        </td>
+                    </tr>
+                    <tr class="label">
+                        <td>
+                            <label for="password">סיסמה:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="field" type="password" name="password" value=<%=session.getAttribute("password") %> required>
+                        </td>
+                    </tr>
+                    <tr class="label">
+                        <td>
+                            <label for="re_password">אימות סיסמה:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="field" type="password" name="re_password" value=<%=session.getAttribute("password") %> required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        	<% if (session.getAttribute("loveTravel").equals("yes")){ %>
+                            	<input class="field" type="checkbox" value="yes" id="love_travel" name="loveTravel" checked>
+                            <% } else { %>
+                            	<input class="field" type="checkbox" value="yes" id="love_travel" name="loveTravel">
+                            <% } %>
+                            <label for="loveTravel">האם את/ה אוהב/ת לטייל?</label>
+                        </td>
+                    </tr>
+                    <tr class="label">
+                        <td>
+                            <label for="age-range">מהו הטווח שבו נמצא גילך?</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="age-range">
+                        	<% if (session.getAttribute("ageRange").equals("8-18")){ %>
+                            <input class="field" type="radio" id="age1" value="8-18" name="age" checked>
+                            <% } else { %>
+                            <input class="field" type="radio" id="age1" value="8-18" name="age">
+                            <% } %>
+                            <label for="age1" class="age">8-18</label><br>
+                            
+                            <% if (session.getAttribute("ageRange").equals("18-30")){ %>
+                            <input class="field" type="radio" id="age2" value="18-30" name="age" checked>
+                            <% } else { %>
+                            <input class="field" type="radio" id="age2" value="18-30" name="age">
+                            <% } %>
+                            <label for="age2" class="age">18-30</label><br>
+                            
+                            <% if (session.getAttribute("ageRange").equals("30-50")){ %>
+                            <input class="field" type="radio" id="age3" value="30-50" name="age" checked>
+                            <% } else { %>
+                            <input class="field" type="radio" id="age3" value="30-50" name="age">
+                            <% } %>
+                            <label for="age3" class="age">30-50</label><br>
+                            
+                            <% if (session.getAttribute("ageRange").equals("50-70")){ %>
+                            <input class="field" type="radio" id="age4" value="50-70" name="age" checked>
+                            <% } else { %>
+                            <input class="field" type="radio" id="age4" value="50-70" name="age">
+                            <% } %>
+                            <label for="age4" class="age">50-70</label><br>
+                            
+                            <% if (session.getAttribute("ageRange").equals("70 and up")){ %>
+                            <input class="field" type="radio" id="age5" value="70 and up" name="age" checked>
+                            <% } else { %>
+                            <input class="field" type="radio" id="age5" value="70 and up" name="age">
+                            <% } %>
+                            <label for="age5" class="age">70 ומעלה</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="send" value="עדכן">
+                        </td>
+                    </tr>
+                </table>
+            </form>
             <%
-                if(request.getParameter("send")!=null)
-                    {
+            	}
+            	else
+                {
                     String fullName=request.getParameter("fullName");
                     String email=request.getParameter("email");
                     String password=request.getParameter("password");
@@ -172,7 +222,7 @@ java.sql.ResultSet usersResultSet=null;
                         loveTravel = "no";
                     }
                     
-                    String ageRange=request.getParameter("ageRange");
+                    String ageRange=request.getParameter("age");
                     
                     //יצירת קשר למסד הנתונים 
                     try
@@ -184,7 +234,8 @@ java.sql.ResultSet usersResultSet=null;
                         catch(Exception ex){
                             System.out.println("Error in connection-1"+ex);
                         }
-                        String sql="UPDATE TBusers SET fullName='"+fullName+"',email='"+email+"',password='"+password+"',loveTravel='"+loveTravel+"',ageRange='"+ageRange+"'";		
+                        String sql="UPDATE TBusers SET fullName='"+fullName.replace(' ', '-')+"',email='"+email+"',password='"+password+"',loveTravel='"+loveTravel+"',password='" + password + "', ageRange='"+ageRange+"' WHERE email = '" + email + "'";
+                        System.out.println(sql);
                         try
                         {
                             st.executeUpdate(sql);
@@ -194,10 +245,56 @@ java.sql.ResultSet usersResultSet=null;
                         }
                         catch(Exception ex)
                         {
-                            System.out.print("Error in connection-2"+ex);
+                            out.print("Error in connection-2"+ex);
                         }
                     }
             %>
         </section>
+        
+		<!-- footer -->
+        <footer>
+            <div class="footer_main">
+                <a href="#home"><img class="icon" src="../../pictures/icon.png" alt="מטיילים" width="70" height="70"></a>
+                <p class="footer-menu">
+                    <a href="../index.html#home">דף הבית</a>
+                    •
+                    <a href="../index.html#about">אודות</a>
+                    •
+                    <a href="../blog.jsp">בלוג</a>
+                    •
+                    <a href="../index.html#contact">צור קשר</a>
+                </p>
+
+                <table class="social-icons">
+                    <tr>
+                        <td>
+                            <a href="https://www.facebook.com">
+                                <img src="../../pictures/social/facebook.png" alt="facebook" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.instagram.com">
+                                <img src="../../pictures/social/instagram.png" alt="instagram" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.github.com">
+                                <img src="../../pictures/social/github.png" alt="github" width="60" height="60">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <p>מטיילים</p> <!-- manager entry -->
+                    &copy;
+                    <span id="copyrightYear">
+                        <script>
+                           document.write(new Date().getFullYear());
+                        </script>
+                    </span>
+                </div>
+            </div>
+        </footer>
+        <!-- footer -->
     </body>
 </html>

@@ -1,12 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=windows-1255"
-    pageEncoding="windows-1255"%>
-<%@page import="java.sql.*" %>
-<%--הצהרה על משתנים --%>
-<%!
-java.sql.Connection con=null;
-java.sql.Statement st=null;
-java.sql.ResultSet usersResultSet=null;
-%>
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+    
+<%@ page import = "java.sql.*"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,12 +12,12 @@ java.sql.ResultSet usersResultSet=null;
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/admin/listUsersByAge.css">
+        <link rel="stylesheet" href="../../static/css/user-pages/usersMenu.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>עדכון שם מנהל | מטיילים</title>
+        <title>תפריט משתמש | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -40,79 +34,82 @@ java.sql.ResultSet usersResultSet=null;
                 <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
-    
-            <div class="login-and-sign-up">
-                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
-                    הירשם
-                </button>
-                <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
-                    התחבר
-                </button>
-            </div>
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
         <%
-            if ((session.getAttribute("admin")== null)|| !session.getAttribute("admin").equals("true"))
-			    response.sendRedirect ("noManage.jsp");
+            if ((session.getAttribute("user")== null) || !session.getAttribute("user").equals("true"))
+                response.sendRedirect("noUser.jsp");
         %>
-        <!-- heading -->
+        <!-- heading -->    
         <section class="heading">
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">עדכון שם מנהל</h2>
+                    <h2 class="heading-text">תפריט</h2>
                 </div>
             </div>
         </section>
         <!-- end heading -->
-        
-        <section>
-	        <form action="post" action="updateAdName.jsp">
-	            <label for="adName" class="label">הכנס שם מנהל:</label><br>
-	            <input type="text" name="adName" class="field"><br>
-	            <input type="submit" value="שלח" name="send" class="submit-btn">
-	        </form>
+
+        <!-- menu -->
+        <section class="users-menu">
+        	<%
+			if (request.getParameter("sendUser") == null) {
+			%>
+            <form method="post" class="main">
+                <table class="users-menu-layout">
+                    <tr>
+                        <td>
+                            <input type="submit" name="sendUser" class="btn" value="My Posts">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="sendUser" value="Create Post" class="btn">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="sendUser" value="Update Details" class="btn">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="sendUser" value="logout" class="btn">
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </section>
+        <!-- end menu -->
         <%
-            boolean userFound=false;    
-                
-            //יצירת קשר למסד הנתונים 
-            try
-            {
-            		String id = session.getAttribute("adminId").toString();
-            	
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
-                    st=con.createStatement();
-                
-            String sql="SELECT * FROM TBadmin WHERE id='"+id+"' "; //שאילתת SQL
-            usersResultSet=st.executeQuery(sql);                  //קולט את הטבלה של ה sql
-            if (usersResultSet!=null && usersResultSet.next())
-            {
-                userFound=true;  
-            }
-            if(userFound) //שמירת נתוני משתמש שמצאנו
-            {
-                session.setAttribute("adName",usersResultSet.getString("adName"));
-                session.setAttribute("adPass",usersResultSet.getString("adPass"));
-                
-                //הפניה לדף לביצוע העדכון
-                response.sendRedirect("doUpdateAdname.jsp");
-            }
-            }
-            catch(Exception ex)
-            {
-                System.out.println("Error in connection-1"+ex);
-            }
+			}
+			else {
+            	String s=request.getParameter("sendUser");
+            	if(s.equals("My Posts")) {
+            		response.sendRedirect("myPosts.jsp");
+            	}
+            	else if(s.equals("Create Post")) {
+            		response.sendRedirect("createPost.jsp");
+           		}
+            	else if(s.equals("Update Details")) {
+            		response.sendRedirect("updateDetails.jsp");
+           		}
+            	else if(s.equals("logout")) {
+            		session.setAttribute("user", "false");
+            		response.sendRedirect("../index.html");
+            	}
+			}
         %>
-		<!-- footer -->
+
+        <!-- footer -->
         <footer>
             <div class="footer_main">
                 <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="מטיילים" width="70" height="70"></a>
                 <p class="footer-menu">
                     <a href="../index.html#home">דף הבית</a>
-                    •
+          			•
                     <a href="../index.html#about">אודות</a>
                     •
                     <a href="../blog.jsp">בלוג</a>
@@ -140,7 +137,7 @@ java.sql.ResultSet usersResultSet=null;
                     </tr>
                 </table>
                 <p>
-                    <a href="./admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                    <a href="../admin/admin-login.jsp">מטיילים</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

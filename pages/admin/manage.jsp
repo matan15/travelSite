@@ -29,7 +29,7 @@
             <ul class="menu">
                 <li><a href="../index.html#home">דף הבית</a></li>
                 <li><a href="../index.html#about">אודות</a></li>
-                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
     
@@ -116,7 +116,7 @@
                 }
                 else if(s.equals("Update user by email"))
                 {
-                    response.sendRedirect("UpdateByEmail.jsp");
+                    response.sendRedirect("updateByEmail.jsp");
                 }
                 else if(s.equals("Show users by age"))
                 {
@@ -128,7 +128,7 @@
                 }
                 else if(s.equals("Update admin name"))
                 {
-                    response.sendRedirect("updateAdname.jsp");
+                    response.sendRedirect("updateAdName.jsp");
                 }else if(s.equals("Update admin password"))
                 {
                     response.sendRedirect("updateAdPass.jsp");
@@ -151,7 +151,7 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="../blog.html">בלוג</a>
+                    <a href="../blog.jsp">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

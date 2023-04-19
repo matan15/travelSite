@@ -25,12 +25,11 @@ public String formatPostsForHtml(java.sql.ResultSet postsResultSet)
 		  str+="<tr>";
 		  str+="<td class=" + '"' + "article" + '"' + ">";
 		  str+="<div class=" + '"' + "article-text" + '"' + ">";
-		  str+="<h3 class=" + '"' + "article-name" + '"' +"><a href=" + '"' + "posts/post.jsp?id=" + <%=postsResultSet.getString("id").toString() %> + '"' + " class=" + '"' + "article-link" + '"' + ">" + postsResultSet.getString("postName").toString() + "</a></h3>";
-		  str+="<p class=" + '"' + "article-details" + '"' + ">הפוסט פורסם על ידי " + postsResultSet.getString("authorNameDisplay").toString() + " בתאריך " + postResultSet.getString("publishDate") + "</p>";
+		  str+="<h3 class=" + '"' + "article-name" + '"' +"><a href=" + '"' + "posts/post.jsp?id=" + postsResultSet.getString("id").toString() + '"' + " class=" + '"' + "article-link" + '"' + ">" + postsResultSet.getString("postName").toString() + "</a></h3>";
+		  str+="<p class=" + '"' + "article-details" + '"' + ">הפוסט פורסם על ידי " + postsResultSet.getString("authorNameDisplay").toString() + " בתאריך " + postsResultSet.getString("publishDate") + "</p>";
 		  str+="</div>";
 		  str+="</td>";
 		  str+="</tr>";
-		 
 	    }
 		str+="</table>";
 	} //end of try

@@ -1,9 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
-    
-<%@ page import = "java.sql.*"%>
-
 <!DOCTYPE html>
 <html lang="en">
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+
+<%@page import="java.sql.*" %>
+
+<%--הצהרה על משתנים --%>
+<%!
+
+java.sql.Connection con=null; //משתנים מסוג זה נקראים אובייקטים
+java.sql.Statement st=null;
+java.sql.ResultSet postsResultSet=null;
+%>
+<%--אחזור מחרוזת המכילה את נתוני טבלת המשתמשים המעוצבת כטבלה --%>
+<%!
+
+public String formatPostsForHtml(java.sql.ResultSet postsResultSet)
+{
+	String str="<table class=" + '"' + "posts-main" + '"' + ">";
+	      
+	try
+	{
+		while(postsResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
+		{
+		  str+="<tr class=" + '"' + "post" + '"' + ">";
+		  str+="<td class=" + '"' + "post-link" + '"' + ">";
+		  str+="<a href=" + '"' + "../posts/post.jsp?id=" + postsResultSet.getString("id").toString() + '"' + " class=" + '"' + "title" + '"' + ">" + postsResultSet.getString("postName") + "</a>";
+		  str+="<p>פורסם בתאריך " + postsResultSet.getString("publishDate") + "</p>";
+		  str+="</td>";
+		  str+="<td class=" + '"' + "post-actions" + '"' + ">";
+		  str+="<a href=" + '"' + "deletePost.jsp?id=" + postsResultSet.getString("id").toString() + '"' + " class=" + '"' + "delete-post" + '"' + "><img src=" + '"' + "../../pictures/posts/delete.png" + '"' + " alt=" + '"' + "delete" + '"' + " width=" + '"' + "40" + '"' + " height=" + '"' + "40" + '"' + "></a>";
+		  str+="</td>";
+		  str+="</tr>";
+	    }
+		str+="</table>";
+	} //end of try
+	catch(Exception ex)
+	{
+		System.out.print("שגיאה בהתחברות");
+	}
+	return str;
+}
+%>
+<%--עיצוב הפלט למשתמש --%>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +50,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/user-pages/createPost.css">
+        <link rel="stylesheet" href="../../static/css/user-pages/myPosts.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>פוסט חדש | מטיילים</title>
+        <title>הפוסטים שלי | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -46,83 +84,47 @@
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
+        
+        <%
+		if ((session.getAttribute("user")== null)|| !session.getAttribute("user").equals("true"))
+					response.sendRedirect ("noUser.jsp");
+		%>
 
         <!-- heading -->
         <section class="heading">
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">פוסט חדש</h2>
+                    <h2 class="heading-text">המסלולים שלי</h2>
                 </div>
             </div>
         </section>
         <!-- end heading -->
 
-        <!-- new post form -->
-        <section>
-            <% if(!request.getMethod().equals("POST")) { %>
-            <div class="form-group">
-                <form action="createPost.jsp" name="newPostForm" method="post">
-                    <table class="form-layout">
-                        <tr>
-                            <td>
-                                <label class="label" for="post-name">שם הפוסט:</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="field" type="text" name="post-name" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="label" for="subject-image">תמונת נושא:</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="files-selector" type="file" name="subject-image" accept="image/*">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="label" for="images">תמונות:</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="files-selector" type="file" name="images" multiple="multiple" accept="image/*">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="label" for="post-text">הכנס כאן טקסט של הפוסט:</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <textarea class="field" name="post-text" cols="40" rows="10" required></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="submit" nmae="submit" class="submit-btn">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+        <!-- posts -->
+        <section class="my-posts">
+            <button class="new-post-btn" onclick="redirectToFile('createPost.jsp')">יצירת פוסט חדש</button>
+
             <%
-            }//
-            if(request.getMethod.equals("POST"))
-            {
-                String postName=request.getParameter("post-name");
-                // subject image get
-                // images get
-                
-            }
+           		//יצירת קשר למסד הנתונים 
+           		try{
+		       		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		        	con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+		        	st=con.createStatement();
+	
+                	String sql="SELECT * FROM TBposts WHERE userId = " + session.getAttribute("userId") + " order by publishDate DESC"; // שאילתת SQL    
+                	postsResultSet=st.executeQuery(sql);
+            	}
+	        	catch(Exception ex){
+		        	System.out.println("Error in connection");
+	        	}
+	        	//פונקציה מקבלת אובייקט מסוג טבלה ומדפסים את המחרוזת שהפונקציה מחזירה
+            	out.print(formatPostsForHtml(postsResultSet));
+            	postsResultSet.close();
+            %>
+	        <%-------------------------------------------------------------- --%>
         </section>
-        <!-- end new post form -->
+        <!-- end posts -->
 
         <!-- footer -->
         <footer>

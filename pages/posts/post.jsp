@@ -11,6 +11,22 @@
 		java.sql.Statement st=null;
 		java.sql.ResultSet postsResultSet=null;
 	%>
+	
+	<%
+	//יצירת קשר למסד הנתונים 
+	try{
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+		st=con.createStatement();
+
+		String mySQL="SELECT * FROM TBposts WHERE id = " + request.getParameter("id").toString(); // שאילתת SQL    
+		postsResultSet=st.executeQuery(mySQL);
+		postsResultSet.next(); // המצביע מצביע על הרשומה היחידה	
+	}
+	catch(Exception ex){
+		System.out.println("Error in connection");
+	}
+	%>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +40,7 @@
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>{כותרת הפוסט} | מטיילים</title>
+        <title><%=postsResultSet.getString("postName").toString() %> | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -38,15 +54,15 @@
             <ul class="menu">
                 <li><a href="../index.html#home">דף הבית</a></li>
                 <li><a href="../index.html#about">אודות</a></li>
-                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
     
             <div class="login-and-sign-up">
-                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html');">
+                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.jsp');">
                     הירשם
                 </button>
-                <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
+                <button class="login" onclick="redirectToFile('../login-sign-up/login.jsp')">
                     התחבר
                 </button>
             </div>
@@ -56,23 +72,8 @@
 
         <!-- post section -->
         <section>
-            <button onclick="redirectToFile('../blog.html')" class="back-to-blog-btn">?? חזרה לבלוג</button>
+            <button onclick="redirectToFile('../blog.jsp')" class="back-to-blog-btn">חזרה לבלוג</button>
             <article class="post">
-           		<%
-        			//יצירת קשר למסד הנתונים 
-           			try{
-		    			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		        		con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
-		        		st=con.createStatement();
-	
-                		String sql="SELECT * FROM TBposts WHERE id =" + request.getParameter("id").toString(); // שאילתת SQL    
-                		postsResultSet=st.executeQuery(sql);
-            		}
-	        		catch(Exception ex){
-		        		System.out.println("Error in connection");
-	        		}
-					postsResultSet.last(); // המצביע מצביע על הרשומה היחידה	
-				%>
                 <h2 class="article-title" class="article-title"><%=postsResultSet.getString("postName").toString() %></h2>
                 <p class="article-credits"><i>פורסם על-ידי <%=postsResultSet.getString("authorNameDisplay").toString() %> בתאריך <%=postsResultSet.getString("publishDate") %></i></p>
 				<hr>
@@ -93,7 +94,7 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="..blog.jsp#">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

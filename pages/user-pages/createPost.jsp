@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
-<%@page import="java.sql.*" %>
-<%--הצהרה על משתנים --%>
-<%!
-
-java.sql.Connection con=null;
-java.sql.Statement st=null;
-java.sql.ResultSet usersResultSet=null;
-%>
+    
+<%@ page import = "java.sql.*"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,42 +12,12 @@ java.sql.ResultSet usersResultSet=null;
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/user-pages/updateDetails.css">
+        <link rel="stylesheet" href="../../static/css/user-pages/createPost.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <script>
-            function updateFormTest() {
-                var email = document.signUpForm.full_name.value;
-                var email = document.signUpForm.email.value;
-                var password = document.signUpForm.password.value;
-                var re_password = document.signUpForm.re_password.value;
-                var ageSelectedValue = document.querySelector('input[name="age"]:checked');
-
-                var nameTest = nameCorrect(name, true, "");
-                var emailTest = emailCorrect(email, nameTest[0], nameTest[1]);
-                var passwordTest = passwordCorrect(password, emailTest[0], emailTest[1]);
-                var totalTests = passwordTest;
-                if (password != re_password) {
-                    totalTests[0] = false;
-                    totalTests[1] = totalTests[1] + "\n" + "* שדות הסיסמה לא תואמים נא וודא שהקלדת נכון את הסיסמאות.";
-                }
-
-                if (ageSelectedValue == null) {
-                    totalTests[0] = false;
-                    totalTests[1] = totalTests[1] + "\n" + "* לא בחרת את טווח הגילאים בו נמצא גילך, נא בחר/י טווח גילאים.";
-                }
-
-                if (!totalTests[0]) {
-                    window.alert(totalTests[1]);
-                    event.preventDefault();
-                    return false;
-                }
-                return true;
-            }
-        </script>
-        <title>עדכון פרטים | מטיילים</title>
+        <title>פוסט חדש | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -67,7 +31,7 @@ java.sql.ResultSet usersResultSet=null;
             <ul class="menu">
                 <li><a href="../index.html#home">דף הבית</a></li>
                 <li><a href="../index.html#about">אודות</a></li>
-                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
 
@@ -82,63 +46,112 @@ java.sql.ResultSet usersResultSet=null;
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
+        
+        <%
+			if ((session.getAttribute("user")== null)|| !session.getAttribute("user").equals("true"))
+				response.sendRedirect ("noUser.jsp");
+		%>
 
         <!-- heading -->
         <section class="heading">
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">עדכון פרטים</h2>
+                    <h2 class="heading-text">פוסט חדש</h2>
                 </div>
             </div>
         </section>
         <!-- end heading -->
 
-        <!-- update details section -->
-        <section class="update-section">
+        <!-- new post form -->
+        <section>
             <%
-            if ((session.getAttribute("user")== null)|| !session.getAttribute("user").equals("true"))
-                response.sendRedirect ("noUser.jsp");
+            if(!request.getMethod().equals("POST")) {
             %>
-            <form name="update-form" method="post" action="updateDetails.html">
-                <label for="email">הכנס אימייל:</label><br>
-                <input type="email" name="email"><br>
-                <input type="submit" name="send" value="שלח">
-            </form>
+            <div class="form-group">
+                <form action="createPost.jsp" name="newPostForm" method="post">
+                    <table class="form-layout">
+                        <tr>
+                            <td>
+                                <label class="label" for="post-name">שם הפוסט:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="field" type="text" name="post-name" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="label" for="post-text">הכנס כאן טקסט של הפוסט:</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <textarea class="field" name="post-text" cols="40" rows="10" required></textarea>
+                            </td>
+                        </tr>
+						<tr>
+                        	<td>
+                        		<input class="field" type="checkbox" value="yes" name="is-annonymous">
+                        		<label for="is-annonymous">האם להפוך את מחבר הפוסט לאנונימי?</label>
+                        	</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" name="submit" class="submit-btn">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
             <%
-                boolean userFound=false;
-                if(request.getParameter("send")!=null) {
-                    String email=request.getParameter("email");
-                    try {
-                        Class.forName("com.mysql.jdbc.Driver").newInstance();
-                        con=java.sql.DriverManager.getConnection("jsbc:mysql://127.0.0.1:3306/DBMatan", "root", "");
-                        st = con.createStatement();
-
-                        String sql="SELECT * FROM TBusers WHERE email='" + email + "'";
-                        usersResultSet=st.executeQuery(sql);
-                        if (usersResultSet!=null && usersResultSet.next()) {
-                            userFound=true;
-                        }
-                        if(userFound) {
-                            session.setAttribute("fullName", usersResultSet.getString("fullName"));
-                            session.setAttribute("email", usersResultSet.getString("email"));
-                            session.setAttribute("password", usersResultSet.getString("password"));
-                            session.setAttribute("loveTravel", usersResultSet.getString("loveTravel"));
-                            session.setAttribute("ageRange", usersResultSet.getString("ageRange"));
-
-                            response.sendRedirect("doUpdateDetails.jsp");
-                        }
-                        else {
-                            out.print("המשתמש לא נמצא");
-                        }
+            }//
+            else
+            {
+                String postName = request.getParameter("post-name");
+                String postBody = request.getParameter("post-text");
+                
+                try {
+                	Class.forName("com.mysql.jdbc.Driver").newInstance();
+                	Connection con = java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan", "root", "");
+                	Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                	
+               		String mySQL = "SELECT * FROM TBusers WHERE id = " + session.getAttribute("userId");
+               		
+               		ResultSet oRS = st.executeQuery(mySQL);
+               		
+               		oRS.next();
+               		
+               		String isAnnonymousAnswer[] = request.getParameterValues("is-annonymous");
+                    String isAnnonymous;
+                    if (isAnnonymousAnswer != null && isAnnonymousAnswer.length != 0) {
+                    	isAnnonymous = "annonymous";
                     }
-                    catch(Exception ex) {
-                        System.out.println("Error in connection" + ex);
+                    else {
+                    	isAnnonymous = oRS.getString("fullName");
                     }
+                	
+                	mySQL = "INSERT INTO TBposts (postName, authorName, authorNameDisplay, publishDate, postBody, userId) VALUES ('" + postName + "', '" + oRS.getString("fullName") + "', '" + isAnnonymous + "', curdate(), '" + postBody + "', " + session.getAttribute("userId") + ")";
+                	
+                	int n = st.executeUpdate(mySQL);
+                	
+                	st.close();
+                	con.close();
+                	
+                	out.println("הפוסט נשמר בהצלחה!");
+                	out.println("<br>");
+                	out.println("<button class=" + '"' + "btn" + '"' + " onclick=" + '"' + "redirectToFile('./usersMenu.jsp')" + '"' + ">חזרה לתפריט</button>");
                 }
+                catch (Exception e)
+                {
+                	out.println("Error in connecting: " + e);
+                }
+            }   
             %>
         </section>
-        <!-- end update details section -->
+        <!-- end new post form -->
 
         <!-- footer -->
         <footer>
@@ -149,7 +162,7 @@ java.sql.ResultSet usersResultSet=null;
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="../blog.jsp#">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

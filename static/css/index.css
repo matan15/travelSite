@@ -2,8 +2,8 @@
 .hero-img {
     filter: brightness(60%);
     width: 100%;
+    height: auto;
 }
-
 .hero {
     display: flex;
     justify-content: center;

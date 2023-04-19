@@ -14,12 +14,12 @@ java.sql.ResultSet usersResultSet=null;
 
 public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
 {
-	String str="<table class=" + '"' + "users-grid" + '"' + ">";
+	String str="<table class=" + '"' + "users-grid" + '"' + '>';
 	str+="<tr>";
 	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Full Name</td>";
 	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Email</td>";
 	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Password</td>";
-	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Love Traveling</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Love Travel</td>";
 	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Age Range</td>";
 	str+="</tr>";
 	      
@@ -28,14 +28,14 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
 		while(usersResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
 		{
 		  str+="<tr class=" + '"' + "user" + '"' + ">";
-		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("fullName").toString() + "</td>";
-		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("email").toString() + "</td>";
-		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("password").toString() + "</td>";
-		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("loveTravel").toString() + "</td>";
-		  str+="<td class=" + '"' + "user-detail" + '"' + ">" + usersResultSet.getString("ageRange").toString() + "</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("fullName").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("email").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("password").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("loveTravel").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("ageRange").toString()+"</td>";
 		  str+="</tr>";
 	    }
-		  str+="</table>";
+		str+="</table>";
 	} //end of try
 	catch(Exception ex)
 	{
@@ -56,12 +56,12 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/admin/users-list.css">
+        <link rel="stylesheet" href="../../static/css/admin/listUsersByAge.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>רשימת משתמשים לפי אוהב לטייל | מטיילים</title>
+        <title>רשימת משתמשים | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -101,76 +101,49 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">פעולות מנהל</h2>
+                    <h2 class="heading-text">רשימת משתמשים</h2>
                 </div>
             </div>
         </section>
         <!-- end header -->
-
-        <!-- age range selector -->
         <section>
+        	<button onclick="redirectToFile('manage.jsp')">חזרה לדף ניהול</button>
+        	<% if (request.getParameter("send") == null) { %>
             <form action="">
-                <table>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="yes" id="loveTravel" name="loveTravel">
-                            <label for="loveTravel">האם אוהב לטייל?</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" value="שלח" name="send">
-                        </td>
-                    </tr>
-                </table>
+                <select name="loveTravel" id="loveTravel" method="post">
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select>
+                <input type="submit" value="שלח" name="send">
             </form>
+            <%
+        	}
+            %>
         </section>
-
         <!-- users list -->
-        <button>חזרה לדף ניהול</button>
+        
         <section class="users-list-section">
             <%
-                boolean userFound=false;
-                if(request.getParameter("send")!=null)
-                {
-                    String loveTravelAnswer[] = request.getParameterValues("love_travel");
-                    String loveTravel;
-                    if (loveTravelAnswer != null && loveTravelAnswer.length != 0) {
-                        loveTravel = "yes";
-                    }
-                    else {
-                        loveTravel = "no";
-                    }
-                    //יצירת קשר למסד הנתונים 
-                    try
-                    {
-                            Class.forName("com.mysql.jdbc.Driver").newInstance();
-                            con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
-                            st=con.createStatement();
-                        
-                    String sql="SELECT * FROM TBusers WHERE loveTravel='" + loveTravel + "'"; //שאילתת SQL
-                    usersResultSet=st.executeQuery(sql);//מקבל רשומה
-                    usersResultSet.last();
-                    int numRow=usersResultSet.getRow();
-                    if (numRow>0)
-                    {
-                        usersResultSet.beforeFirst();
-                        out.print(formatUsersForHtml(usersResultSet));
-                        usersResultSet.close();
-                    }
-                    else
-                    {
-                        out.print("המשתמש לא נמצא");
-                    }
-                    st.close();
-                    con.close();
-                    }
-                    catch(Exception ex)
-                    {
-                        System.out.println("Error in connection");
-                    }
-                }
+            if (request.getParameter("send") != null) {
+	            //יצירת קשר למסד הנתונים 
+	            String loveTravel = request.getParameter("loveTravel");
+	            try{
+			        Class.forName("com.mysql.jdbc.Driver").newInstance();
+			        con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+			        st=con.createStatement();
+		
+	                String sql="SELECT * FROM TBusers WHERE loveTravel = '" + loveTravel + "'"; // שאילתת SQL  
+	                usersResultSet=st.executeQuery(sql);
+	            }
+		        catch(Exception ex){
+			        System.out.println("Error in connection");
+		        }
+		        //פונקציה מקבלת אובייקט מסוג טבלה ומדפסים את המחרוזת שהפונקציה מחזירה
+	            out.print(formatUsersForHtml(usersResultSet));
+	            usersResultSet.close();
+            }
             %>
+            <%-------------------------------------------------------------- --%>
         </section>
         <!-- end user list -->
 
@@ -183,7 +156,7 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="../blog.html">בלוג</a>
+                    <a href="../blog.jsp">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

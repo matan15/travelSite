@@ -50,6 +50,9 @@
         <!-- login form -->
         <section class="sign-up-section">
             <%
+            	if (session.getAttribute("user") != null && session.getAttribute("user").equals("true") && session.getAttribute("userId") != null) {
+            		response.sendRedirect("../user-pages/usersMenu.jsp");
+            	}
                 // the first time the page is sent to the user
                 // the SUBMIT button was not pressed yet.
                 if(request.getParameter("submit") == null )	//it means that the form is seen the first time
@@ -93,43 +96,45 @@
 	            {
 	                String email = request.getParameter("email"); //אמור להיות לפי השם שלמעלה
 	                String password = request.getParameter("password");	  		
-	            try 
-	            {
-	                // שלב א: טעינת המתפעל - דרייבר
-	                Class.forName("com.mysql.jdbc.Driver").newInstance();	
-	                //שלב ב:חיבור למסד הנתונים
-	                Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+	            	
+	                try 
+	            	{
+	                	// שלב א: טעינת המתפעל - דרייבר
+	                	Class.forName("com.mysql.jdbc.Driver").newInstance();	
+	                	//שלב ב:חיבור למסד הנתונים
+	                	Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
                     
-	                //שלב ב:חיבור למסד הנתונים
-	                Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                	//שלב ב:חיבור למסד הנתונים
+	                	Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                	                						   ResultSet.CONCUR_UPDATABLE);
-	                // Statement st = con.createStatement(); // כאשר אין פרמטרים, אז אי אפשר לנוע למעלה - למטה בתוך הרקורדסט
-	                //שלב ד: יצירת שאילתה עבור מסד הנתונים
-	                String mySQL = "SELECT * FROM TBusers WHERE email='" + email + "' AND password ='" + password + "'";//קולט לתוך המשתנה את פרטי המשתמש שהוקלד שתואמים את מה שיש ב mysql
-	                //שלב ה: יצירת הרזלטסט - טבלה המחזיקה בתוכה חלק מ-(לפעמים את כל) מסד הנתונים	
-	                ResultSet oRS = st.executeQuery(mySQL);				
-	                //=====================סוף ההתחברות למסד הנתונים======================
-	                session.setAttribute("user", "false");			
-	                oRS.last(); // המצביע מצביע על הרשומה היחידה		
-	                int numRows = oRS.getRow();
-	                if (numRows > 0) // כלומר המשתמש הקליד שם וסיסמה של מנהל רשום. יש רק אחד כזה
-	                {
-	                	//System.out.println("no. = "+ oRS.getRow()+  "   Name = " + oRS.getString("Name")+ "    password= "+ oRS.getString("Pwd"));					
-	                    session.setAttribute("user","true");	
-                        }
-	                    oRS.close();
+	                	// Statement st = con.createStatement(); // כאשר אין פרמטרים, אז אי אפשר לנוע למעלה - למטה בתוך הרקורדסט
+	                	//שלב ד: יצירת שאילתה עבור מסד הנתונים
+	                	String mySQL = "SELECT * FROM TBusers WHERE email='" + email + "' AND password ='" + password + "'";//קולט לתוך המשתנה את פרטי המשתמש שהוקלד שתואמים את מה שיש ב mysql
+	                	//שלב ה: יצירת הרזלטסט - טבלה המחזיקה בתוכה חלק מ-(לפעמים את כל) מסד הנתונים	
+	                	ResultSet oRS = st.executeQuery(mySQL);				
+	                	//=====================סוף ההתחברות למסד הנתונים======================
+	                	session.setAttribute("user", "false");			
+	                	oRS.last(); // המצביע מצביע על הרשומה היחידה		
+	                	int numRows = oRS.getRow();
+	                	if (numRows > 0) // כלומר המשתמש הקליד שם וסיסמה של מנהל רשום. יש רק אחד כזה
+	                	{
+	                		//System.out.println("no. = "+ oRS.getRow()+  "   Name = " + oRS.getString("Name")+ "    password= "+ oRS.getString("Pwd"));					
+	                    	session.setAttribute("user","true");
+	                    	session.setAttribute("userId", (String) oRS.getString("id"));
+                    	}
+	                	oRS.close();
 	                	st.close();
-	                } 
-	                catch (Exception e) 
-	                {
-	              	    //e.printStackTrace();
-	            	    System.out.println("Error in connection"+e);
-	                } // the connection is closed	  		
-	              	if ( session.getAttribute("user").equals("true") )
+	       			} 
+	            	catch (Exception e) 
+	            	{
+	              	    	//e.printStackTrace();
+	            	    	System.out.println("Error in connection"+e);
+	            	} // the connection is closed	  		
+	            	if ( session.getAttribute("user").equals("true") )
 	            		response.sendRedirect ("../user-pages/usersMenu.jsp");
 	            	else
 	            		response.sendRedirect ("../user-pages/noUser.jsp");				
-	            }	
+	        	}	
             %>
         </section>
         <!-- end login form -->
@@ -143,7 +148,7 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="../blog.jsp#">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

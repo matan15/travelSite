@@ -27,53 +27,52 @@
 
 /**************************************************/
 
-/* update details section */
+/* new post form */
 
-.update-section form table {
-    width: 100%;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    padding-right: 20px;
-}
-
-.update-section form tr td {
-    width: 50%;
-}
-
-.update-section .label {
-    font-weight: 600;
-}
-
-.update-section .field {
-    border-radius: 5px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-weight: 600;
+.form-group .form-layout .label {
+    font-weight: 400;
     font-size: 18px;
-    border: none;
-    box-shadow: 2px 2px 2px 2px #AAAAAA;
 }
 
-.update-section .field[name="bio"] {
-    width: 90%;
-}
-
-.update-section .field:not([name="bio"]) {
-    margin-bottom: 10px;
-    height: 25px;
-    width: 90%;
-}
-
-.update-section input[type="submit"] {
-    padding: 10px 15px 10px 15px;
-    margin-top: 15px;
-    font-weight: 600;
-    font-size: 18px;
+.form-group .form-layout .field {
+    padding: 5px 5px 5px 5px;
+    font-weight: 500;
+    font-size: 17px;
     border-radius: 5px;
     border: none;
-    background: #3D8361;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.form-group .form-layout .files-selector {
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+.form-group .form-layout .files-selector::file-selector-button {
+    padding: 5px 10px 5px 10px;
+    font-weight: 600;
+    background: #3F4E4F;
     color: #FFFFFF;
+    border-radius: 5px;
+    border: none;
 }
+
+.form-layout {
+    margin: auto;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.form-group .form-layout .submit-btn {
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background: #4E6C50;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 18px;
+}
+
 
 /**************************************************/

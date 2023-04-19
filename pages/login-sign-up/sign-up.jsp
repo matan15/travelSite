@@ -19,7 +19,7 @@
         <script language="javascript" src="../../static/js/base.js"></script>
         <script language="javascript">
             function signUpFormTest() {
-                var email = document.signUpForm.full_name.value;
+                var name = document.signUpForm.full_name.value;
                 var email = document.signUpForm.email.value;
                 var password = document.signUpForm.password.value;
                 var re_password = document.signUpForm.re_password.value;
@@ -61,7 +61,7 @@
             <ul class="menu">
                 <li><a href="../index.html#home">דף הבית</a></li>
                 <li><a href="../index.html#about">אודות</a></li>
-                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
 
@@ -79,14 +79,20 @@
 
         <!-- sign up form -->
         <section class="sign-up-section">
-            <% if(!request.getMethod().equals("POST")) { %>
+            <%
+            if (session.getAttribute("user") != null && session.getAttribute("user").equals("true") && session.getAttribute("userId") != null) {
+        		response.sendRedirect("../user-pages/usersMenu.jsp");
+        	}
+            
+            if(!request.getMethod().equals("POST")) { 
+            %>
                 <div class="sign-up-main">
                     <h1>הרשמה</h1>
                     <form name="signUpForm" onsubmit="return signUpFormTest();" method="post" action="sign-up.jsp">
                         <table>
                             <tr class="field-label">
                                 <td>
-                                    <label for="name">שם מלא:</label>
+                                    <label for="name">שם מלא (באנגלית):</label>
                                 </td>
                             </tr>
                             <tr class="field">
@@ -161,7 +167,7 @@
                 }// 
                 if(request.getMethod().equals("POST"))
                 {	    
-                    String fullName=request.getParameter("full_name");
+                    String fullName=request.getParameter("full_name").replace(" ", "-");
                     String email=request.getParameter("email");
                     String password=request.getParameter("password");
 
@@ -192,7 +198,7 @@
                                 
                         //שלב ד: יצירת שאילתה עבור מסד הנתונים
                     
-                        String mySQL = "SELECT * from TBUSERS WHERE email='" + email +"'"; 
+                        String mySQL = "SELECT * FROM TBusers WHERE email='" + email +"'"; 
                         System.out.println(mySQL);
                         
                         //שלב ה: יצירת הרזלטסט - טבלה המחזיקה בתוכה חלק מ-(לפעמים את כל) מסד הנתונים		  		
@@ -238,8 +244,7 @@
                             // Statement st = con.createStatement(); // כאשר אין פרמטרים, אז אי אפשר לנוע למעלה - למטה בתוך הרקורדסט
                                     
                             //שלב ד: יצירת שאילתה עבור מסד הנתונים
-                            String mySQL = "insert into TBUSERS (fullName, email, password, loveTravel, ageRange) ";
-                            mySQL += "values('" + fullName + ", " + email + ", " + password + ", " + loveTravel + ", "+ ageRange + "')";
+                            String mySQL = "insert into TBUSERS (fullName, email, password, loveTravel, ageRange) values('" + fullName + "', '" + email + "', '" + password + "', '" + loveTravel + "', '"+ ageRange + "')";
                             System.out.println(mySQL);
                         
                             //שלב ה: עדכון מסד הנתונים
@@ -270,7 +275,7 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="../blog.jsp#">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

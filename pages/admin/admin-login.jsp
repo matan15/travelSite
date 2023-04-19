@@ -116,6 +116,7 @@
 	                {
 	                	//System.out.println("no. = "+ oRS.getRow()+  "   Name = " + oRS.getString("Name")+ "    password= "+ oRS.getString("Pwd"));					
 	                    session.setAttribute("admin","true");	
+	                    session.setAttribute("adminId", oRS.getString("id"));
                     }
 	                oRS.close();
 	                st.close();
@@ -142,7 +143,7 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="../blog.jsp#">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

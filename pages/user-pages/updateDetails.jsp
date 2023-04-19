@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+<%@page import="java.sql.*" %>
+<%--הצהרה על משתנים --%>
+<%!
+
+java.sql.Connection con=null;
+java.sql.Statement st=null;
+java.sql.ResultSet usersResultSet=null;
+%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,12 +18,42 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/user-pages/myPosts.css">
+        <link rel="stylesheet" href="../../static/css/user-pages/updateDetails.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>הפוסטים שלי | מטיילים</title>
+        <script>
+            function updateFormTest() {
+                var email = document.signUpForm.full_name.value;
+                var email = document.signUpForm.email.value;
+                var password = document.signUpForm.password.value;
+                var re_password = document.signUpForm.re_password.value;
+                var ageSelectedValue = document.querySelector('input[name="age"]:checked');
+
+                var nameTest = nameCorrect(name, true, "");
+                var emailTest = emailCorrect(email, nameTest[0], nameTest[1]);
+                var passwordTest = passwordCorrect(password, emailTest[0], emailTest[1]);
+                var totalTests = passwordTest;
+                if (password != re_password) {
+                    totalTests[0] = false;
+                    totalTests[1] = totalTests[1] + "\n" + "* שדות הסיסמה לא תואמים נא וודא שהקלדת נכון את הסיסמאות.";
+                }
+
+                if (ageSelectedValue == null) {
+                    totalTests[0] = false;
+                    totalTests[1] = totalTests[1] + "\n" + "* לא בחרת את טווח הגילאים בו נמצא גילך, נא בחר/י טווח גילאים.";
+                }
+
+                if (!totalTests[0]) {
+                    window.alert(totalTests[1]);
+                    event.preventDefault();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <title>עדכון פרטים | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -27,7 +67,7 @@
             <ul class="menu">
                 <li><a href="../index.html#home">דף הבית</a></li>
                 <li><a href="../index.html#about">אודות</a></li>
-                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
 
@@ -48,33 +88,50 @@
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">המסלולים שלי</h2>
+                    <h2 class="heading-text">עדכון פרטים</h2>
                 </div>
             </div>
         </section>
         <!-- end heading -->
 
-        <!-- posts -->
-        <section class="my-posts">
-            <button class="new-post-btn" onclick="redirectToFile('')">יצירת פוסט חדש</button><!-- fix url to new post -->
+        <!-- update details section -->
+        <section class="update-section">
+            <%
+            if ((session.getAttribute("user")== null)|| !session.getAttribute("user").equals("true"))
+                response.sendRedirect ("noUser.jsp");
+            %>
+            <%
+                boolean userFound=false;
+                String id=session.getAttribute("userId").toString();
+                try {
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan", "root", "");
+                    st = con.createStatement();
 
-            <table class="posts-main">
-                <tr class="post">
-                    <td class="post-image">
-                        <img src="../../pictures/posts/image.png" alt="" width="70">
-                    </td>
-                    <td class="post-link">
-                        <a href="#" class="title">כותרת</a>
-                        <p>פורסם בתאריך 06.12.2022</p>
-                    </td>
-                    <td class="post-actions">
-                       <a href="#" class="edit-post"><img src="../../pictures/posts/edit.png" alt="edit" width="40" height="40"></a>
-                       <a href="#" class="delete-post"><img src="../../pictures/posts/delete.png" alt="delete" width="40" height="40"></a> 
-                    </td>
-                </tr>
-            </table>
+                    String sql="SELECT * FROM TBusers WHERE id=" + id;
+                    usersResultSet=st.executeQuery(sql);
+                    if (usersResultSet!=null && usersResultSet.next()) {
+                        userFound=true;
+                    }
+                    if(userFound) {
+                        session.setAttribute("fullName", usersResultSet.getString("fullName"));
+                        session.setAttribute("email", usersResultSet.getString("email"));
+                        session.setAttribute("password", usersResultSet.getString("password"));
+                        session.setAttribute("loveTravel", usersResultSet.getString("loveTravel"));
+                        session.setAttribute("ageRange", usersResultSet.getString("ageRange"));
+
+                        response.sendRedirect("doUpdateDetails.jsp");
+                    }
+                    else {
+                        out.print("המשתמש לא נמצא");
+                    }
+                }
+                catch(Exception ex) {
+                    System.out.println("Error in connection" + ex);
+                }
+            %>
         </section>
-        <!-- end posts -->
+        <!-- end update details section -->
 
         <!-- footer -->
         <footer>
@@ -85,7 +142,7 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="#">בלוג</a>
+                    <a href="../blog.jsp#">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

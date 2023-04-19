@@ -23,9 +23,28 @@ java.sql.ResultSet usersResultSet=null;
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
 		<script language="javascript" src="../../static/js/base.js"></script>
-		<title>Document</title>
+		<title>מחיקה לפי אימייל | מטיילים</title>
 	</head>
 	<body dir="rtl">
+		<!-- navbar -->
+        <nav class="nav sticky-nav">
+            <div class="nav-brand">
+                <button onclick="redirectToFile('../index.html')" class="brand-link">
+                    <img src="../../pictures/icon.png" alt="מטיילים" width="70" height="70" id="logo">
+                    <h1 class="nav-heading">מטיילים</h1>
+                </button>
+            </div>
+            
+            <ul class="menu">
+                <li><a href="../index.html#home">דף הבית</a></li>
+                <li><a href="../index.html#about">אודות</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
+                <li><a href="../index.html#contact">צור קשר</a></li>
+            </ul>
+        </nav>
+        <div class="white-space"></div>
+        <!-- end navbar -->
+        
 		<%
 		if ((session.getAttribute("admin")== null)|| !session.getAttribute("admin").equals("true"))
 					response.sendRedirect ("noManage.jsp");
@@ -72,6 +91,7 @@ java.sql.ResultSet usersResultSet=null;
 			if(userFound)  //משתמש קיים
 			{
 				session.setAttribute("email",usersResultSet.getString("email")); //שמירת שם האימייל שאמור להימחק . שומרים בסאשיין 
+				session.setAttribute("userToDelete", usersResultSet.getString("id"));
 				response.sendRedirect("doDeleteByEmail.jsp"); //הפניה לביצוע הביטול
 			}
 			else //משתמש לא קיים למחיקה
@@ -86,5 +106,50 @@ java.sql.ResultSet usersResultSet=null;
 			}
 		}
 		%>
-	</body>
+        <!-- footer -->
+        <footer>
+            <div class="footer_main">
+                <a href="../index.html#home"><img class="icon" src="../../pictures/icon.png" alt="מטיילים" width="70" height="70"></a>
+                <p class="footer-menu">
+                    <a href="../index.html#home">דף הבית</a>
+                    •
+                    <a href="../index.html#about">אודות</a>
+                    •
+                    <a href="../blog.jsp#">בלוג</a>
+                    •
+                    <a href="../index.html#contact">צור קשר</a>
+                </p>
+    
+                <table class="social-icons">
+                    <tr>
+                        <td>
+                            <a href="https://www.facebook.com">
+                                <img src="../../pictures/social/facebook.png" alt="facebook" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.instagram.com">
+                                <img src="../../pictures/social/instagram.png" alt="instagram" width="60" height="60">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://www.github.com">
+                                <img src="../../pictures/social/github.png" alt="github" width="60" height="60">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    <a href="./admin-login.html">מטיילים</a> <!-- manager entry -->
+                    &copy;
+                    <span id="copyrightYear">
+                        <script>
+                        document.write(new Date().getFullYear());
+                        </script>
+                    </span>
+                </p>
+            </div>
+        </footer>
+        <!-- footer -->
+    </body>
 </html>

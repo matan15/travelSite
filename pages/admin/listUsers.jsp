@@ -28,7 +28,7 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
 		while(usersResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
 		{
 		  str+="<tr class=" + '"' + "user" + '"' + ">";
-		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("fullName").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("fullName").toString().replace('-', ' ')+"</td>";
 		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("email").toString()+"</td>";
 		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("password").toString()+"</td>";
 		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("loveTravel").toString()+"</td>";
@@ -142,7 +142,7 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="../blog.html">בלוג</a>
+                    <a href="../blog.jsp">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

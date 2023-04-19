@@ -1,21 +1,21 @@
 create database DBMatan;
 use DBMatan;
 create table TBusers (id INT PRIMARY KEY AUTO_INCREMENT, fullName VARCHAR(255), email VARCHAR(255), password VARCHAR(255), loveTravel VARCHAR(3), ageRange VARCHAR(10));
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'matan.naydis@hotmail.com', 'Ma123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'matan.naydi@outlook.com', 'Ma123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Nydis', 'matan.naydis@walla.co.il', 'Ma123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'mtan.naydis@outlook.co.il', 'Ma123498789@#', 'yes', '18-30');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'matan.naydis@company.com', 'Ma123456789@#', 'no', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Yosi Levi', 'yosi.levi@gmail.com', 'Ma9874556789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Yosi Naydis', 'yosi.naydis@gmail.com', 'Il123456789@#', 'yes', '30-50');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'matan.naydis@gmail.com', 'Ma123456789@#', 'no', '30-50');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'yosi.naydis@walla.co.il', 'Ma123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'test.naydis@company.com', 'Ma123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan Naydis', 'test.naydis@outlook.com', 'Ma123456789@#', 'yes', '50-70');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Yosi Naydis', 'hi.naydis@company.com', 'Ma123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('hi Naydis', 'hi.naydis@outlook.com', 'Hi123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('test Naydis', 'test.naydis@gmail.com', 'Te123456789@#', 'yes', '8-18');
-insert into TBusers(fullName, email, password, loveTravel, ageRange) values('testtest Naydis', 'testtest.naydis@gmail.com', 'TeTe123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'matan.naydis@hotmail.com', 'Ma123456789@#', 'yes', '70 and up');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'matan.naydi@outlook.com', 'Ma123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Nydis', 'matan.naydis@walla.co.il', 'Ma123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'mtan.naydis@outlook.co.il', 'Ma123498789@#', 'yes', '18-30');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'matan.naydis@company.com', 'Ma123456789@#', 'no', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Yosi-Levi', 'yosi.levi@gmail.com', 'Ma9874556789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Yosi-Naydis', 'yosi.naydis@gmail.com', 'Il123456789@#', 'yes', '30-50');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'matan.naydis@gmail.com', 'Ma123456789@#', 'no', '30-50');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'yosi.naydis@walla.co.il', 'Ma123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'test.naydis@company.com', 'Ma123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Matan-Naydis', 'test.naydis@outlook.com', 'Ma123456789@#', 'yes', '50-70');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('Yosi-Naydis', 'hi.naydis@company.com', 'Ma123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('hi-Naydis', 'hi.naydis@outlook.com', 'Hi123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('test-Naydis', 'test.naydis@gmail.com', 'Te123456789@#', 'yes', '8-18');
+insert into TBusers(fullName, email, password, loveTravel, ageRange) values('testtest-Naydis', 'testtest.naydis@gmail.com', 'TeTe123456789@#', 'yes', '8-18');
 
 create table TBposts (
     id INT AUTO_INCREMENT PRIMARY KEY, 
@@ -27,6 +27,8 @@ create table TBposts (
     userId INT,
     FOREIGN KEY (userId) REFERENCES TBusers(id)
 );
+insert into TBposts(postName, authorName, authorNameDisplay, publishDate, postBody, userId) values("Test Post", "Matan Naydis", "anonymous", curdate(), "test test test test test test test test test test test test test test test test test test test test test", 1);
+
 
 CREATE TABLE TBadmin (id INT AUTO_INCREMENT PRIMARY KEY, adName VARCHAR(255), adPass VARCHAR(255));
 insert into TBadmin(adName, adPass) values('matan15', 'adminadmin');

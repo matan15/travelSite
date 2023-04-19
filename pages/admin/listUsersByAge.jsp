@@ -7,35 +7,35 @@
 
 java.sql.Connection con=null; //משתנים מסוג זה נקראים אובייקטים
 java.sql.Statement st=null;
-java.sql.ResultSet rs=null;
+java.sql.ResultSet usersResultSet=null;
 %>
 <%--אחזור מחרוזת המכילה את נתוני טבלת המשתמשים המעוצבת כטבלה --%>
 <%!
 
 public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
 {
-	String str="<table class=" + "'" + "users-grid" + "'" + ">";
+	String str="<table class=" + '"' + "users-grid" + '"' + '>';
 	str+="<tr>";
-	str+="<td class=" + "'" + "users-grid-heading" + "'" + ">Full Name</td>";
-	str+="<td class=" + "'" + "users-grid-heading" + "'" + ">Email</td>";
-	str+="<td class=" + "'" + "users-grid-heading" + "'" + ">Password</td>";
-	str+="<td class=" + "'" + "users-grid-heading" + "'" + ">Love Traveling</td>";
-	str+="<td class=" + "'" + "users-grid-heading" + "'" + ">Age Range</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Full Name</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Email</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Password</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Love Travel</td>";
+	str+="<td class=" + '"' + "users-grid-heading" + '"' + ">Age Range</td>";
 	str+="</tr>";
 	      
 	try
 	{
 		while(usersResultSet.next()) // אם יש שורה הבאה יוחזר אמת ושקר אם אין שורה
 		{
-		  str+="<tr class=" + "'" + "user" + "'" + ">";
-		  str+="<td class=" + "'" + "user-detail" + "'" + ">" + usersResultSet.getString("fullName").toString()+"</td>";
-		  str+="<td class=" + "'" + "user-detail" + "'" + ">" + usersResultSet.getString("email").toString()+"</td>";
-		  str+="<td class=" + "'" + "user-detail" + "'" + ">" + usersResultSet.getString("password").toString()+"</td>";
-		  str+="<td class=" + "'" + "user-detail" + "'" + ">" + usersResultSet.getString("loveTravel").toString()+"</td>";
-		  str+="<td class=" + "'" + "user-detail" + "'" + ">" + usersResultSet.getString("ageRange").toString()+"</td>";
+		  str+="<tr class=" + '"' + "user" + '"' + ">";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("fullName").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("email").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("password").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("loveTravel").toString()+"</td>";
+		  str+="<td class=" + '"' + "user-detail" + '"' + ">"+usersResultSet.getString("ageRange").toString()+"</td>";
 		  str+="</tr>";
 	    }
-		  str+="</table>";
+		str+="</table>";
 	} //end of try
 	catch(Exception ex)
 	{
@@ -61,7 +61,7 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>רשימת משתמשים לפי גיל | מטיילים</title>
+        <title>רשימת משתמשים | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -75,7 +75,7 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
             <ul class="menu">
                 <li><a href="../index.html#home">דף הבית</a></li>
                 <li><a href="../index.html#about">אודות</a></li>
-                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
     
@@ -101,64 +101,55 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">פעולות מנהל</h2>
+                    <h2 class="heading-text">רשימת משתמשים</h2>
                 </div>
             </div>
         </section>
         <!-- end header -->
-
-        <!-- age range selector -->
         <section>
+        	<button onclick="redirectToFile('manage.jsp')">חזרה לדף ניהול</button>
+        	<% if (request.getParameter("send") == null) { %>
             <form action="">
                 <select name="ageRange" id="ageRange" method="post">
                     <option value="8-18">8-18</option>
                     <option value="18-30">18-30</option>
                     <option value="30-50">30-50</option>
                     <option value="50-70">50-70</option>
-                    <option value="70 ומעלה">70+</option>
+					<option value="70 and up">70+</option>
                 </select>
                 <input type="submit" value="שלח" name="send">
             </form>
+            <%
+        	}
+            %>
         </section>
-
         <!-- users list -->
-        <button>חזרה לדף ניהול</button>
+        
         <section class="users-list-section">
             <%
-                boolean userFound=false;
-                if(request.getParameter("send")!=null)
-                {
-                    String ageRange=request.getParameter("ageRange"); //קריאת שם משתמש
-                    //יצירת קשר למסד הנתונים 
-                    try
-                    {
-                            Class.forName("com.mysql.jdbc.Driver").newInstance();
-                            con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
-                            st=con.createStatement();
-                        
-                    String sql="SELECT * FROM TBusers WHERE ageRange='"+ageRange+"'"; //שאילתת SQL
-                    rs=st.executeQuery(sql);//מקבל רשומה
-                    rs.last();
-                    int numRow=rs.getRow();
-                    if (numRow>0)
-                    {
-                        rs.beforeFirst();
-                        out.print(formatUsersForHtml(rs));
-                        rs.close();
-                    }
-                    else
-                    {
-                        out.print("המשתמש לא נמצא");
-                    }
-                    st.close();
-                    con.close();
-                    }
-                    catch(Exception ex)
-                    {
-                        System.out.println("Error in connection");
-                    }
-                }
+            if (request.getParameter("send") != null) {
+	            //יצירת קשר למסד הנתונים 
+	            String ageRange = request.getParameter("ageRange");
+	            if (ageRange.equals("70+")) {
+	            	ageRange = "70 and up";
+	            }
+	            try{
+			        Class.forName("com.mysql.jdbc.Driver").newInstance();
+			        con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+			        st=con.createStatement();
+		
+	                String sql="SELECT * FROM TBusers WHERE ageRange = '" + ageRange + "'"; // שאילתת SQL  
+	                usersResultSet=st.executeQuery(sql);
+	            }
+		        catch(Exception ex){
+			        System.out.println("Error in connection");
+		        }
+		        //פונקציה מקבלת אובייקט מסוג טבלה ומדפסים את המחרוזת שהפונקציה מחזירה
+	            out.print(formatUsersForHtml(usersResultSet));
+	            usersResultSet.close();
+            }
             %>
+            <%-------------------------------------------------------------- --%>
         </section>
         <!-- end user list -->
 
@@ -171,7 +162,7 @@ public String formatUsersForHtml(java.sql.ResultSet usersResultSet)
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="../blog.html">בלוג</a>
+                    <a href="../blog.jsp">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>

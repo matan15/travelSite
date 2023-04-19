@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <td>
-                    <button class="retry-btn" onclick="redirectToFile('../login-sign-up/sign-up.jsp')">לניסיון נוסף</button>
+                    <button class="retry-btn" onclick="redirectToFile('../login-sign-up/login.jsp')">לניסיון נוסף</button>
                 </td>
             </tr>
         </table>

@@ -43,10 +43,21 @@ String str;
 			catch(Exception ex){
 				System.out.println("Error in connection");
 			}
-			str="DELETE FROM TBusers WHERE email='"+session.getAttribute("email")+"'";
+			String sql = "DELETE FROM TBposts WHERE userId=" + session.getAttribute("userToDelete");
+			
+			try {
+				int n = st.executeUpdate(sql);
+			}
+			catch(SQLException e) {
+				System.out.println("SQLException:"+e.getMessage());
+				System.out.println("SQLState:" +e.getSQLState());
+			}
+			
+			sql="DELETE FROM TBusers WHERE email='"+session.getAttribute("email")+"'";
+			System.out.println(str);
 			try
 			{
-				int n=st.executeUpdate(str);
+				int n=st.executeUpdate(sql);
 				st.close();
 				con.close();
 				out.println("המשתמש נמחק בהצלחה!");
@@ -58,6 +69,7 @@ String str;
 			}
 		%>
 		<br>
+		
 		<button class="btn" onclick="redirectToFile('manage.jsp')">חזרה לתפריט</button>
 		<button class="btn" onclick="redirectToFile('listUsers.jsp')">רשימת המשתמשים</button>
 	</body>

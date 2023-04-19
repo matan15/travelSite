@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<%@ page language="java" contentType="text/html; charset=windows-1255" pageEncoding="windows-1255"%>
+
+<%@page import="java.sql.*" %>
+
+<%--הצהרה על משתנים --%>
+<%!
+
+java.sql.Connection con=null; //משתנים מסוג זה נקראים אובייקטים
+java.sql.Statement st=null;
+java.sql.ResultSet postsResultSet=null;
+%>
+<%--אחזור מחרוזת המכילה את נתוני טבלת המשתמשים המעוצבת כטבלה --%>
+	<head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +20,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel="icon" href="../../pictures/icon.png">
-        <link rel="stylesheet" href="../../static/css/user-pages/usersMenu.css">
+        <link rel="stylesheet" href="../../static/css/user-pages/myPosts.css">
         <link rel="stylesheet" href="../../static/css/nav.css">
         <link rel="stylesheet" href="../../static/css/footer.css">
         <link rel="stylesheet" href="../../static/css/base.css">
         <script language="javascript" src="../../static/js/base.js"></script>
-        <title>תפריט | מטיילים</title>
+        <title>הפוסטים שלי | מטיילים</title>
     </head>
     <body dir="rtl">
         <!-- navbar -->
@@ -27,73 +39,67 @@
             <ul class="menu">
                 <li><a href="../index.html#home">דף הבית</a></li>
                 <li><a href="../index.html#about">אודות</a></li>
-                <li><a href="../blog.html">בלוג</a></li>
+                <li><a href="../blog.jsp">בלוג</a></li>
                 <li><a href="../index.html#contact">צור קשר</a></li>
             </ul>
+
+            <div class="login-and-sign-up">
+                <button class="sign-up" onclick="redirectToFile('../login-sign-up/sign-up.html')">
+                    הירשם
+                </button>
+                <button class="login" onclick="redirectToFile('../login-sign-up/login.html')">
+                    התחבר
+                </button>
+            </div>
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
+        
         <%
-            if ((session.getAttribute("user")== null) || !session.getAttribute("user").equals("true"))
-                response.sendRedirect("noUser.jsp");
-        %>
-        <!-- heading -->    
+		if ((session.getAttribute("user")== null)|| !session.getAttribute("user").equals("true"))
+					response.sendRedirect ("noUser.jsp");
+		%>
+
+        <!-- heading -->
         <section class="heading">
             <div class="heading-main">
                 <img class="heading-img" src="../../pictures/heading.jpg" alt="nature" width="100%">
                 <div class="heading-text-box">
-                    <h2 class="heading-text">תפריט</h2>
+                    <h2 class="heading-text">מחיקת פוסט</h2>
                 </div>
             </div>
         </section>
         <!-- end heading -->
-
-        <!-- menu -->
-        <section class="users-menu">
-            <form method="post" class="main">
-                <table class="users-menu-layout">
-                    <tr>
-                        <td>
-                            <input type="submit" name="sendUser" class="btn" value="הפוסטים שלי">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" name="sendUser" value="צור פוסט" class="btn">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" name="sendUser" value="עדכן פרטים" class="btn">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" name="sendUser" value="התנתק" class="btn">
-                        </td>
-                    </tr>
-                </table>
-            </form>
+        
+        <section>
+        	<%
+        		try
+        		{
+        			Class.forName("com.mysql.jdbc.Driver").newInstance();
+        			con=java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/DBMatan","root","");
+        			st=con.createStatement();
+        	   	}
+        		catch(Exception ex){
+        			System.out.println("Error in connection");
+        		}
+        		String mySQL="DELETE FROM TBposts WHERE id="+request.getParameter("id");
+        		try
+        		{
+        			int n=st.executeUpdate(mySQL);
+        			st.close();
+        			con.close();
+        			out.println("הפוסט נמחק בהצלחה!");
+                	out.println("<br>");
+                	out.println("<button class=" + '"' + "btn" + '"' + " onclick=" + '"' + "redirectToFile('./usersMenu.jsp')" + '"' + ">חזרה לתפריט</button>");
+        		}
+        		catch(SQLException ex)
+        		{
+        			System.out.println("SQLException:"+ex.getMessage());
+        			System.out.println("SQLState:" +ex.getSQLState());
+        		}
+        	%>
         </section>
-        <!-- end menu -->
-        <%
-            String s=request.getParameter("sendUser");
-            try {
-                if(s.equals("הפוסטים שלי")) {
-                    response.sendRedirect("myPosts.jsp");
-                }
-                else if(s.equals("צור פוסט")) {
-                    response.sendRedirect("createPost.jsp");
-                }
-                else if(s.equals("עדכן פרטים")) {
-                    response.sendRedirect("updateDetails.jsp")
-                }
-                else if(s.equals("התנתק")) {
-                    response.sendRedirect("");
-                }
-            }
-        %>
-
+        
         <!-- footer -->
         <footer>
             <div class="footer_main">
@@ -103,11 +109,11 @@
                     •
                     <a href="../index.html#about">אודות</a>
                     •
-                    <a href="../blog.html">בלוג</a>
+                    <a href="../blog.jsp#">בלוג</a>
                     •
                     <a href="../index.html#contact">צור קשר</a>
                 </p>
-
+    
                 <table class="social-icons">
                     <tr>
                         <td>
@@ -128,7 +134,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="../admin/admin-login.jsp">מטיילים</a> <!-- manager entry -->
+                    <a href="#">מטיילים</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>
