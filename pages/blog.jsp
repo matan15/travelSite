@@ -80,17 +80,6 @@ public String formatPostsForHtml(java.sql.ResultSet postsResultSet)
                     התחבר
                 </button>
             </div>
-            <div class="user-menu">
-                <img class="profile-img" src="../pictures/icon.png" alt="profile" width="60" height="60"> <!-- fix source and alt -->
-                <div class="dropdown">
-                    <button class="dropbtn"><img src="../pictures/arrow.png" alt="arrow" width="60" height="60"></button>
-                    <div class="dropdown-content">
-                        <a href="">עדכון פרטים</a>
-                        <a href="">המסלולים שלי</a>
-                        <a href="">התנתק</a>
-                    </div>
-                </div>
-            </div>
         </nav>
         <div class="white-space"></div>
         <!-- end navbar -->
@@ -165,7 +154,7 @@ public String formatPostsForHtml(java.sql.ResultSet postsResultSet)
                     </tr>
                 </table>
                 <p>
-                    <a href="./admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                    <a href="./admin/admin-login.jsp">מטיילים</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

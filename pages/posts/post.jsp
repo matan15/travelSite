@@ -119,7 +119,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="#">מטיילים</a> <!-- this is manager entry. make it a link if the user is not logged in. if the user is logged in. make it as a paragraph -->
+                    <a href="../admin/admin-login.jsp">מטיילים</a> 
                     &copy;
                     <span id="copyrightYear">
                         <script>

@@ -139,15 +139,15 @@ java.sql.ResultSet usersResultSet=null;
                         </td>
                     </tr>
                 </table>
-                <p>
-                    <a href="./admin/admin-login.html">מטיילים</a> <!-- manager entry -->
+                <div>
+                    <p>מטיילים</p> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>
                         document.write(new Date().getFullYear());
                         </script>
                     </span>
-                </p>
+                </div>
             </div>
         </footer>
         <!-- footer -->

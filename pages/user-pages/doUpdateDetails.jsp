@@ -286,7 +286,7 @@ String str;
                     </tr>
                 </table>
                 <p>
-                    <a href="#">מטיילים</a> <!-- manager entry -->
+                    <a href="../admin/admin-login.jsp">מטיילים</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>

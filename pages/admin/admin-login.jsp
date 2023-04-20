@@ -168,7 +168,7 @@
                     </tr>
                 </table>
                 <p>
-                    <a href="./admin-login.html">מטיילים</a> <!-- manager entry -->
+                    <a href="./admin-login.jsp">מטיילים</a> <!-- manager entry -->
                     &copy;
                     <span id="copyrightYear">
                         <script>
