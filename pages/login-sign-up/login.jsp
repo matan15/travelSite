@@ -48,7 +48,7 @@
         <!-- end navbar -->
         
         <!-- login form -->
-        <section class="sign-up-section">
+        <section class="login-section">
             <%
             	if (session.getAttribute("user") != null && session.getAttribute("user").equals("true") && session.getAttribute("userId") != null) {
             		response.sendRedirect("../user-pages/usersMenu.jsp");
@@ -58,9 +58,9 @@
                 if(request.getParameter("submit") == null )	//it means that the form is seen the first time
                 {
             %>
-            <div class="sign-up-main">
+            <div class="login-main">
                 <h1>התחברות</h1>
-                <form name="sign-up-form" action="">
+                <form name="login-form" action="">
                     <table>
                         <tr class="field-label">
                             <td>

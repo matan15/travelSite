@@ -1,30 +1,30 @@
 /* sign up form */
 
-.sign-up-section {
+.login-section {
     background-color: #6ECCAF;
 }
 
-.sign-up-main {
+.login-main {
     padding-bottom: 40px;
     padding-top: 40px;
     text-align: center;
 }
 
-.sign-up-main h1 {
+.login-main h1 {
     font-size: 35px;
     padding-bottom: 25px;
 }
 
-.sign-up-main form {
+.login-main form {
     display: inline-block;
     text-align: right;
 }
 
-.sign-up-main form label {
+.login-main form label {
     font-weight: 600;
 }
 
-.sign-up-main form input:not([type="submit"]) {
+.login-main form input:not([type="submit"]) {
     margin-bottom: 15px;
     height: 25px;
     width: 100%;
@@ -35,7 +35,7 @@
     padding: 7px 7px 7px 7px ;
 }
 
-.sign-up-main form input[type="submit"] {
+.login-main form input[type="submit"] {
     padding: 7px 10px 7px 10px;
     border-radius: 5px;
     border: none;
